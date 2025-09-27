@@ -1,8 +1,9 @@
-import ThreeScene from "@/components/ThreeScene";
-import Image from "next/image";
+"use client";
+
+import Scene from "@/components/three/scene/Scene";
+
 import ContactUs from "@/components/sections/ContactUs";
 import Hero from "@/components/sections/Hero";
-import Scene from "@/components/Scene";
 import OurFounders from "@/components/sections/OurFounders";
 import Section2 from "@/components/sections/Section2";
 import Section3 from "@/components/sections/Section3";
@@ -10,26 +11,36 @@ import Section4 from "@/components/sections/Section4";
 import Section5 from "@/components/sections/Section5";
 import Section6 from "@/components/sections/Section6";
 import Section7 from "@/components/sections/Section7";
+import Section8 from "@/components/sections/Section8";
+import Section9 from "@/components/sections/Section9";
+import Section10 from "@/components/sections/Section10";
+import Section11 from "@/components/sections/Section11";
+import Section12 from "@/components/sections/Section12";
+import Section13 from "@/components/sections/Section13";
 
 export default function Home() {
   return (
-  <main className="relative">
+    <main className="relative">
+      {/* Scroll Sections Overlay */}
+        <Hero />
+        <Section2 />
+        <Section3 />
+        <Section4 />
+        <Section5 />
+        <Section6 />
+        <Section10 />
+        <Section11 />
+        <Section12 />
+        <Section7 />
+        <Section8 />
+        <Section9 />
+        <OurFounders />
+        <Section13 />
+        <ContactUs />
+     
+
       {/* 3D Canvas */}
       <Scene />
-
-      {/* Scroll Sections Overlay */}
-      <div className="relative z-10 text-white">
-        <Hero/>
-        <Section2/>
-        <Section3/>
-        <Section4/>
-        <Section5/>
-        <Section6/>
-        <Section7/>
-        <ContactUs/>
-        <OurFounders/>
-        
-      </div>
     </main>
   );
 }

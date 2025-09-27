@@ -1,7 +1,7 @@
 export default function Hero() {
   return (
-    <section className="h-screen flex items-center justify-center bg-gradient-to-b from-black to-gray-900">
-      <h1 className="text-6xl font-bold">Welcome to BOTI</h1>
+    <section className="h-screen relative flex items-center justify-center text-black">
+      <h1 className="text-6xl font-bold">The Web Stayed Flat.</h1>
     </section>
   );
 }

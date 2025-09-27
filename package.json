@@ -9,8 +9,10 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fontsource/press-start-2p": "^5.2.7",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.3.0",
+    "framer-motion": "^12.23.21",
     "gsap": "^3.13.0",
     "gsap-trial": "^3.12.7",
     "next": "15.5.3",
