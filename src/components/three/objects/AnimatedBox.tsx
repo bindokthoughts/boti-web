@@ -19,7 +19,7 @@ export default function AnimatedBox() {
   return (
     <mesh ref={ref} position={[0, 0, 0]}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="hotpink" />
+      <meshStandardMaterial color="white" />
     </mesh>
   );
 }

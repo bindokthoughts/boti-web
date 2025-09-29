@@ -36,7 +36,7 @@ export default function Scene() {
             {/* Optional HDRI lighting */}
             <Environment preset="sunset" />
           </Suspense>
-          <OrbitControls enableZoom={false} />
+          {/* <OrbitControls enableZoom={false} /> */}
         </Canvas>)}
     </div>
   );

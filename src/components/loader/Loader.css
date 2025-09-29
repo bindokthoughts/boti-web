@@ -3,6 +3,7 @@
 /* Main wrapper - ensures full screen coverage */
 .loader-wrapper {
   position: fixed;
+  display: block;
   top: 0;
   left: 0;
   right: 0;

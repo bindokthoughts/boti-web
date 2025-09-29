@@ -20,7 +20,7 @@ import Section13 from "@/components/sections/Section13";
 
 export default function Home() {
   return (
-    <main className="relative">
+    <main className="relative -mt-16">
       {/* Scroll Sections Overlay */}
         <Hero />
         <Section2 />
