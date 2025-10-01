@@ -1,6 +1,6 @@
 export default function Section13() {
   return (
-    <section className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900">
+    <section id="secton_13" className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900">
         <div className="self-stretch text-center justify-start">
           <span className="text-white text-4xl font-black leading-[50px]">
             The world doesn’t load. It arrives. <br/> 

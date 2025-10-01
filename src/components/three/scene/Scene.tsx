@@ -6,7 +6,11 @@ import { Suspense, useEffect, useState } from "react";
 import AnimatedBox from "../objects/AnimatedBox";
 import CameraRig from "./CameraRig";
 import Loader from "../../loader/Loader";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { ContactShadows } from "@react-three/drei";
 
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Scene() {
   const { progress } = useProgress(); // progress = 0 → 100
@@ -19,6 +23,8 @@ export default function Scene() {
       return () => clearTimeout(timer);
     }
   }, [progress]);
+
+  
 
   return (
     <div className="fixed inset-0">

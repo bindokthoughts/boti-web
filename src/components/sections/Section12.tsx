@@ -1,6 +1,6 @@
 export default function Section12() {
   return (
-    <section className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900">
+    <section id="secton_12" className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900">
       <div className="w-[564px] text-center justify-start">
         <span className="text-white text-2xl font-black ">The world moved into AR, voice, and virtual spaces but<br /></span>
         <span className="text-white text-xl font-medium  leading-[50px]">the web stayed flat.</span>

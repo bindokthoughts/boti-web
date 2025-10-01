@@ -1,6 +1,6 @@
 export default function Section11() {
     return (
-        <section className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900">
+        <section id="secton_11" className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900">
             <div className="inline-flex flex-col justify-start items-center gap-4">
                 <div className="self-stretch inline-flex justify-start items-start  gap-2 flex-wrap content-start">
                     <div className="flex-1 inline-flex flex-col justify-start items-start  gap-2">

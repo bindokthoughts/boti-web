@@ -1,6 +1,6 @@
 export default function Section10() {
   return (
-    <section className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900">
+    <section id="secton_10" className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900">
       <div className="inline-flex flex-col justify-start items-center gap-24">
         <div className="w-96 flex flex-col justify-start items-start gap-10">
           <div className="self-stretch text-center justify-start text-white text-5xl font-black   leading-[50px]"> Why BOTI ?</div>
