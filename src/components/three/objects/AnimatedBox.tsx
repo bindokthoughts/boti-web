@@ -12,62 +12,102 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AnimatedBox() {
   const ref = useRef<Mesh>(null);
 
-  // useEffect(() => {
-  //   if (!ref.current) return;
-
-  //   gsap.fromTo(
-  //     ref.current.scale,
-  //     { x: 0, y: 0, z: 0 },
-  //     { x: 1, y: 1, z: 1, duration: 1.2, ease: "bounce.out" }
-  //   );
-  // }, []);
-
   useEffect(() => {
-  if (!ref.current) return;
+    if (!ref.current) return;
 
-  // Initial bounce-in animation for scale
-  gsap.fromTo(
-    ref.current.scale,
-    { x: 0, y: 0, z: 0 },
-    { x: 1, y: 1, z: 1, duration: 1.2, ease: "bounce.out" }
-  );
+    // Initial bounce-in animation for scale
+    gsap.fromTo(
+      ref.current.scale,
+      { x: 0, y: 0, z: 0 },
+      { x: 1, y: 1, z: 1, duration: 1.2, ease: "sine.in" }
+    );
 
-  // Timeline 1: Hero Section Scroll Animation
-  const tl1 = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#home",
-      start: "top bottom",
-      end: "top top",
-      scrub: true,
-    },
-  });
+    // Timeline 1: Hero Section Scroll Animation
+    const tl1 = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+    });
 
-  tl1.to(ref.current.rotation, { x: 0.0, ease: "power2.inOut" })
-     .to(ref.current.rotation, { y: 0.0, ease: "power2.inOut" }, ">")
-     .to(ref.current.rotation, { x: 0.0, ease: "power2.inOut" }, "<")
-     .to(ref.current.position, { x: 0.0, ease: "power2.inOut" }, "<")
-     .to(ref.current.scale, { x: 1, y: 1, z: 1, ease: "power2.inOut" }, "<");
+    tl1.to(ref.current.rotation, { x: 0, ease: "power2.inOut" })
+    // .to(ref.current.rotation, { y: 0.0, ease: "power2.inOut" }, ">")
+    // .to(ref.current.rotation, { x: 0.0, ease: "power2.inOut" }, "<")
+    // .to(ref.current.position, { x: 0.0, ease: "power2.inOut" }, "<")
+    // .to(ref.current.scale, { x: 1, y: 1, z: 1, ease: "power2.inOut" }, "<");
 
-  // Timeline 2: Section 2 Scroll Animation
-  const tl2 = gsap.timeline({
-    scrollTrigger: {
-      trigger: "#section_2",
-      start: "top bottom",
-      end: "top top",
-      scrub: true,
-    },
-  });
+    // Timeline 2: Section 2 Scroll Animation
+    const tl2 = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section_2",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+    });
 
-  tl2.to(ref.current.rotation, { y: 0, ease: "power2.inOut" })
-     .to(ref.current.position, { x: 0, ease: "power2.inOut" }, "<");
+    tl2.to(ref.current.rotation, { x: 1, ease: "power2.inOut" })
+    // .to(ref.current.rotation, { y: 4, ease: "power2.inOut" })
+    // .to(ref.current.rotation, { z: 4, ease: "power2.inOut" })
+    // .to(ref.current.position, { x: 2, ease: "power2.inOut" });
 
-  // Cleanup: Kill timelines and all ScrollTriggers
-  return () => {
-    tl1.kill();
-    tl2.kill();
-    ScrollTrigger.getAll().forEach(st => st.kill());
-  };
-}, []);
+
+    const tl3 = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section_3",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+    });
+
+    tl3.to(ref.current.position, { x: 1, ease: "power2.inOut" })
+      .to(ref.current.rotation, { y: 3, ease: "power2.inOut" })
+      .to(ref.current.rotation, { z: 3, ease: "power2.inOut" });
+
+    const tl4 = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section_4",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+    });
+
+    tl4.to(ref.current.position, { x: 1, ease: "power2.inOut" })
+      .to(ref.current.rotation, { y: 1, ease: "power2.inOut" })
+      .to(ref.current.rotation, { z: 3, ease: "power2.inOut" });
+
+    const tl5 = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section_5",
+        start: "top bottom",
+        end: "top top",
+        scrub: true,
+      },
+    });
+
+    tl5.to(ref.current.rotation, { x: 0.5, ease: "power2.inOut" })
+      .to(ref.current.rotation, { y: 0.75, ease: "power2.inOut" })
+      .to(ref.current.rotation, { z: 0, ease: "power2.inOut" })
+
+      .to(ref.current.position, { x: 0, ease: "power2.inOut" })
+      .to(ref.current.position, { y: 0, ease: "power2.inOut" })
+      .to(ref.current.position, { z: -2, ease: "power2.inOut" });
+
+
+    // Cleanup: Kill timelines and all ScrollTriggers
+    return () => {
+      tl1.kill();
+      tl2.kill();
+      tl3.kill();
+      tl4.kill();
+      tl5.kill();
+      ScrollTrigger.getAll().forEach(st => st.kill());
+    };
+  }, []);
 
 
   return (

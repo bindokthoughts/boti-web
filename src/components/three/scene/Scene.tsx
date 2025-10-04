@@ -9,6 +9,7 @@ import Loader from "../../loader/Loader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ContactShadows } from "@react-three/drei";
+import LogoMonogram from "../objects/LogoMonogram";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,6 +38,7 @@ export default function Scene() {
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
             <AnimatedBox/>
+            <LogoMonogram scale={[1, 1, 1]} position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]} />
             <CameraRig/>
 
             {/* Optional HDRI lighting */}
