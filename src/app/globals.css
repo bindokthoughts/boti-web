@@ -24,6 +24,12 @@
   }
 }
 
+/* Ensure animated elements start hidden */
+/* [data-scroll-animation] {
+  opacity: 0;
+  transform: translateY(50px) scale(0.9);
+} */
+
 
 /* html, body {
   margin: 0;

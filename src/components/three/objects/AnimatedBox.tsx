@@ -19,7 +19,7 @@ export default function AnimatedBox() {
     gsap.fromTo(
       ref.current.scale,
       { x: 0, y: 0, z: 0 },
-      { x: 1, y: 1, z: 1, duration: 1.2, ease: "sine.in" }
+      { x: 2, y: 2, z: 2, duration: 1.2, ease: "power1.in" }
     );
 
     // Timeline 1: Hero Section Scroll Animation
@@ -33,30 +33,38 @@ export default function AnimatedBox() {
     });
 
     tl1.to(ref.current.rotation, { x: 0, ease: "power2.inOut" })
-    // .to(ref.current.rotation, { y: 0.0, ease: "power2.inOut" }, ">")
-    // .to(ref.current.rotation, { x: 0.0, ease: "power2.inOut" }, "<")
-    // .to(ref.current.position, { x: 0.0, ease: "power2.inOut" }, "<")
+      // .to(ref.current.rotation, { y: 0.0, ease: "power2.inOut" }, ">")
+      // .to(ref.current.rotation, { x: 0.0, ease: "power2.inOut" }, "<")
+      .to(ref.current.position, { x: -2, ease: "power2.inOut" }, "<")
+      .to(ref.current.rotation, { y: 2, duration: 1.2, ease: "power2.inOut" }, "<")
+      .to(ref.current.rotation, { z: 0, duration: 3, ease: "power2.inOut" }, "<")
+    // .to(ref.current.position, { x: -2, ease: "power2.inOut" }, "<")
     // .to(ref.current.scale, { x: 1, y: 1, z: 1, ease: "power2.inOut" }, "<");
 
     // Timeline 2: Section 2 Scroll Animation
     const tl2 = gsap.timeline({
       scrollTrigger: {
-        trigger: "#section_2",
+        trigger: "#section2",
         start: "top bottom",
-        end: "top top",
+        end: "top center",
         scrub: true,
       },
     });
 
-    tl2.to(ref.current.rotation, { x: 1, ease: "power2.inOut" })
-    // .to(ref.current.rotation, { y: 4, ease: "power2.inOut" })
+    tl2.to(ref.current.rotation, { x: 1, ease: "power2.inOut" }, "<")
+      .to(ref.current.rotation, { y: 10, ease: "power2.inOut" }, ">")
+      .to(ref.current.rotation, { z: -4, ease: "power2.inOut" })
+
+      .to(ref.current.scale, { x: 1.5, ease: "power2.inOut" }, "<")
+      .to(ref.current.scale, { y: 1.5, ease: "power2.inOut" }, ">")
+      .to(ref.current.scale, { z: 1.5, ease: "power2.inOut" });
     // .to(ref.current.rotation, { z: 4, ease: "power2.inOut" })
     // .to(ref.current.position, { x: 2, ease: "power2.inOut" });
 
 
     const tl3 = gsap.timeline({
       scrollTrigger: {
-        trigger: "#section_3",
+        trigger: "#section3",
         start: "top bottom",
         end: "top top",
         scrub: true,
@@ -65,11 +73,15 @@ export default function AnimatedBox() {
 
     tl3.to(ref.current.position, { x: 1, ease: "power2.inOut" })
       .to(ref.current.rotation, { y: 3, ease: "power2.inOut" })
-      .to(ref.current.rotation, { z: 3, ease: "power2.inOut" });
+      .to(ref.current.rotation, { z: 3, ease: "power2.inOut" })
+
+      .to(ref.current.scale, { x: 1.25, ease: "power2.inOut" }, "<")
+      .to(ref.current.scale, { y: 1.25, ease: "power2.inOut" }, ">")
+      .to(ref.current.scale, { z: 1.25, ease: "power2.inOut" });
 
     const tl4 = gsap.timeline({
       scrollTrigger: {
-        trigger: "#section_4",
+        trigger: "#section4",
         start: "top bottom",
         end: "top top",
         scrub: true,
@@ -82,7 +94,7 @@ export default function AnimatedBox() {
 
     const tl5 = gsap.timeline({
       scrollTrigger: {
-        trigger: "#section_5",
+        trigger: "#section5",
         start: "top bottom",
         end: "top top",
         scrub: true,
@@ -97,6 +109,24 @@ export default function AnimatedBox() {
       .to(ref.current.position, { y: 0, ease: "power2.inOut" })
       .to(ref.current.position, { z: -2, ease: "power2.inOut" });
 
+      const tl6 = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section6",
+        start: "center center",
+        end: "top top",
+        scrub: true,
+      },
+    });
+
+    tl6.to(ref.current.position, { x: 0, ease: "power2.inOut" }, ">")
+      .to(ref.current.position, { y: 0, ease: "power2.inOut" },  ">")
+      .to(ref.current.position, { z: -100, ease: "power2.inOut" }, "<")
+      
+      .to(ref.current.scale, { x: 0, ease: "power2.inOut" }, "<")
+      .to(ref.current.scale, { y: 0, ease: "power2.inOut" }, "<")
+      .to(ref.current.scale, { z: 0, ease: "power2.inOut" }, "<");
+      
+
 
     // Cleanup: Kill timelines and all ScrollTriggers
     return () => {
@@ -105,6 +135,7 @@ export default function AnimatedBox() {
       tl3.kill();
       tl4.kill();
       tl5.kill();
+      tl6.kill();
       ScrollTrigger.getAll().forEach(st => st.kill());
     };
   }, []);

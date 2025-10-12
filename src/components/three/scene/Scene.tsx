@@ -11,6 +11,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ContactShadows } from "@react-three/drei";
 import LogoMonogram from "../objects/LogoMonogram";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Scene() {
@@ -30,7 +31,10 @@ export default function Scene() {
   return (
     <div className="fixed inset-0">
       {loading ? (
-        <Loader /> // 👈 your custom glitch loader
+        <>
+        {/* <Loader /> // custom glitch loader */}
+        </>
+        
       ) : (
         <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
 
@@ -38,7 +42,7 @@ export default function Scene() {
             <ambientLight intensity={0.5} />
             <directionalLight position={[5, 5, 5]} intensity={1} />
             <AnimatedBox/>
-            <LogoMonogram scale={[1, 1, 1]} position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]} />
+            {/* <LogoMonogram scale={[1, 1, 1]} position={[0, 0, 0]} rotation={[0, 0, Math.PI / 4]} />S */}
             <CameraRig/>
 
             {/* Optional HDRI lighting */}

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ContactShadows } from "@react-three/drei";
 
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function CameraRig() {
