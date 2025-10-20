@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import LogoTypo from "../../assets/Logo_Typo.svg"
+import LogoTypo from "../../assets/images/Logo_Typo.svg"
 import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);

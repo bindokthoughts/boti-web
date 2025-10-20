@@ -1,13 +1,14 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import monogram from "../../assets/Logo_Monogram.svg";
+import monogram from "../../assets/images/Logo_Monogram.svg";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, ContactShadows } from "@react-three/drei";
 import { Suspense } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import LogoMonogram from "../three/objects/LogoMonogram";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,58 +18,43 @@ export default function Section5() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const canvasRef = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      const ctx = gsap.context(() => {
-        // Create timeline for this section
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top center",
-            end: "bottom center",
-            scrub: 1,
-            onUpdate: (self) => {
-              // Rotate canvas based on scroll progress
-              if (canvasRef.current) {
-                gsap.set(canvasRef.current, {
-                  rotationY: self.progress * 360
-                });
-              }
-            }
+  useGSAP(() => {
+    // Create timeline for this section
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+        onUpdate: (self) => {
+          // Rotate canvas based on scroll progress
+          if (canvasRef.current) {
+            gsap.set(canvasRef.current, {
+              rotationY: self.progress * 360,
+            });
           }
-        });
+        },
+      },
+    });
 
-        // Animate title
-        tl.fromTo(titleRef.current,
-          {
-            opacity: 0,
-            y: 100
-          },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1
-          }
-        );
+    // Animate title: use from (start state) to allow timeline to define the end
+    tl.from(titleRef.current, {
+      opacity: 0,
+      y: 100,
+      duration: 1,
+    });
 
-        // Animate canvas container
-        tl.fromTo(canvasRef.current,
-          {
-            scale: 0.5,
-            opacity: 0
-          },
-          {
-            scale: 1,
-            opacity: 1,
-            duration: 1.5
-          },
-          "-=0.5"
-        );
-      }, sectionRef);
-
-      return () => ctx.revert();
-    }
-  }, []);
+    // Animate canvas container: use from so it animates into place
+    tl.from(
+      canvasRef.current,
+      {
+        scale: 0.5,
+        opacity: 0,
+        duration: 1.5,
+      },
+      "-=0.5"
+    );
+  }, { scope: sectionRef });
 
   return (
     <section 
@@ -83,7 +69,7 @@ export default function Section5() {
         >
           Section 5
         </h1>
-        <Image src={monogram} alt="BOTI Monogram" className="w-16 h-16" />
+        {/* <Image src={monogram} alt="BOTI Monogram" className="w-16 h-16" /> */}
         <div ref={canvasRef} className="w-80 h-80">
           <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
             <Suspense fallback={null}>

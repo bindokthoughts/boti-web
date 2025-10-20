@@ -4,7 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import "./Loader.css";
-import Simulated_Logo from "../../assets/Simulated_Logo.png";
+import Simulated_Logo from "../../assets/images/Simulated_Logo.png";
 
 // Extend Window type for Safari webkitAudioContext
 declare global {

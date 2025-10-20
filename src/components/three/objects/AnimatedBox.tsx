@@ -1,9 +1,10 @@
 "use client";
 import * as THREE from "three";
-import { useRef, useEffect } from "react";
+import { useRef } from "react";
 import { Mesh } from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -12,15 +13,19 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AnimatedBox() {
   const ref = useRef<Mesh>(null);
 
-  useEffect(() => {
+  useGSAP(() => {
     if (!ref.current) return;
 
     // Initial bounce-in animation for scale
-    gsap.fromTo(
-      ref.current.scale,
-      { x: 0, y: 0, z: 0 },
-      { x: 2, y: 2, z: 2, duration: 1.2, ease: "power1.in" }
-    );
+    gsap.from(ref.current.scale, {
+      x: 0,
+      y: 0,
+      z: 0,
+      duration: 1.2,
+      ease: "power1.in",
+      immediateRender: true,
+      overwrite: true
+    });
 
     // Timeline 1: Hero Section Scroll Animation
     const tl1 = gsap.timeline({
@@ -128,17 +133,8 @@ export default function AnimatedBox() {
       
 
 
-    // Cleanup: Kill timelines and all ScrollTriggers
-    return () => {
-      tl1.kill();
-      tl2.kill();
-      tl3.kill();
-      tl4.kill();
-      tl5.kill();
-      tl6.kill();
-      ScrollTrigger.getAll().forEach(st => st.kill());
-    };
-  }, []);
+    // Cleanup will still be handled by useGSAP
+  }); // Remove scope since we're mixing DOM and Three.js animations
 
 
   return (

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import "./Loader.css";
-import Simulated_Logo from "../../assets/Simulated_Logo.png"
+import Simulated_Logo from "../../assets/images/Simulated_Logo.png"
 
 // Messages to cycle through
 const messages = [

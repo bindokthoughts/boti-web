@@ -3,8 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import logo from "../../assets/Logo_Typo.svg";
-import monogram from "../../assets/Logo_Monogram.svg";
+import logo from "../../assets/images/Logo_Typo.svg";
+import monogram from "../../assets/images/Logo_Monogram.svg";
 
 export default function Navbar() {
     const [isMobile, setIsMobile] = useState(false);
