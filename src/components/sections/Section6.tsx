@@ -61,7 +61,7 @@ export default function Section6() {
         ref={textRef}
         className="text-xl font-bold text-white"
       >
-        It's pronounced BODHI
+        It&apos;s pronounced BODHI
       </h6>
     </section>
   );

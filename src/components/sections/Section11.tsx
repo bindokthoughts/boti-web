@@ -163,7 +163,7 @@ export default function Section11() {
               70%
             </div>
             <div className="text-center text-white text-base font-medium leading-snug">
-              say web presence is "mission-critical"
+              say web presence is Mission-Critical
             </div>
           </div>
 
@@ -189,7 +189,7 @@ export default function Section11() {
             ref={(el) => addToTextRefs(el, 0)}
             className="text-white text-3xl font-bold leading-relaxed"
           >
-            You don't just want your site to work, you need it to wow.
+            You don&apos;t just want your site to work, you need it to wow.
           </div>
 
           <div 
@@ -210,7 +210,7 @@ export default function Section11() {
             ref={(el) => addToTextRefs(el, 3)}
             className="text-white text-xl font-normal leading-relaxed"
           >
-            With BOTI, your success isn't limited by skill or budget
+            With BOTI, your success isn&apos;t limited by skill or budget
             <br />
             only by imagination.
           </div>
@@ -219,7 +219,7 @@ export default function Section11() {
             ref={(el) => addToTextRefs(el, 4)}
             className="text-white text-2xl font-bold leading-relaxed"
           >
-            BOTI turns 'good enough' into limitless imagination.
+            BOTI turns <strong>Good Enough</strong> into limitless imagination.
           </div>
         </div>
       </div>

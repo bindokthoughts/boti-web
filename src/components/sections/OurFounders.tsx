@@ -94,7 +94,7 @@ export default function OurFounders() {
           ref={(el) => addToTitleRefs(el, 2)}
           className="text-gray-400 text-2xl font-medium text-center max-w-2xl leading-relaxed"
         >
-          The innovators behind BOTI's revolutionary spatial web experience
+          The innovators behind BOTI&apos;s revolutionary spatial web experience
         </h3>
       </div>
     </section>

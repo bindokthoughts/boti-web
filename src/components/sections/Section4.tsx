@@ -48,7 +48,7 @@ export default function Section4() {
         ref={textRef}
         className="text-6xl font-bold"
       >
-        a browser that's bigger on the inside
+        a browser that&apos;s bigger on the inside
       </h1>
     </section>
   );

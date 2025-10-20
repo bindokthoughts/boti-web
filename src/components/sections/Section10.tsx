@@ -90,21 +90,21 @@ export default function Section10() {
           ref={(el) => addToTextRefs(el, 0)}
           className="text-white text-2xl font-medium leading-relaxed"
         >
-          Because, Your site isn't just a storefront, it's your pride, your passion, your path to success
+          Because, Your site isn&apos;t just a storefront, it&apos;s your pride, your passion, your path to success
         </div>
         
         <div 
           ref={(el) => addToTextRefs(el, 1)}
           className="text-white text-3xl font-bold leading-relaxed italic"
         >
-          It's your dream.
+          It&apos;s your dream.
         </div>
         
         <div 
           ref={(el) => addToTextRefs(el, 2)}
           className="text-white text-2xl font-medium leading-relaxed"
         >
-          Let's make it shine the way it deserves.
+          Let&apos;s make it shine the way it deserves.
         </div>
       </div>
     </section>

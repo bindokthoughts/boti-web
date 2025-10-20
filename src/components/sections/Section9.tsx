@@ -91,7 +91,7 @@ export default function Section9() {
           ref={(el) => addToTitleRefs(el, 0)}
           className="text-center text-white text-xl font-medium leading-[50px]"
         >
-          You don't scroll through BOTI.
+          You don&apos;t scroll through BOTI.
         </div>
         
         <div 

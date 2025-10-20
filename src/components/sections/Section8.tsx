@@ -91,7 +91,7 @@ export default function Section8() {
             ref={(el) => addToSubtitleRefs(el, 0)}
             className="text-white text-2xl font-medium leading-relaxed"
           >
-            It doesn't open tabs.
+            It doesn&apos;t open tabs.
           </p>
           
           <p 

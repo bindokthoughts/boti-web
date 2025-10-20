@@ -93,7 +93,7 @@ export default function Section7() {
           <span className="text-white text-2xl font-normal leading-[50px]">
             From flat to fluid. <br />
             From links to locations.<br />
-            BOTI doesn't load
+            BOTI doesn&apos;t load
           </span>
         </div>
         
