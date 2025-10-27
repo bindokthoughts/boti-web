@@ -20,7 +20,7 @@ import Section13 from "@/components/sections/Section13";
 
 export default function Home() {
   return (
-    <main className="relative -mt-16">
+    <main className="relative -mt-16 bg-gradient-to-b from-black to-gray-900">
       {/* Scroll Sections Overlay */}
         <Hero />
         <Section2 />
@@ -40,7 +40,7 @@ export default function Home() {
      
 
       {/* 3D Canvas */}
-      <Scene />
+      {/* <Scene /> */}
     </main>
   );
 }

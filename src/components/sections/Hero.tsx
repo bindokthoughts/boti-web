@@ -6,6 +6,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import SVGCloud from "../../assets/images/Clouds.svg";
+import CubeScene from "../three/scene/CubeScene";
 
 // Register GSAP plugin once globally
 gsap.registerPlugin(ScrollTrigger);
@@ -59,53 +60,77 @@ export default function Hero() {
             start: "top 80%",
             end: "bottom 20%",
             toggleActions: "play none none reverse",
-            markers: true,
+            // markers: true,
           },
         }
       );
 
       // === Cloud Scroll Animation ===
-
-      // Set initial cloud position
+      
+      // Set initial cloud position with responsive values
+      const isMobile = window.innerWidth < 768;
+      
       gsap.set(cloud, {
-        y: 0,
-        x: 50,
+        y: isMobile ? "45vh" : "35vh",
+        x: isMobile ? 0 : 50,
         transformOrigin: "center bottom",
-        scale: 1.75,
+        scale: isMobile ? 1 : 1.25,
       });
 
-      const cloudTimeline = gsap.timeline({
+      // Master timeline for cloud movement
+      const cloudMaster = gsap.timeline({
         scrollTrigger: {
           trigger: hero,
           start: "top top",
-          end: "bottom bottom",
-          scrub: 1.2,
-          pin: true,
-          
+          end: "+=300%", // Spans across 3 sections
+          scrub: 1,
+          pin: false,
+          // markers: true,
         },
       });
 
-      cloudTimeline.to(cloud, {
-        y: 50,
-        ease: "none",
-        duration: 2,
+      // Animation through hero to section2 with responsive values
+      cloudMaster.to(cloud, {
+        y: isMobile ? "-15vh" : "-25vh", // Adjusted for mobile
+        scale: isMobile ? 0.7 : 1,
+        ease: "power1.inOut",
+        duration: 1,
+      })
+      // Animation from section2 to section3
+      .to(cloud, {
+        y: isMobile ? "-80vh" : "-100vh", // Adjusted for mobile
+        scale: isMobile ? 1.5 : 2,
+        ease: "power1.inOut",
+        duration: 1,
       });
 
-      const cloudTimeline2 = gsap.timeline({
+      // Additional timeline for section2 specific animations
+      gsap.timeline({
         scrollTrigger: {
           trigger: "#section2",
-          start: "top top",
-          end: "bottom bottom",
-          scrub: 1.2,
-          pin: true,
-          
+          start: "top center",
+          end: "bottom center",
+          scrub: 1,
+          // markers: true,
         },
+      }).to(cloud, {
+        // rotation: 15,
+        ease: "none",
       });
 
-      cloudTimeline2.to(cloud, {
-        y: 50,
-        ease: "none",
-        duration: 2,
+      // Additional timeline for section3 specific animations
+      gsap.timeline({
+        scrollTrigger: {
+          trigger: "#section3",
+          start: "top center",
+          end: "center center",
+          scrub: 1,
+          // markers: true,
+        },
+      }).to(cloud, {
+        // rotation: 0,
+        scale: 1,
+        ease: "power2.inOut",
       });
 
 
@@ -117,15 +142,17 @@ export default function Hero() {
     <section
       ref={heroRef}
       id="hero"
-      className="h-screen relative flex items-center justify-end text-white bg-gradient-to-b from-blue-400 to-blue-900 overflow-hidden"
+      className="min-h-screen relative flex flex-col md:flex-row items-center justify-center md:justify-end text-white bg-gradient-to-b from-blue-400 to-blue-900 overflow-hidden"
     >
-      <h1
-        ref={textRef}
-        id="text1"
-        className="text-6xl font-bold w-1/2 p-40 z-10 relative"
-      >
-        The Web Stayed Flat.
-      </h1>
+      <div className="relative z-10 px-6 md:px-0 w-full md:w-1/2 text-center md:text-left">
+        <h1
+          ref={textRef}
+          id="text1"
+          className="text-4xl md:text-6xl font-bold p-4 md:p-40 max-w-[90vw] md:max-w-none"
+        >
+          The Web Stayed Flat.
+        </h1>
+      </div>
 
       <Image
         ref={cloudRef}
@@ -134,16 +161,18 @@ export default function Hero() {
         height={600}
         alt="Animated clouds background"
         priority
-        className="absolute bottom-[-25vh] left-0 pointer-events-none select-none z-10"
-        // style={{
-        //   width: "125%",
-        //   height: "auto",
-        //   transform: "translateY(-25.5%)",
-        // }}
+        className="fixed bottom-0 left-0 pointer-events-none select-none z-10 w-[200%] md:w-[125%] h-auto"
+        style={{
+          transform: "translateY(25%)",
+          willChange: "transform",
+        }}
         quality={100}
-        // placeholder="blur"
-        // blurDataURL="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgdmlld0JveD0iMCAwIDEwMCAxMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iMTAwIiBmaWxsPSIjY2NjIi8+Cjwvc3ZnPg=="
       />
+
+      {/* 3D Canvas - Absolute positioned to overlay properly on mobile */}
+      <div className="absolute inset-0 z-0">
+        <CubeScene />
+      </div>
     </section>
   );
 }

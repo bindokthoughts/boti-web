@@ -1,8 +1,9 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,62 +12,41 @@ export default function Section10() {
   const titleRef = useRef<HTMLHeadingElement>(null);
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
 
-  useLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top center",
-            end: "bottom center",
-            scrub: 1.5,
-            pin: false
-          }
-        });
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1.5,
+        pin: false
+      }
+    });
 
-        // Animate title with bounce effect
-        if (titleRef.current) {
-          tl.fromTo(titleRef.current,
-            {
-              opacity: 0,
-              scale: 0.3,
-              rotation: -15
-            },
-            {
-              opacity: 1,
-              scale: 1,
-              rotation: 0,
-              duration: 2,
-              ease: "elastic.out(1, 0.5)"
-            }
-          );
-        }
-
-        // Animate text blocks with stagger
-        textRefs.current.forEach((text, index) => {
-          if (text) {
-            tl.fromTo(text,
-              {
-                opacity: 0,
-                y: 80,
-                x: index % 2 === 0 ? -50 : 50
-              },
-              {
-                opacity: 1,
-                y: 0,
-                x: 0,
-                duration: 1.5,
-                ease: "power3.out"
-              },
-              `-=${1.2 - (index * 0.2)}`
-            );
-          }
-        });
-      }, sectionRef);
-
-      return () => ctx.revert();
+    // Animate title with bounce effect
+    if (titleRef.current) {
+      tl.from(titleRef.current, {
+        opacity: 0,
+        scale: 0.3,
+        // rotation: -15,
+        duration: 2,
+        ease: "elastic.out(1, 0.5)"
+      });
     }
-  }, []);
+
+    // Animate text blocks with stagger
+    textRefs.current.forEach((text, index) => {
+      if (text) {
+        tl.from(text, {
+          opacity: 0,
+          y: 80,
+          x: index % 2 === 0 ? -50 : 50,
+          duration: 1.5,
+          ease: "power3.out"
+        }, `-=${1.2 - (index * 0.2)}`);
+      }
+    });
+  });
 
   const addToTextRefs = (el: HTMLDivElement | null, index: number) => {
     if (el) textRefs.current[index] = el;
@@ -95,7 +75,7 @@ export default function Section10() {
         
         <div 
           ref={(el) => addToTextRefs(el, 1)}
-          className="text-white text-3xl font-bold leading-relaxed italic"
+          className="text-white text-3xl font-bold leading-relaxed"
         >
           It&apos;s your dream.
         </div>

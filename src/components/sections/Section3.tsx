@@ -46,7 +46,7 @@ export default function Section3() {
     <section 
       ref={sectionRef}
       id="section3" 
-      className="h-screen relative flex items-center justify-center bg-gradient-to-b from-black to-gray-900 text-gray-200"
+      className="min-h-screen relative flex items-center justify-center text-gray-200"
     >
       <h1 
         ref={textRef}

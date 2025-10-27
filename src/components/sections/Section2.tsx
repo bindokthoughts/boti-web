@@ -14,8 +14,8 @@ export default function Section2() {
   useGSAP(() => {
     gsap.from(textRef.current, {
       opacity: 0,
-      x: -100,
-      rotation: -5,
+      scale: 0,
+      // rotation: -5,
       duration: 2,
       ease: "power3.out",
       scrollTrigger: {
@@ -23,7 +23,7 @@ export default function Section2() {
         start: "top center",
         end: "bottom center",
         scrub: 1,
-        pin: false
+        // pin: false
       }
     });
   }, { scope: sectionRef });
@@ -32,7 +32,7 @@ export default function Section2() {
     <section 
       ref={sectionRef}
       id="section2" 
-      className="h-screen relative flex items-center justify-center bg-gradient-to-b from-black to-gray-900 text-gray-200"
+      className="min-h-screen relative flex items-center justify-center  text-gray-200"
     >
       <h1 
         ref={textRef}
