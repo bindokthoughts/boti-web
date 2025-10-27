@@ -5,6 +5,7 @@ import { Mesh } from "three";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import { OrbitControls } from "@react-three/drei";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -46,91 +47,125 @@ export default function AnimatedBox() {
     // .to(ref.current.position, { x: -2, ease: "power2.inOut" }, "<")
     // .to(ref.current.scale, { x: 1, y: 1, z: 1, ease: "power2.inOut" }, "<");
 
-    // Timeline 2: Section 2 Scroll Animation
+    // Section 2 Timeline
     const tl2 = gsap.timeline({
       scrollTrigger: {
         trigger: "#section2",
-        start: "top bottom",
-        end: "top center",
-        scrub: true,
+        start: "top center",
+        end: "bottom center",
+        toggleActions: "play reverse play reverse", // play on enter, reverse on leave
+        // markers: true,
       },
     });
 
-    tl2.to(ref.current.rotation, { x: 1, ease: "power2.inOut" }, "<")
-      .to(ref.current.rotation, { y: 10, ease: "power2.inOut" }, ">")
-      .to(ref.current.rotation, { z: -4, ease: "power2.inOut" })
+    tl2.to(ref.current.rotation, {
+      x: Math.PI * 0.5,
+      y: Math.PI * 0.25,
+      duration: 1,
+      ease: "power2.inOut"
+    })
+      .to(ref.current.scale, {
+        x: 1.5,
+        y: 1.5,
+        z: 1.5,
+        duration: 1,
+        ease: "power2.inOut"
+      }, "<");
 
-      .to(ref.current.scale, { x: 1.5, ease: "power2.inOut" }, "<")
-      .to(ref.current.scale, { y: 1.5, ease: "power2.inOut" }, ">")
-      .to(ref.current.scale, { z: 1.5, ease: "power2.inOut" });
-    // .to(ref.current.rotation, { z: 4, ease: "power2.inOut" })
-    // .to(ref.current.position, { x: 2, ease: "power2.inOut" });
-
-
+    // Section 3 Timeline
     const tl3 = gsap.timeline({
       scrollTrigger: {
         trigger: "#section3",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
+        start: "top center",
+        end: "bottom center",
+        toggleActions: "play reverse play reverse", // play on enter, reverse on leave
+        // markers: true,
       },
     });
 
-    tl3.to(ref.current.position, { x: 1, ease: "power2.inOut" })
-      .to(ref.current.rotation, { y: 3, ease: "power2.inOut" })
-      .to(ref.current.rotation, { z: 3, ease: "power2.inOut" })
+    tl3.to(ref.current.rotation, {
+      x: Math.PI,
+      y: Math.PI * 0.5,
+      duration: 1,
+      ease: "power2.inOut"
+    })
+      .to(ref.current.position, {
+        x: 2,
+        y: 1,
+        duration: 1,
+        ease: "power2.inOut"
+      }, "<");
 
-      .to(ref.current.scale, { x: 1.25, ease: "power2.inOut" }, "<")
-      .to(ref.current.scale, { y: 1.25, ease: "power2.inOut" }, ">")
-      .to(ref.current.scale, { z: 1.25, ease: "power2.inOut" });
-
+    // Section 4 Timeline
     const tl4 = gsap.timeline({
       scrollTrigger: {
         trigger: "#section4",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
+        start: "top center",
+        end: "bottom center",
+        toggleActions: "play reverse play reverse", // play on enter, reverse on leave
+        // markers: true,
       },
     });
 
-    tl4.to(ref.current.position, { x: 1, ease: "power2.inOut" })
-      .to(ref.current.rotation, { y: 1, ease: "power2.inOut" })
-      .to(ref.current.rotation, { z: 3, ease: "power2.inOut" });
+    tl4.to(ref.current.rotation, {
+      x: Math.PI * 1.5,
+      y: Math.PI * 0.75,
+      duration: 1,
+      ease: "power2.inOut"
+    })
+      .to(ref.current.scale, {
+        x: 1.25,
+        y: 1.25,
+        z: 1.25,
+        duration: 1,
+        ease: "power2.inOut"
+      }, "<");
 
+    // Section 5 Timeline
     const tl5 = gsap.timeline({
       scrollTrigger: {
         trigger: "#section5",
-        start: "top bottom",
-        end: "top top",
-        scrub: true,
+        start: "top center",
+        end: "bottom center",
+        toggleActions: "play reverse play reverse", // play on enter, reverse on leave
+        // markers: true,
       },
     });
 
-    tl5.to(ref.current.rotation, { x: 0.5, ease: "power2.inOut" })
-      .to(ref.current.rotation, { y: 0.75, ease: "power2.inOut" })
-      .to(ref.current.rotation, { z: 0, ease: "power2.inOut" })
+    tl5.to(ref.current.material, {
+      // opacity: 0,
+      ease: "power2.inOut"
+    })
+      .to(ref.current.position, {
+        x: 0.5,
+        y: 0.75,
+        z: 0,
+        ease: "power2.inOut"
+      }, "<")
+      .to(ref.current.rotation, {
+        x: 0.5,
+        y: 0.25,
+        z: 0,
+        ease: "power2.inOut"
+      }, "<");;
 
-      .to(ref.current.position, { x: 0, ease: "power2.inOut" })
-      .to(ref.current.position, { y: 0, ease: "power2.inOut" })
-      .to(ref.current.position, { z: -2, ease: "power2.inOut" });
+    // const tl6 = gsap.timeline({
+    //   scrollTrigger: {
+    //     trigger: "#section6",
+    //     start: "center center",
+    //     end: "top top",
+    //     // scrub: true,
+    //   },
+    // });
 
-      const tl6 = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#section6",
-        start: "center center",
-        end: "top top",
-        scrub: true,
-      },
-    });
+    // tl6.to(ref.current.position, { x: 0, ease: "power2.inOut" }, ">")
+    //   .to(ref.current.position, { y: 0, ease: "power2.inOut" }, ">")
+    //   .to(ref.current.position, { z: 0, ease: "power2.inOut" }, "<")
 
-    tl6.to(ref.current.position, { x: 0, ease: "power2.inOut" }, ">")
-      .to(ref.current.position, { y: 0, ease: "power2.inOut" },  ">")
-      .to(ref.current.position, { z: -100, ease: "power2.inOut" }, "<")
-      
-      .to(ref.current.scale, { x: 0, ease: "power2.inOut" }, "<")
-      .to(ref.current.scale, { y: 0, ease: "power2.inOut" }, "<")
-      .to(ref.current.scale, { z: 0, ease: "power2.inOut" }, "<");
-      
+    //   .to(ref.current.scale, { x: 0, ease: "power2.inOut" }, "<")
+    //   .to(ref.current.scale, { y: 0, ease: "power2.inOut" }, "<")
+    //   .to(ref.current.scale, { z: 0, ease: "power2.inOut" }, "<");
+
 
 
     // Cleanup will still be handled by useGSAP
@@ -140,7 +175,8 @@ export default function AnimatedBox() {
   return (
     <mesh ref={ref} position={[0, 0, 0]} rotation={[0, 0, 0]}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="white" />
+      <meshStandardMaterial color="white" transparent={true} opacity={1} />
+      <OrbitControls enableZoom={false} />
     </mesh>
   );
 }

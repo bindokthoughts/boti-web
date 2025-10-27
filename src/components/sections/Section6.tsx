@@ -1,8 +1,9 @@
 "use client";
 
-import { useLayoutEffect, useRef } from "react";
+import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useGSAP } from "@gsap/react";
 import LogoTypo from "../../assets/images/Logo_Typo.svg"
 import Image from "next/image";
 
@@ -13,37 +14,24 @@ export default function Section6() {
   const logoRef = useRef<HTMLImageElement>(null);
   const textRef = useRef<HTMLHeadingElement>(null);
 
-  useLayoutEffect(() => {
-    if (typeof window !== "undefined") {
-      const ctx = gsap.context(() => {
-        const tl = gsap.timeline({
-          scrollTrigger: {
-            trigger: sectionRef.current,
-            start: "top center",
-            end: "bottom center",
-            scrub: 1
-          }
-        });
+  useGSAP(() => {
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: "top center",
+        end: "bottom center",
+        scrub: 1
+      }
+    });
 
-        tl.fromTo([logoRef.current, textRef.current],
-          {
-            opacity: 0,
-            y: 50,
-            scale: 0.8
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            duration: 1,
-            stagger: 0.3
-          }
-        );
-      }, sectionRef);
-
-      return () => ctx.revert();
-    }
-  }, []);
+    tl.from([logoRef.current, textRef.current], {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      duration: 1,
+      stagger: 0.3
+    });
+  });
 
   return (
     <section 
