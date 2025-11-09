@@ -149,22 +149,22 @@ export default function AnimatedBox() {
         ease: "power2.inOut"
       }, "<");;
 
-    // const tl6 = gsap.timeline({
-    //   scrollTrigger: {
-    //     trigger: "#section6",
-    //     start: "center center",
-    //     end: "top top",
-    //     // scrub: true,
-    //   },
-    // });
+    const tl6 = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section6",
+        start: "center center",
+        end: "top top",
+        // scrub: true,
+      },
+    });
 
-    // tl6.to(ref.current.position, { x: 0, ease: "power2.inOut" }, ">")
-    //   .to(ref.current.position, { y: 0, ease: "power2.inOut" }, ">")
-    //   .to(ref.current.position, { z: 0, ease: "power2.inOut" }, "<")
+    tl6.to(ref.current.position, { x: 0, ease: "power2.inOut" }, ">")
+      .to(ref.current.position, { y: 0, ease: "power2.inOut" }, ">")
+      .to(ref.current.position, { z: 0, ease: "power2.inOut" }, "<")
 
-    //   .to(ref.current.scale, { x: 0, ease: "power2.inOut" }, "<")
-    //   .to(ref.current.scale, { y: 0, ease: "power2.inOut" }, "<")
-    //   .to(ref.current.scale, { z: 0, ease: "power2.inOut" }, "<");
+      .to(ref.current.scale, { x: 0, ease: "power2.inOut" }, "<")
+      .to(ref.current.scale, { y: 0, ease: "power2.inOut" }, "<")
+      .to(ref.current.scale, { z: 0, ease: "power2.inOut" }, "<");
 
 
 

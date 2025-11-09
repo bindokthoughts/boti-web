@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, Environment, useProgress } from "@react-three/drei";
 import { Suspense, useEffect, useState } from "react";
 import AnimatedBox from "../objects/AnimatedBox";
-import CameraRig from "./CameraRig";
+import CameraRig from "../camera-rig/CameraRig";
 import Loader from "../../loader/Loader";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";

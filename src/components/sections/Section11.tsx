@@ -3,6 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import EarthMoonScene from "../three/scene/EarthMoonScene";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -117,7 +118,7 @@ export default function Section11() {
     <section 
       ref={sectionRef}
       id="section11" 
-      className="min-h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900 px-4 py-16"
+      className="min-h-screen relative flex flex-col items-center justify-center px-4 py-16"
     >
       <div className="flex flex-col items-center gap-16 w-full max-w-6xl">
         {/* Stats Row */}
@@ -223,6 +224,7 @@ export default function Section11() {
           </div>
         </div>
       </div>
+      <EarthMoonScene/>
     </section>
   );
 }

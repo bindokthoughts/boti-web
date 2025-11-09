@@ -4,6 +4,8 @@ import { useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
+import IcebergScene from "../three/scene/IcebergScene";
+import LunarLandScene from "../three/scene/LunarLandScene";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -29,18 +31,23 @@ export default function Section2() {
   }, { scope: sectionRef });
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      id="section2" 
+      id="section2"
       className="min-h-screen relative flex items-center justify-center  text-gray-200"
     >
-      <h1 
+      <h1
         ref={textRef}
-        id="text2" 
+        id="text2"
         className="text-6xl font-bold"
       >
         Our lives moved on.
       </h1>
+      <IcebergScene />
+      <div className="test">
+        <LunarLandScene />
+      </div>
+
     </section>
   );
 }
