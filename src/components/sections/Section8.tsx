@@ -8,8 +8,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Section8() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLParagraphElement>(null);
-  const subtitleRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useLayoutEffect(() => {
     if (typeof window !== "undefined") {
@@ -19,46 +18,31 @@ export default function Section8() {
             trigger: sectionRef.current,
             start: "top center",
             end: "bottom center",
-            scrub: 1.5,
+            scrub: 2,
             pin: false
           }
         });
 
-        // Animate main title with typewriter effect
-        if (titleRef.current) {
-          tl.fromTo(titleRef.current,
-            {
-              opacity: 0,
-              y: 50,
-              clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)"
-            },
-            {
-              opacity: 1,
-              y: 0,
-              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-              duration: 2,
-              ease: "power2.out"
-            }
-          );
-        }
-
-        // Animate subtitle lines with stagger
-        subtitleRefs.current.forEach((subtitle, index) => {
-          if (subtitle) {
-            tl.fromTo(subtitle,
+        // Animate text blocks with 3D perspective
+        textRefs.current.forEach((text, index) => {
+          if (text) {
+            tl.fromTo(text,
               {
                 opacity: 0,
-                x: index % 2 === 0 ? -100 : 100,
-                rotation: index % 2 === 0 ? -10 : 10
+                z: -200,
+                rotationX: 45,
+                y: 100
               },
               {
                 opacity: 1,
-                x: 0,
-                rotation: 0,
-                duration: 1.5,
-                ease: "power3.out"
+                z: 0,
+                rotationX: 0,
+                y: 0,
+                duration: 2,
+                ease: "power2.out",
+                transformPerspective: 1000
               },
-              "-=1"
+              index * 0.3
             );
           }
         });
@@ -68,40 +52,63 @@ export default function Section8() {
     }
   }, []);
 
-  const addToSubtitleRefs = (el: HTMLParagraphElement | null, index: number) => {
-    if (el) subtitleRefs.current[index] = el;
+  const addToTextRefs = (el: HTMLDivElement | null, index: number) => {
+    if (el) textRefs.current[index] = el;
   };
 
   return (
     <section 
       ref={sectionRef}
       id="section8" 
-      className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900 px-8"
+      className="h-screen relative flex flex-col items-center justify-center px-8"
+      style={{
+        background: "linear-gradient(135deg, #0B1F4A 0%, #3B4D91 50%, #14E3C9 100%)"
+      }}
     >
-      <div className="flex flex-col items-center gap-12 max-w-4xl text-center">
-        <p 
-          ref={titleRef}
-          className="text-white text-3xl font-bold leading-relaxed"
+      <div className="absolute inset-0 z-0 animate-pulse-slow" style={{
+        background: "radial-gradient(circle at 30% 50%, rgba(20, 227, 201, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(124, 247, 228, 0.3) 0%, transparent 50%)"
+      }}></div>
+      
+      <div className="flex flex-col items-center gap-8 max-w-4xl text-center relative z-10">
+        <div 
+          ref={(el) => addToTextRefs(el, 0)}
+          className="text-3xl font-medium leading-relaxed"
+          style={{
+            background: "linear-gradient(90deg, #7CF7E4 0%, #ffffff 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text"
+          }}
         >
-          BOTI is the first browser built for the spatial internet.
-        </p>
+          The world moved into AR, voice, and virtual spaces but
+        </div>
         
-        <div className="flex flex-col gap-6">
-          <p 
-            ref={(el) => addToSubtitleRefs(el, 0)}
-            className="text-white text-2xl font-medium leading-relaxed"
-          >
-            It doesn&apos;t open tabs.
-          </p>
-          
-          <p 
-            ref={(el) => addToSubtitleRefs(el, 1)}
-            className="text-white text-2xl font-medium leading-relaxed"
-          >
-            It opens places.
-          </p>
+        <div 
+          ref={(el) => addToTextRefs(el, 1)}
+          className="text-4xl font-bold leading-relaxed"
+          style={{
+            color: "#14E3C9",
+            textShadow: "0 0 20px rgba(20, 227, 201, 0.5)"
+          }}
+        >
+          the web stayed flat.
+        </div>
+        
+        <div 
+          ref={(el) => addToTextRefs(el, 2)}
+          className="text-5xl font-black leading-relaxed"
+          style={{
+            background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 50%, #14E3C9 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+            textShadow: "0 0 40px rgba(20, 227, 201, 0.8)"
+          }}
+        >
+          BOTI makes it a place.
         </div>
       </div>
     </section>
   );
 }
+

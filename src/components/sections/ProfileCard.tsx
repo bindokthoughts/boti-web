@@ -84,8 +84,8 @@ export default function ProfileCard({
 
   return (
     <>
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-gray-900 to-black p-1 w-[380px]">
-        <div className="relative rounded-[22px] bg-gradient-to-br from-gray-800 to-gray-900 p-6">
+      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-surface to-background p-1 w-[380px] border border-border">
+        <div className="relative rounded-[22px] bg-gradient-to-br from-surface to-background-secondary p-6">
           {/* Profile Image */}
           <div className="relative h-[380px] w-full overflow-hidden rounded-2xl mb-4">
             <Image
@@ -117,13 +117,13 @@ export default function ProfileCard({
                 href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 rounded-full bg-blue-600 px-6 py-2 font-semibold text-white hover:bg-blue-700 transition-colors text-center"
+                className="flex-1 rounded-full bg-primary-accent px-6 py-2 font-semibold text-primary hover:bg-highlight transition-colors text-center"
               >
                 LinkedIn
               </a>
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="flex-1 rounded-full bg-white px-6 py-2 font-semibold text-black hover:bg-gray-200 transition-colors"
+                className="flex-1 rounded-full bg-background-secondary px-6 py-2 font-semibold text-text-primary hover:bg-surface transition-colors border border-border"
               >
                 Know More
               </button>
@@ -134,8 +134,8 @@ export default function ProfileCard({
 
       {/* Modal */}
       {isModalOpen && typeof document !== 'undefined' && createPortal(
-        <div ref={modalRef} className="fixed inset-0 bg-black/90 z-[9999] min-h-screen backdrop-blur-sm">
-          <div ref={modalContentRef} className="h-full w-full bg-gradient-to-b from-gray-900 to-black p-4 md:p-8 overflow-y-auto">
+        <div ref={modalRef} className="fixed inset-0 bg-background/95 z-[9999] min-h-screen backdrop-blur-sm">
+          <div ref={modalContentRef} className="h-full w-full bg-gradient-to-b from-background to-background-secondary p-4 md:p-8 overflow-y-auto">
             <div className="max-w-4xl mx-auto">
               <div className="flex justify-end mb-4">
                 <button
@@ -165,7 +165,7 @@ export default function ProfileCard({
                     href={linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block mt-4 px-6 py-2 bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
+                    className="inline-block mt-4 px-6 py-2 bg-primary-accent text-primary rounded-full hover:bg-highlight transition-colors"
                   >
                     Connect on LinkedIn
                   </a>

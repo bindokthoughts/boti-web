@@ -1,149 +1,209 @@
 "use client";
 
-import { useRef, useCallback } from "react";
+import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 import SVGCloud from "../../assets/images/Clouds.svg";
-import CubeScene from "../three/scene/CubeScene";
 
-// Register GSAP plugin once globally
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Hero() {
   const heroRef = useRef<HTMLElement>(null);
-  const textRef = useRef<HTMLHeadingElement>(null);
+  const mainTextRef = useRef<HTMLHeadingElement>(null);
+  const subTextRef = useRef<HTMLParagraphElement>(null);
+  const glowRef = useRef<HTMLDivElement>(null);
   const cloudRef = useRef<HTMLImageElement>(null);
 
   useGSAP(() => {
     const hero = heroRef.current;
-    const text = textRef.current;
+    const mainText = mainTextRef.current;
+    const subText = subTextRef.current;
+    const glow = glowRef.current;
     const cloud = cloudRef.current;
 
-    if (!hero || !text || !cloud) return;
+    if (!hero || !mainText || !cloud) return;
 
-    // Initial text animation (always runs)
+    // Enhanced initial text reveal
     gsap.fromTo(
-      text,
+      mainText,
       {
         opacity: 0,
         y: 100,
         scale: 0.8,
+        rotationX: -20,
       },
       {
         opacity: 1,
         y: 0,
         scale: 1,
-        duration: 1.5,
-        ease: "power2.out",
+        rotationX: 0,
+        duration: 1.8,
+        ease: "power3.out",
         scrollTrigger: {
           trigger: hero,
           start: "top 80%",
-          end: "bottom 20%",
           toggleActions: "play none none reverse",
         },
       }
     );
 
-    // Responsive values
-    const getResponsiveValues = () => ({
+    // Subtitle animation
+    if (subText) {
+      gsap.fromTo(
+        subText,
+        {
+          opacity: 0,
+          y: 50,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1.2,
+          delay: 0.4,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: hero,
+            start: "top 80%",
+            toggleActions: "play none none reverse",
+          },
+        }
+      );
+    }
+
+    // Glow pulse animation
+    if (glow) {
+      gsap.to(glow, {
+        scale: 1.3,
+        opacity: 0.7,
+        duration: 2.5,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
+      });
+    }
+
+    // Original text change animation - PRESERVED
+    const textTimeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: hero,
+        start: "top top",
+        end: "center top",
+        scrub: 1,
+        pin: true,
+        pinSpacing: false,
+      },
+    });
+
+    textTimeline
+      .to(mainText, {
+        y: -50,
+        opacity: 0,
+        scale: 0.9,
+        rotationY: 15,
+        duration: 0.5,
+        ease: "power2.inOut",
+      })
+      .set(mainText, {
+        textContent: "Our lives moved on.",
+        y: 50,
+        rotationY: -15,
+      })
+      .to(mainText, {
+        y: 0,
+        opacity: 1,
+        scale: 1,
+        rotationY: 0,
+        duration: 0.5,
+        ease: "power2.out",
+      });
+
+    // Cloud animations
+    const values = {
       isMobile: window.innerWidth < 768,
       get defaultY() { return this.isMobile ? "45vh" : "35vh"; },
       get defaultScale() { return this.isMobile ? 1 : 1.25; },
-      get midY() { return this.isMobile ? "-15vh" : "-25vh"; },
-      get midScale() { return this.isMobile ? 0.7 : 1; },
-      get finalY() { return this.isMobile ? "-80vh" : "-100vh"; },
-      get finalScale() { return this.isMobile ? 1.5 : 2; },
-    });
+    };
 
-    const values = getResponsiveValues();
-
-    // Initial cloud position
     gsap.set(cloud, {
       y: values.defaultY,
-      x: values.isMobile ? 0 : 50,
       transformOrigin: "center bottom",
       scale: values.defaultScale,
     });
 
-    // Setup scroll animations after a short delay to ensure DOM is ready
-    setTimeout(() => {
-      const section2 = document.getElementById("section2");
-      const section3 = document.getElementById("section3");
-
-      // Master timeline
-      const cloudMaster = gsap.timeline({
-        scrollTrigger: {
-          trigger: hero,
-          start: "top top",
-          end: section3 ? "+=300%" : section2 ? "+=200%" : "+=100%",
-          scrub: 1,
-        },
-      });
-
-      // Base animation
-      cloudMaster.to(cloud, {
-        y: values.midY,
-        scale: values.midScale,
-        ease: "power1.inOut",
-        duration: 1,
-      });
-
-      // Extended animation if sections exist
-      if (section2 || section3) {
-        cloudMaster.to(cloud, {
-          y: values.finalY,
-          scale: values.finalScale,
-          ease: "power1.inOut",
-          duration: 1,
-        });
-      }
-
-      // Optional section-specific animations
-      if (section2) {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: section2,
-            start: "top center",
-            end: "bottom center",
-            scrub: 1,
-          },
-        }).to(cloud, {
-          ease: "none",
-        });
-      }
-
-      if (section3) {
-        gsap.timeline({
-          scrollTrigger: {
-            trigger: section3,
-            start: "top center",
-            end: "center center",
-            scrub: 1,
-          },
-        }).to(cloud, {
-          scale: 1,
-          ease: "power2.inOut",
-        });
-      }
-    }, 100);
+    gsap.to(cloud, {
+      y: "-100vh",
+      scale: 2,
+      opacity: 0.4,
+      scrollTrigger: {
+        trigger: hero,
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+      },
+    });
   });
 
   return (
     <section
       ref={heroRef}
       id="hero"
-      className="min-h-screen relative flex flex-col md:flex-row items-center justify-center md:justify-end text-white bg-gradient-to-b from-blue-400 to-blue-900 overflow-hidden"
+      className="min-h-screen relative flex flex-col items-center justify-center text-text-primary overflow-hidden"
+      style={{
+        background: "var(--gradient-hero)",
+      }}
     >
-      <div className="relative z-10 px-6 md:px-0 w-full md:w-1/2 text-center md:text-left">
+      {/* Animated brand-colored glow */}
+      <div
+        ref={glowRef}
+        className="absolute inset-0 opacity-20 pointer-events-none"
+        style={{
+          background: "radial-gradient(circle at 50% 50%, #14E3C9 0%, transparent 70%)",
+          filter: "blur(120px)",
+        }}
+      />
+
+      {/* Subtle grid overlay */}
+      <div
+        className="absolute inset-0 opacity-[0.07] pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #14E3C9 1px, transparent 1px),
+            linear-gradient(to bottom, #3B4D91 1px, transparent 1px)
+          `,
+          backgroundSize: "60px 60px",
+        }}
+      />
+
+      <div className="relative z-10 px-6 md:px-12 lg:px-20 w-full md:w-2/3 text-center md:text-left perspective-[1000px]">
         <h1
-          ref={textRef}
-          id="text1"
-          className="display font-medium italic p-4 md:p-40 max-w-[90vw] md:max-w-none text-balance"
+          ref={mainTextRef}
+          className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[1.1] mb-6"
+          style={{
+            textShadow: `
+              0 0 30px rgba(20,227,201,0.6),
+              0 0 60px rgba(20,227,201,0.4),
+              0 5px 25px rgba(0,0,0,0.5)
+            `,
+            background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #f3e8ff 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text",
+          }}
         >
           The Web Stayed Flat.
         </h1>
+
+        <p
+          ref={subTextRef}
+          className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-text-primary max-w-2xl"
+          style={{
+            textShadow: "0 2px 20px rgba(20,227,201,0.4)",
+          }}
+        >
+          Until now. Experience the next dimension of web development.
+        </p>
       </div>
 
       <Image
@@ -151,19 +211,18 @@ export default function Hero() {
         src={SVGCloud}
         width={1000}
         height={600}
-        alt="Animated clouds background"
-        className="fixed bottom-0 left-0 pointer-events-none select-none z-10 w-[200%] md:w-[125%] h-auto"
-        style={{
-          transform: "translateY(25%)",
-          willChange: "transform",
-        }}
+        alt="Animated clouds"
+        className="fixed bottom-0 left-0 pointer-events-none select-none z-5 w-full md:w-full h-auto max-w-none"
+        style={{ willChange: "transform" }}
         quality={100}
         loading="eager"
       />
 
-      {/* 3D Canvas - Absolute positioned to overlay properly on mobile */}
-      <div className="absolute inset-0 z-0">
-        <CubeScene />
+      {/* Scroll indicator with brand colors */}
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
+        <div className="w-6 h-10 border-2 border-primary-accent rounded-full flex items-start justify-center p-2 bg-primary-accent/10 backdrop-blur-sm">
+          <div className="w-1 h-3 bg-primary-accent rounded-full animate-pulse" />
+        </div>
       </div>
     </section>
   );

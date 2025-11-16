@@ -10,10 +10,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
- * EarthMoonCameraRig - Dedicated camera controller for the Earth & Moon scene
- * Provides orbital camera movement and smooth transitions
+ * LunarCameraRig - Dedicated camera controller for the lunar landscape scene
+ * Provides dramatic entrance and subtle tracking movements
  */
-export default function EarthMoonCameraRig() {
+export default function LunarCameraRig() {
   const { camera, gl, scene } = useThree();
   const cameraRef = useRef(camera);
   const [isMobile, setIsMobile] = useState(false);
@@ -29,88 +29,68 @@ export default function EarthMoonCameraRig() {
   useGSAP(() => {
     const cam = cameraRef.current;
 
-    // Camera position animation for sections 3-6 (Earth & Moon visible)
+    // Camera position animation for section 7+
     gsap.to(cam.position, {
       scrollTrigger: {
-        trigger: "#section3",
+        trigger: "#section7",
         start: "top bottom",
         end: "bottom top",
         scrub: 1,
         onEnter: () => {
-          // Animate to Earth viewing position
-          gsap.to(cam.position, {
-            x: 0,
-            y: -150,
-            z: isMobile ? 7 : 5,
-            duration: 1,
-            ease: "power2.inOut",
-          });
-        },
-        onLeave: () => {
-          // Transition to next scene
+          // Animate to lunar viewing position
           gsap.to(cam.position, {
             x: 0,
             y: -350,
             z: isMobile ? 7 : 5,
-            duration: 1,
+            duration: 1.5,
             ease: "power2.inOut",
           });
         },
         onEnterBack: () => {
-          // Animate back to Earth position
+          // Animate back to lunar position
           gsap.to(cam.position, {
             x: 0,
-            y: -150,
+            y: -350,
             z: isMobile ? 7 : 5,
-            duration: 1,
+            duration: 1.5,
             ease: "power2.inOut",
           });
         },
       },
     });
 
-    // Camera lookAt animation - focused on Earth & Moon
+    // Camera lookAt animation - focused on lunar landscape
     gsap.to(
       {},
       {
         scrollTrigger: {
-          trigger: "#section3",
+          trigger: "#section7",
           start: "top center",
           end: "bottom center",
           scrub: 1,
           onUpdate: () => {
-            cam.lookAt(0, -150, 0);
+            cam.lookAt(0, -350, 0);
           },
         },
       }
     );
 
-    // Optional: Add subtle horizontal orbit
+    // Subtle camera drift for cinematic feel
     gsap.to(cam.position, {
-      x: 1.5,
+      x: -1,
       scrollTrigger: {
-        trigger: "#section3",
+        trigger: "#section7",
         start: "top center",
         end: "bottom center",
-        scrub: 2,
+        scrub: 3,
       },
     });
 
-    // Hold camera position for sections 4-6
+    // Hold camera position for sections 8-12
     gsap.to(cam.position, {
-      y: -150,
+      y: -350,
       scrollTrigger: {
-        trigger: "#section4",
-        start: "top center",
-        end: "bottom center",
-        scrub: 1,
-      },
-    });
-
-    gsap.to(cam.position, {
-      y: -150,
-      scrollTrigger: {
-        trigger: "#section5",
+        trigger: "#section8",
         start: "top center",
         end: "bottom center",
         scrub: 1,
@@ -118,9 +98,39 @@ export default function EarthMoonCameraRig() {
     });
 
     gsap.to(cam.position, {
-      y: -150,
+      y: -350,
       scrollTrigger: {
-        trigger: "#section6",
+        trigger: "#section9",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+      },
+    });
+
+    gsap.to(cam.position, {
+      y: -350,
+      scrollTrigger: {
+        trigger: "#section10",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+      },
+    });
+
+    gsap.to(cam.position, {
+      y: -350,
+      scrollTrigger: {
+        trigger: "#section11",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+      },
+    });
+
+    gsap.to(cam.position, {
+      y: -350,
+      scrollTrigger: {
+        trigger: "#section12",
         start: "top center",
         end: "bottom center",
         scrub: 1,

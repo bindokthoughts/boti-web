@@ -154,13 +154,50 @@
   }
 }
 
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
   --font-sans: 'SharpSansDisplayNo1', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
     "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  
+  /* Light Mode Colors */
+  --color-background: #F7F9FC;
+  --color-background-secondary: #FFFFFF;
+  --color-surface: #F0F3FA;
+  --color-text-primary: #0A0A0A;
+  --color-text-secondary: #4A4A4A;
+  --color-text-muted: #7A7A7A;
+  --color-border: #DCE1EB;
+  --color-divider: #E8ECF3;
+  
+  /* Light Mode Gradients */
+  --gradient-hero: linear-gradient(135deg, #14E3C9 0%, #3B4D91 100%);
+  --gradient-section: linear-gradient(135deg, #14E3C9 0%, #3B4D91 100%);
+  --gradient-section-alt: linear-gradient(160deg, #0B1F4A 0%, #3B4D91 50%, #14E3C9 100%);
+}
+
+.dark {
+  /* Dark Mode Colors */
+  --color-background: #000000;
+  --color-background-secondary: #0A0A0A;
+  --color-surface: #0F0F0F;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B8C0CC;
+  --color-text-muted: #6E7C90;
+  --color-border: #1A1A1A;
+  --color-divider: #151515;
+  
+  /* Dark Mode Gradients */
+  --gradient-hero: linear-gradient(135deg, #000000 0%, #0B1F4A 50%, #14E3C9 100%);
+  --gradient-section: linear-gradient(135deg, #000000 0%, #0B1F4A 100%);
+  --gradient-section-alt: linear-gradient(160deg, #000000 0%, #0B1F4A 70%, #14E3C9 100%);
 }
 
 @media (prefers-color-scheme: dark) {

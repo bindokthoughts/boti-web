@@ -153,12 +153,26 @@ Notable Achievements:
     <section 
       ref={sectionRef}
       id="our-founders" 
-      className="min-h-screen py-20 relative flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-black px-8"
+      className="min-h-screen py-20 relative flex flex-col items-center justify-center px-8"
+      style={{
+        background: "linear-gradient(135deg, #0B1F4A 0%, #3B4D91 50%, #14E3C9 100%)"
+      }}
     >
-      <div className="flex flex-col items-center gap-16 max-w-7xl mx-auto w-full">
+      <div className="absolute inset-0 z-0 animate-pulse-slow" style={{
+        background: "radial-gradient(circle at 30% 40%, rgba(20, 227, 201, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(124, 247, 228, 0.3) 0%, transparent 50%)"
+      }}></div>
+      <div className="flex flex-col items-center gap-16 max-w-7xl mx-auto w-full relative z-10">
         <div className="text-center space-y-6 mb-16">
-          <h1 className="text-white text-6xl font-black">Our Founders</h1>
-          <p className="text-gray-400 text-xl max-w-2xl mx-auto">
+          <h1 className="text-6xl font-black" style={{
+            background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text"
+          }}>Our Founders</h1>
+          <p className="text-xl max-w-2xl mx-auto" style={{
+            color: "#7CF7E4",
+            textShadow: "0 0 15px rgba(124, 247, 228, 0.3)"
+          }}>
             Meet the innovative minds behind BOTI&apos;s revolutionary spatial web experience
           </p>
         </div>

@@ -25,8 +25,8 @@ export default function RootLayout({
   // }, []);
 
   return (
-    <html lang="en">
-      <body className="min-h-screen font-sans" suppressHydrationWarning>
+    <html lang="en" className="overflow-x-hidden">
+      <body className="min-h-screen font-sans overflow-x-hidden" suppressHydrationWarning>
         <Navbar/>
         {children}
       </body>
