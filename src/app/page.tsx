@@ -1,6 +1,6 @@
 "use client";
 
-import Scene from "@/components/three/scene/Scene";
+import MasterScene from "@/components/three/scene/MasterScene";
 
 import ContactUs from "@/components/sections/ContactUs";
 import Hero from "@/components/sections/Hero";
@@ -16,34 +16,32 @@ import Section9 from "@/components/sections/Section9";
 import Section10 from "@/components/sections/Section10";
 import Section11 from "@/components/sections/Section11";
 import Section12 from "@/components/sections/Section12";
-import Section13 from "@/components/sections/Section13";
 
 export default function Home() {
   return (
-    <main className="relative -mt-16 bg-gradient-to-b from-black to-gray-900">
-      {/* Scroll Sections Overlay */}
+    <main className="relative -mt-16 overflow-x-hidden max-w-full">
+      
+
+      {/* Scroll Sections Overlay - pointer-events-auto to allow interaction */}
+      <div className="relative z-10 pointer-events-auto max-w-full">
         <Hero />
         <Section2 />
         <Section3 />
         <Section4 />
         <Section5 />
         <Section6 />
-        <Section10 />
-        <Section11 />
-        <Section12 />
         <Section7 />
         <Section8 />
         <Section9 />
+        <Section10 />
+        <Section11 />
         <OurFounders />
-        <Section13 />
+        <Section12 />
         <ContactUs />
-     
-
-      {/* 3D Canvas */}
-      {/* <Scene /> */}
+        {/* Master 3D Canvas - Single WebGL context for all scenes */}
+      <MasterScene />
+      </div>
     </main>
   );
 }
-
-
 

@@ -1,0 +1,98 @@
+/* Typography Scale */
+@layer utilities {
+  /* Display Text - For hero sections and major headings */
+  .display {
+    font-size: 3.75rem; /* 60px */
+    line-height: 1;
+    font-weight: 500;
+    letter-spacing: -0.05em;
+  }
+  @media (min-width: 768px) {
+    .display {
+      font-size: 6rem; /* 96px */
+    }
+  }
+
+  /* Headings */
+  .h1 {
+    font-size: 3rem; /* 48px */
+    line-height: 1.1;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+  @media (min-width: 768px) {
+    .h1 {
+      font-size: 4.5rem; /* 72px */
+    }
+  }
+
+  .h2 {
+    font-size: 2.25rem; /* 36px */
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.025em;
+  }
+  @media (min-width: 768px) {
+    .h2 {
+      font-size: 3rem; /* 48px */
+    }
+  }
+
+  .h3 {
+    font-size: 1.875rem; /* 30px */
+    line-height: 1.3;
+    font-weight: 500;
+    letter-spacing: -0.02em;
+  }
+  @media (min-width: 768px) {
+    .h3 {
+      font-size: 2.25rem; /* 36px */
+    }
+  }
+
+  /* Body Text */
+  .body-large {
+    font-size: 1.25rem; /* 20px */
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  @media (min-width: 768px) {
+    .body-large {
+      font-size: 1.5rem; /* 24px */
+    }
+  }
+
+  .body {
+    font-size: 1rem; /* 16px */
+    line-height: 1.6;
+    font-weight: 400;
+  }
+  @media (min-width: 768px) {
+    .body {
+      font-size: 1.125rem; /* 18px */
+    }
+  }
+
+  .body-small {
+    font-size: 0.875rem; /* 14px */
+    line-height: 1.5;
+    font-weight: 400;
+  }
+  @media (min-width: 768px) {
+    .body-small {
+      font-size: 1rem; /* 16px */
+    }
+  }
+
+  /* Navigation */
+  .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.025em;
+  }
+
+  /* Utility Classes */
+  .text-balance {
+    text-wrap: balance;
+  }
+}

@@ -73,19 +73,31 @@ export default function ContactUs() {
     <section 
       ref={sectionRef}
       id="contact-us" 
-      className="relative p-8 flex flex-col items-center justify-center bg-gradient-to-b from-gray-900 to-black px-8"
+      className="relative p-8 flex flex-col items-center justify-center px-8"
+      style={{
+        background: "linear-gradient(135deg, #0B1F4A 0%, #14E3C9 100%)"
+      }}
     >
-      <div className="flex flex-col items-center gap-12 max-w-4xl text-center">
+      <div className="absolute inset-0 z-0 animate-pulse-slow" style={{
+        background: "radial-gradient(circle at 50% 30%, rgba(124, 247, 228, 0.4) 0%, transparent 60%), radial-gradient(circle at 50% 70%, rgba(20, 227, 201, 0.3) 0%, transparent 60%)"
+      }}></div>
+      <div className="flex flex-col items-center gap-12 max-w-4xl text-center relative z-10">
         <h1 
           ref={titleRef}
-          className="text-white text-6xl font-black"
+          className="text-6xl font-black"
+          style={{
+            background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 50%, #14E3C9 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text"
+          }}
         >
           Contact Us Form
         </h1>
         
         {/* <p 
           ref={descriptionRef}
-          className="text-gray-300 text-2xl font-medium leading-relaxed"
+          className="text-text-secondary text-2xl font-medium leading-relaxed"
         >
           Scroll-driven 3D animations powered by Three.js, R3F, and GSAP.
         </p> */}
@@ -104,7 +116,7 @@ export default function ContactUs() {
               message: ''
             });
           }} 
-          className="w-full max-w-md bg-gray-800/30 rounded-lg p-8 backdrop-blur-sm space-y-2"
+          className="w-full max-w-md bg-surface/30 rounded-lg p-8 backdrop-blur-sm space-y-2"
         >
           {/* Name field */}
           <div className=" ">
@@ -159,11 +171,11 @@ export default function ContactUs() {
               value={formData.purpose}
               onChange={(e) => setFormData(prev => ({ ...prev, purpose: e.target.value }))}
             >
-              <option value="" className="bg-gray-700">Select a purpose</option>
-              <option value="general" className="bg-gray-700">General Inquiry</option>
-              <option value="business" className="bg-gray-700">Business Opportunity</option>
-              <option value="support" className="bg-gray-700">Technical Support</option>
-              <option value="feedback" className="bg-gray-700">Feedback</option>
+              <option value="" className="bg-surface">Select a purpose</option>
+              <option value="general" className="bg-surface">General Inquiry</option>
+              <option value="business" className="bg-surface">Business Opportunity</option>
+              <option value="support" className="bg-surface">Technical Support</option>
+              <option value="feedback" className="bg-surface">Feedback</option>
             </select>
           </div>
 

@@ -1,20 +1,203 @@
 @import "tailwindcss";
+@import "../styles/typography.css";
 
+@layer base {
+  /* Apply font globally */
+  .font-sans {
+    font-family: var(--font-sans);
+  }
 
-/* * {
-  box-sizing: border-box;
-} */
+  /* Normal variants */
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Ultrathin.ttf') format('truetype');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+  }
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Thin.ttf') format('truetype');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Light.ttf') format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Book.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Medium.ttf') format('truetype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Semibold.ttf') format('truetype');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Extrabold.ttf') format('truetype');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-Black.ttf') format('truetype');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  /* Italic variants */
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-UltrathinIt.ttf') format('truetype');
+    font-weight: 100;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-ThinIt.ttf') format('truetype');
+    font-weight: 200;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-LightIt.ttf') format('truetype');
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-BookIt.ttf') format('truetype');
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-MediumIt.ttf') format('truetype');
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-SemiboldIt.ttf') format('truetype');
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-BoldIt.ttf') format('truetype');
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-ExtraboldIt.ttf') format('truetype');
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: 'SharpSansDisplayNo1';
+    src: url('/fonts/ttf/SharpSansDispNo1-BlackIt.ttf') format('truetype');
+    font-weight: 900;
+    font-style: italic;
+    font-display: swap;
+  }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+:root {
+  --font-sans: 'SharpSansDisplayNo1', ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  /* Light Mode Colors */
+  --color-background: #F7F9FC;
+  --color-background-secondary: #FFFFFF;
+  --color-surface: #F0F3FA;
+  --color-text-primary: #0A0A0A;
+  --color-text-secondary: #4A4A4A;
+  --color-text-muted: #7A7A7A;
+  --color-border: #DCE1EB;
+  --color-divider: #E8ECF3;
+  
+  /* Light Mode Gradients */
+  --gradient-hero: linear-gradient(135deg, #14E3C9 0%, #3B4D91 100%);
+  --gradient-section: linear-gradient(135deg, #14E3C9 0%, #3B4D91 100%);
+  --gradient-section-alt: linear-gradient(160deg, #0B1F4A 0%, #3B4D91 50%, #14E3C9 100%);
+}
+
+.dark {
+  /* Dark Mode Colors */
+  --color-background: #000000;
+  --color-background-secondary: #0A0A0A;
+  --color-surface: #0F0F0F;
+  --color-text-primary: #FFFFFF;
+  --color-text-secondary: #B8C0CC;
+  --color-text-muted: #6E7C90;
+  --color-border: #1A1A1A;
+  --color-divider: #151515;
+  
+  /* Dark Mode Gradients */
+  --gradient-hero: linear-gradient(135deg, #000000 0%, #0B1F4A 50%, #14E3C9 100%);
+  --gradient-section: linear-gradient(135deg, #000000 0%, #0B1F4A 100%);
+  --gradient-section-alt: linear-gradient(160deg, #000000 0%, #0B1F4A 70%, #14E3C9 100%);
 }
 
 @media (prefers-color-scheme: dark) {

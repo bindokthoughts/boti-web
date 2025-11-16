@@ -1,92 +1,129 @@
 "use client";
 
-import { useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function Section10() {
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const titleRef = useRef<HTMLParagraphElement>(null);
+  const subtitleRefs = useRef<(HTMLParagraphElement | null)[]>([]);
 
-  useGSAP(() => {
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top center",
-        end: "bottom center",
-        scrub: 1.5,
-        pin: false
-      }
-    });
+  useLayoutEffect(() => {
+    if (typeof window !== "undefined") {
+      const ctx = gsap.context(() => {
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top center",
+            end: "bottom center",
+            scrub: 1.5,
+            pin: false
+          }
+        });
 
-    // Animate title with bounce effect
-    if (titleRef.current) {
-      tl.from(titleRef.current, {
-        opacity: 0,
-        scale: 0.3,
-        // rotation: -15,
-        duration: 2,
-        ease: "elastic.out(1, 0.5)"
-      });
+        // Animate main title with typewriter effect
+        if (titleRef.current) {
+          tl.fromTo(titleRef.current,
+            {
+              opacity: 0,
+              y: 50,
+              clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)"
+            },
+            {
+              opacity: 1,
+              y: 0,
+              clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+              duration: 2,
+              ease: "power2.out"
+            }
+          );
+        }
+
+        // Animate subtitle lines with stagger
+        subtitleRefs.current.forEach((subtitle, index) => {
+          if (subtitle) {
+            tl.fromTo(subtitle,
+              {
+                opacity: 0,
+                x: index % 2 === 0 ? -100 : 100,
+                rotation: index % 2 === 0 ? -10 : 10
+              },
+              {
+                opacity: 1,
+                x: 0,
+                rotation: 0,
+                duration: 1.5,
+                ease: "power3.out"
+              },
+              "-=1"
+            );
+          }
+        });
+      }, sectionRef);
+
+      return () => ctx.revert();
     }
+  }, []);
 
-    // Animate text blocks with stagger
-    textRefs.current.forEach((text, index) => {
-      if (text) {
-        tl.from(text, {
-          opacity: 0,
-          y: 80,
-          x: index % 2 === 0 ? -50 : 50,
-          duration: 1.5,
-          ease: "power3.out"
-        }, `-=${1.2 - (index * 0.2)}`);
-      }
-    });
-  });
-
-  const addToTextRefs = (el: HTMLDivElement | null, index: number) => {
-    if (el) textRefs.current[index] = el;
+  const addToSubtitleRefs = (el: HTMLParagraphElement | null, index: number) => {
+    if (el) subtitleRefs.current[index] = el;
   };
 
   return (
     <section 
       ref={sectionRef}
       id="section10" 
-      className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900 px-8"
+      className="h-screen relative flex flex-col items-center justify-center px-8"
+      style={{
+        background: "linear-gradient(135deg, #0B1F4A 0%, #14E3C9 100%)"
+      }}
     >
-      <div className="flex flex-col items-center gap-12 max-w-4xl text-center">
-        <h2 
+      <div className="absolute inset-0 z-0 animate-pulse-slow" style={{
+        background: "radial-gradient(circle at 50% 50%, rgba(124, 247, 228, 0.4) 0%, transparent 60%)"
+      }}></div>
+      
+      <div className="flex flex-col items-center gap-12 max-w-4xl text-center relative z-10">
+        <p 
           ref={titleRef}
-          className="text-white text-5xl font-black leading-tight"
+          className="text-3xl font-bold leading-relaxed"
+          style={{
+            background: "linear-gradient(90deg, #14E3C9 0%, #7CF7E4 100%)",
+            WebkitBackgroundClip: "text",
+            WebkitTextFillColor: "transparent",
+            backgroundClip: "text"
+          }}
         >
-          Why BOTI ?
-        </h2>
+          BOTI is the first browser built for the spatial internet.
+        </p>
         
-        <div 
-          ref={(el) => addToTextRefs(el, 0)}
-          className="text-white text-2xl font-medium leading-relaxed"
-        >
-          Because, Your site isn&apos;t just a storefront, it&apos;s your pride, your passion, your path to success
-        </div>
-        
-        <div 
-          ref={(el) => addToTextRefs(el, 1)}
-          className="text-white text-3xl font-bold leading-relaxed"
-        >
-          It&apos;s your dream.
-        </div>
-        
-        <div 
-          ref={(el) => addToTextRefs(el, 2)}
-          className="text-white text-2xl font-medium leading-relaxed"
-        >
-          Let&apos;s make it shine the way it deserves.
+        <div className="flex flex-col gap-6">
+          <p 
+            ref={(el) => addToSubtitleRefs(el, 0)}
+            className="text-2xl font-medium leading-relaxed"
+            style={{
+              color: "#7CF7E4",
+              textShadow: "0 0 20px rgba(124, 247, 228, 0.5)"
+            }}
+          >
+            It doesn&apos;t open tabs.
+          </p>
+          
+          <p 
+            ref={(el) => addToSubtitleRefs(el, 1)}
+            className="text-2xl font-medium leading-relaxed"
+            style={{
+              color: "#14E3C9",
+              textShadow: "0 0 20px rgba(20, 227, 201, 0.5)"
+            }}
+          >
+            It opens places.
+          </p>
         </div>
       </div>
     </section>
   );
 }
+

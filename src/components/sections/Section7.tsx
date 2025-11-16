@@ -8,110 +8,278 @@ gsap.registerPlugin(ScrollTrigger);
 
 export default function Section7() {
   const sectionRef = useRef<HTMLElement>(null);
-  const textBlocksRef = useRef<(HTMLDivElement | null)[]>([]);
-  const highlightTextRef = useRef<HTMLSpanElement>(null);
+  const statsRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const numbersRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useLayoutEffect(() => {
     if (typeof window !== "undefined") {
       const ctx = gsap.context(() => {
-        // Create main timeline
-        const mainTl = gsap.timeline({
+        // Stats animation timeline
+        const statsTimeline = gsap.timeline({
           scrollTrigger: {
             trigger: sectionRef.current,
-            start: "top center",
-            end: "bottom center",
-            scrub: 2,
+            start: "top 70%",
+            end: "center center",
+            scrub: 1,
             pin: false
           }
         });
 
-        // Animate each text block with staggered entrance
-        textBlocksRef.current.forEach((block, index) => {
-          if (block) {
-            mainTl.fromTo(block,
+        // Animate stat numbers with counting effect
+        numbersRef.current.forEach((number, index) => {
+          if (number) {
+            const finalValue = number.textContent?.replace('%', '') || '0';
+            gsap.set(number, { textContent: '0%' });
+            
+            statsTimeline.to(number, {
+              textContent: finalValue + '%',
+              duration: 1.5,
+              ease: "power2.out",
+              snap: { textContent: 1 },
+              stagger: 0.2
+            }, index * 0.1);
+          }
+        });
+
+        // Animate stat containers
+        statsRefs.current.forEach((stat, index) => {
+          if (stat) {
+            statsTimeline.fromTo(stat,
               {
                 opacity: 0,
-                y: 100,
-                scale: 0.8
+                y: 50,
+                scale: 0.8,
+                rotation: -5
               },
               {
                 opacity: 1,
                 y: 0,
                 scale: 1,
+                rotation: 0,
                 duration: 1,
-                ease: "power2.out"
+                ease: "back.out(1.7)"
+              },
+              index * 0.15
+            );
+          }
+        });
+
+        // Text section animation
+        const textTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "center center",
+            end: "bottom 30%",
+            scrub: 2,
+            pin: false
+          }
+        });
+
+        textRefs.current.forEach((text, index) => {
+          if (text) {
+            textTimeline.fromTo(text,
+              {
+                opacity: 0,
+                y: 100,
+                clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0% 100%)"
+              },
+              {
+                opacity: 1,
+                y: 0,
+                clipPath: "polygon(0 0%, 100% 0%, 100% 100%, 0% 100%)",
+                duration: 1.5,
+                ease: "power3.out"
               },
               index * 0.2
             );
           }
         });
-
-        // Special animation for highlight text
-        if (highlightTextRef.current) {
-          mainTl.fromTo(highlightTextRef.current,
-            {
-              opacity: 0,
-              scale: 0.5,
-              rotationX: 90
-            },
-            {
-              opacity: 1,
-              scale: 1,
-              rotationX: 0,
-              duration: 2,
-              ease: "back.out(1.7)"
-            },
-            "-=1"
-          );
-        }
       }, sectionRef);
 
       return () => ctx.revert();
     }
   }, []);
 
-  const addToRefs = (el: HTMLDivElement | null, index: number) => {
-    if (el) textBlocksRef.current[index] = el;
+  const addToStatsRefs = (el: HTMLDivElement | null, index: number) => {
+    if (el) statsRefs.current[index] = el;
+  };
+
+  const addToTextRefs = (el: HTMLDivElement | null, index: number) => {
+    if (el) textRefs.current[index] = el;
+  };
+
+  const addToNumbersRef = (el: HTMLDivElement | null, index: number) => {
+    if (el) numbersRef.current[index] = el;
   };
 
   return (
     <section 
       ref={sectionRef}
       id="section7" 
-      className="h-screen relative flex flex-col items-center justify-center bg-gradient-to-b from-black to-gray-900 px-8"
+      className="min-h-screen relative flex flex-col items-center justify-center px-4 py-16 overflow-hidden"
+      style={{
+        background: "linear-gradient(135deg, #000000 0%, #0B1F4A 40%, #14E3C9 100%)",
+      }}
     >
-      <div className="flex flex-col items-center gap-8 max-w-4xl">
-        <div 
-          ref={(el) => addToRefs(el, 0)}
-          className="text-center"
-        >
-          <span className="text-white text-4xl font-bold leading-[50px]">
-            Anyone can build. No code. Built for AI.<br /><br />
-            Powered by presence. <br />
-            Monetized from day one.<br /><br />
-          </span>
-          <span className="text-white text-2xl font-normal leading-[50px]">
-            From flat to fluid. <br />
-            From links to locations.<br />
-            BOTI doesn&apos;t load
-          </span>
-        </div>
-        
-        <div 
-          ref={(el) => addToRefs(el, 1)}
-          className="text-center"
-        >
-          <span className="text-white text-2xl font-semibold leading-[50px]">
-            The Web Stops Scrolling.<br />
-          </span>
-          <span 
-            ref={highlightTextRef}
-            className="text-white text-5xl font-black leading-[50px]"
+      {/* Animated gradient overlay */}
+      <div 
+        className="absolute inset-0 opacity-30 pointer-events-none animate-pulse-slow"
+        style={{
+          background: "radial-gradient(circle at 30% 50%, #14E3C9 0%, transparent 50%), radial-gradient(circle at 70% 50%, #7CF7E4 0%, transparent 50%)"
+        }}
+      />
+      
+      <div className="flex flex-col items-center gap-16 w-full max-w-6xl">
+        {/* Stats Row */}
+        <div className="flex flex-wrap justify-center items-stretch gap-8 w-full">
+          <div 
+            ref={(el) => addToStatsRefs(el, 0)}
+            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-border"
           >
-            BOTI Starts Unfolding
-          </span>
+            <div 
+              ref={(el) => addToNumbersRef(el, 0)}
+              className="text-center text-5xl font-black leading-tight"
+              style={{
+                background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              95%
+            </div>
+            <div className="text-center text-text-primary text-base font-medium leading-snug">
+              have less than 10 people
+            </div>
+          </div>
+
+          <div 
+            ref={(el) => addToStatsRefs(el, 1)}
+            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-border"
+          >
+            <div 
+              ref={(el) => addToNumbersRef(el, 1)}
+              className="text-center text-5xl font-black leading-tight"
+              style={{
+                background: "linear-gradient(135deg, #7CF7E4 0%, #14E3C9 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              80%
+            </div>
+            <div className="text-center text-text-primary text-base font-medium leading-snug">
+              are solo (2025 SBA)
+            </div>
+          </div>
+
+          <div 
+            ref={(el) => addToStatsRefs(el, 2)}
+            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-border"
+          >
+            <div 
+              ref={(el) => addToNumbersRef(el, 2)}
+              className="text-center text-5xl font-black leading-tight"
+              style={{
+                background: "linear-gradient(135deg, #14E3C9 0%, #3B4D91 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              70%
+            </div>
+            <div className="text-center text-text-primary text-base font-medium leading-snug">
+              say web presence is Mission-Critical
+            </div>
+          </div>
+
+          <div 
+            ref={(el) => addToStatsRefs(el, 3)}
+            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-border"
+          >
+            <div 
+              ref={(el) => addToNumbersRef(el, 3)}
+              className="text-center text-5xl font-black leading-tight"
+              style={{
+                background: "linear-gradient(135deg, #7CF7E4 0%, #3B4D91 100%)",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+                backgroundClip: "text",
+              }}
+            >
+              50%
+            </div>
+            <div className="text-center text-text-primary text-base font-medium leading-snug">
+              with no physical storefront
+            </div>
+          </div>
+        </div>
+
+        {/* Text Section */}
+        <div className="flex flex-col items-center gap-8 text-center max-w-4xl">
+          <div 
+            ref={(el) => addToTextRefs(el, 0)}
+            className="text-3xl font-bold leading-relaxed"
+            style={{
+              color: "#14E3C9",
+              textShadow: "0 0 20px rgba(20, 227, 201, 0.5)",
+            }}
+          >
+            You don&apos;t just want your site to work, you need it to wow.
+          </div>
+
+          <div 
+            ref={(el) => addToTextRefs(el, 1)}
+            className="text-2xl font-medium leading-relaxed"
+            style={{
+              background: "linear-gradient(90deg, #7CF7E4 0%, #ffffff 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            For decades, world-building was trapped in game engines.
+          </div>
+
+          <div 
+            ref={(el) => addToTextRefs(el, 2)}
+            className="text-2xl font-medium leading-relaxed"
+            style={{
+              color: "#7CF7E4",
+              textShadow: "0 0 15px rgba(124, 247, 228, 0.4)",
+            }}
+          >
+            Now, that power is yours
+          </div>
+
+          <div 
+            ref={(el) => addToTextRefs(el, 3)}
+            className="text-text-primary text-xl font-normal leading-relaxed"
+          >
+            With BOTI, your success isn&apos;t limited by skill or budget
+            <br />
+            only by imagination.
+          </div>
+
+          <div 
+            ref={(el) => addToTextRefs(el, 4)}
+            className="text-2xl font-bold leading-relaxed"
+            style={{
+              background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 50%, #14E3C9 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              textShadow: "0 0 30px rgba(20, 227, 201, 0.6)",
+            }}
+          >
+            BOTI turns <strong>Good Enough</strong> into limitless imagination.
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
