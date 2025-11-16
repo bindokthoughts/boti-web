@@ -178,9 +178,9 @@ html, body {
   --color-divider: #E8ECF3;
   
   /* Light Mode Gradients */
-  --gradient-hero: linear-gradient(135deg, #14E3C9 0%, #3B4D91 100%);
-  --gradient-section: linear-gradient(135deg, #14E3C9 0%, #3B4D91 100%);
-  --gradient-section-alt: linear-gradient(160deg, #0B1F4A 0%, #3B4D91 50%, #14E3C9 100%);
+  --gradient-hero: linear-gradient(135deg, #3FE7F9 0%, #3B4D91 100%);
+  --gradient-section: linear-gradient(135deg, #3FE7F9 0%, #3B4D91 100%);
+  --gradient-section-alt: linear-gradient(160deg, #0B1F4A 0%, #3B4D91 50%, #3FE7F9 100%);
 }
 
 .dark {
@@ -195,14 +195,139 @@ html, body {
   --color-divider: #151515;
   
   /* Dark Mode Gradients */
-  --gradient-hero: linear-gradient(135deg, #000000 0%, #0B1F4A 50%, #14E3C9 100%);
+  --gradient-hero: linear-gradient(135deg, #000000 0%, #0B1F4A 50%, #272acc 100%);
   --gradient-section: linear-gradient(135deg, #000000 0%, #0B1F4A 100%);
-  --gradient-section-alt: linear-gradient(160deg, #000000 0%, #0B1F4A 70%, #14E3C9 100%);
+  --gradient-section-alt: linear-gradient(160deg, #000000 0%, #0B1F4A 70%, #272acc 100%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+  }
+}
+
+/* Utility classes for gradient text and glows */
+@layer utilities {
+  /* Turquoise gradient text variations */
+  .text-gradient-turquoise-1 {
+    background: linear-gradient(135deg, #3FE7F9 0%, #7CF7E4 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-turquoise-2 {
+    background: linear-gradient(135deg, #7CF7E4 0%, #3FE7F9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-turquoise-3 {
+    background: linear-gradient(135deg, #3FE7F9 0%, #3B4D91 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-turquoise-4 {
+    background: linear-gradient(135deg, #7CF7E4 0%, #3B4D91 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-turquoise-animated {
+    background: linear-gradient(135deg, #3FE7F9 0%, #7CF7E4 50%, #3FE7F9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-light-to-white {
+    background: linear-gradient(90deg, #7CF7E4 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-accent-to-white {
+    background: linear-gradient(90deg, #3FE7F9 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-full-spectrum {
+    background: linear-gradient(135deg, #3FE7F9 0%, #7CF7E4 50%, #3B4D91 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  /* Text glow effects */
+  .text-glow-turquoise {
+    color: #3FE7F9;
+    text-shadow: 0 0 20px rgba(20, 227, 201, 0.5);
+  }
+  
+  .text-glow-turquoise-light {
+    color: #3FE7F9;
+    text-shadow: 0 0 15px rgba(20, 227, 201, 0.4);
+  }
+  
+  .text-glow-turquoise-strong {
+    text-shadow: 0 0 40px rgba(20, 227, 201, 0.8);
+  }
+  
+  .text-glow-highlight {
+    color: #7CF7E4;
+    text-shadow: 0 0 20px rgba(124, 247, 228, 0.5);
+  }
+  
+  .text-glow-highlight-light {
+    color: #7CF7E4;
+    text-shadow: 0 0 15px rgba(124, 247, 228, 0.4);
+  }
+  
+  /* Background gradients for overlay animations */
+  .bg-gradient-radial-turquoise-1 {
+    background: radial-gradient(circle at 50% 50%, rgba(20, 227, 201, 0.3) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 20%, rgba(124, 247, 228, 0.3) 0%, transparent 50%);
+  }
+  
+  .bg-gradient-radial-turquoise-2 {
+    background: radial-gradient(circle at 30% 50%, rgba(20, 227, 201, 0.3) 0%, transparent 50%), 
+                radial-gradient(circle at 70% 50%, rgba(124, 247, 228, 0.3) 0%, transparent 50%);
+  }
+  
+  .bg-gradient-radial-turquoise-3 {
+    background: radial-gradient(circle at 20% 30%, rgba(124, 247, 228, 0.3) 0%, transparent 50%), 
+                radial-gradient(circle at 80% 70%, rgba(20, 227, 201, 0.3) 0%, transparent 50%);
+  }
+  
+  .bg-gradient-radial-turquoise-4 {
+    background: radial-gradient(circle at 50% 50%, rgba(124, 247, 228, 0.4) 0%, transparent 60%);
+  }
+  
+  .bg-gradient-radial-turquoise-5 {
+    background: radial-gradient(circle at 40% 40%, rgba(20, 227, 201, 0.3) 0%, transparent 50%), 
+                radial-gradient(circle at 60% 60%, rgba(124, 247, 228, 0.3) 0%, transparent 50%);
+  }
+  
+  .bg-gradient-radial-turquoise-6 {
+    background: radial-gradient(circle at 25% 50%, rgba(14, 227, 201, 0.3) 0%, transparent 50%), 
+                radial-gradient(circle at 75% 50%, rgba(59, 77, 145, 0.3) 0%, transparent 50%);
+  }
+  
+  .bg-gradient-radial-turquoise-7 {
+    background: radial-gradient(circle at 30% 40%, rgba(20, 227, 201, 0.3) 0%, transparent 50%), 
+                radial-gradient(circle at 70% 60%, rgba(124, 247, 228, 0.3) 0%, transparent 50%);
+  }
+  
+  .bg-gradient-radial-turquoise-8 {
+    background: radial-gradient(circle at 50% 30%, rgba(124, 247, 228, 0.4) 0%, transparent 60%), 
+                radial-gradient(circle at 50% 70%, rgba(20, 227, 201, 0.3) 0%, transparent 60%);
   }
 }

@@ -80,32 +80,22 @@ export default function Section9() {
       id="section9" 
       className="h-screen relative flex flex-col items-center justify-center px-8"
       style={{
-        background: "linear-gradient(135deg, #14E3C9 0%, #3B4D91 40%, #0B1F4A 100%)"
+        background: "linear-gradient(135deg, #3FE7F9 0%, #3B4D91 40%, #0B1F4A 100%)"
       }}
     >
-      <div className="absolute inset-0 z-0 animate-pulse-slow" style={{
-        background: "radial-gradient(circle at 20% 30%, rgba(124, 247, 228, 0.3) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(20, 227, 201, 0.3) 0%, transparent 50%)"
-      }}></div>
+      <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-3" />
       
       <div className="flex flex-col items-center gap-8 max-w-4xl relative z-10">
         <div 
           ref={(el) => addToRefs(el, 0)}
           className="text-center"
         >
-          <span className="text-4xl font-bold leading-[50px]" style={{
-            background: "linear-gradient(135deg, #7CF7E4 0%, #ffffff 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text"
-          }}>
+          <span className="text-4xl font-bold leading-[50px] text-gradient-light-to-white">
             Anyone can build. No code. Built for AI.<br /><br />
             Powered by presence. <br />
             Monetized from day one.<br /><br />
           </span>
-          <span className="text-2xl font-normal leading-[50px]" style={{
-            color: "#14E3C9",
-            textShadow: "0 0 15px rgba(20, 227, 201, 0.4)"
-          }}>
+          <span className="text-2xl font-normal leading-[50px] text-glow-turquoise-light">
             From flat to fluid. <br />
             From links to locations.<br />
             BOTI doesn&apos;t load
@@ -116,22 +106,12 @@ export default function Section9() {
           ref={(el) => addToRefs(el, 1)}
           className="text-center"
         >
-          <span className="text-2xl font-semibold leading-[50px]" style={{
-            color: "#7CF7E4",
-            textShadow: "0 0 20px rgba(124, 247, 228, 0.5)"
-          }}>
+          <span className="text-2xl font-semibold leading-[50px] text-glow-highlight">
             The Web Stops Scrolling.<br />
           </span>
           <span 
             ref={highlightTextRef}
-            className="text-5xl font-black leading-[50px]"
-            style={{
-              background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 50%, #14E3C9 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              textShadow: "0 0 40px rgba(20, 227, 201, 0.8)"
-            }}
+            className="text-5xl font-black leading-[50px] text-gradient-turquoise-animated text-glow-turquoise-strong"
           >
             BOTI Starts Unfolding
           </span>

@@ -33,7 +33,7 @@ export default function ParticleField() {
       positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
       positions[i * 3 + 2] = radius * Math.cos(phi);
       
-      // PRIMARY_ACCENT #14E3C9 (0.078, 0.890, 0.788) to HIGHLIGHT #7CF7E4 (0.486, 0.969, 0.894)
+      // PRIMARY_ACCENT #3FE7F9 (0.247, 0.906, 0.976) to HIGHLIGHT #7CF7E4 (0.486, 0.969, 0.894)
       const colorMix = Math.random();
       colors[i * 3] = 0.078 + colorMix * 0.408; // Red channel
       colors[i * 3 + 1] = 0.890 + colorMix * 0.079; // Green channel

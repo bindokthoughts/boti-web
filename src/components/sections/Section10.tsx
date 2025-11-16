@@ -78,23 +78,15 @@ export default function Section10() {
       id="section10" 
       className="h-screen relative flex flex-col items-center justify-center px-8"
       style={{
-        background: "linear-gradient(135deg, #0B1F4A 0%, #14E3C9 100%)"
+        background: "linear-gradient(135deg, #0B1F4A 0%, #3FE7F9 100%)"
       }}
     >
-      <div className="absolute inset-0 z-0 animate-pulse-slow" style={{
-        background: "radial-gradient(circle at 50% 50%, rgba(124, 247, 228, 0.4) 0%, transparent 60%)"
-      }}></div>
+      <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-4" />
       
       <div className="flex flex-col items-center gap-12 max-w-4xl text-center relative z-10">
         <p 
           ref={titleRef}
-          className="text-3xl font-bold leading-relaxed"
-          style={{
-            background: "linear-gradient(90deg, #14E3C9 0%, #7CF7E4 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text"
-          }}
+          className="text-3xl font-bold leading-relaxed text-gradient-turquoise-1"
         >
           BOTI is the first browser built for the spatial internet.
         </p>
@@ -102,22 +94,14 @@ export default function Section10() {
         <div className="flex flex-col gap-6">
           <p 
             ref={(el) => addToSubtitleRefs(el, 0)}
-            className="text-2xl font-medium leading-relaxed"
-            style={{
-              color: "#7CF7E4",
-              textShadow: "0 0 20px rgba(124, 247, 228, 0.5)"
-            }}
+            className="text-2xl font-medium leading-relaxed text-glow-highlight"
           >
             It doesn&apos;t open tabs.
           </p>
           
           <p 
             ref={(el) => addToSubtitleRefs(el, 1)}
-            className="text-2xl font-medium leading-relaxed"
-            style={{
-              color: "#14E3C9",
-              textShadow: "0 0 20px rgba(20, 227, 201, 0.5)"
-            }}
+            className="text-2xl font-medium leading-relaxed text-glow-turquoise"
           >
             It opens places.
           </p>

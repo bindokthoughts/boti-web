@@ -64,7 +64,7 @@ export default function Section3() {
         ref={orb1Ref}
         className="absolute top-1/4 left-1/4 w-72 h-72 rounded-full opacity-25 blur-3xl"
         style={{
-          background: "radial-gradient(circle, #14E3C9 0%, transparent 70%)",
+          background: "radial-gradient(circle, #3FE7F9 0%, transparent 70%)",
         }}
       />
       <div
