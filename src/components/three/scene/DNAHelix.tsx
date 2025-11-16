@@ -14,7 +14,6 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
  */
 export default function DNAHelix() {
   const groupRef = useRef<THREE.Group>(null);
-  const particlesRef = useRef<THREE.Points>(null);
   
   // Generate DNA helix geometry
   const { helixGeometry, connectionLines } = useMemo(() => {

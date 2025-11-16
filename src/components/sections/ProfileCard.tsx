@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { StaticImageData } from 'next/image';
 import gsap from 'gsap';
-import { useGSAP } from "@gsap/react";
 
 interface ProfileCardProps {
   name: string;

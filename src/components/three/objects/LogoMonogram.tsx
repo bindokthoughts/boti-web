@@ -55,7 +55,7 @@ const ResponsiveLogoMesh: React.FC<LogoMonogramProps> = ({
       return [scale[0] * clampedScale, scale[1] * clampedScale, scale[2] * clampedScale] as [number, number, number];
     }
     return scale * clampedScale;
-  }, [viewport.width, viewport.height, scale, responsive]);
+  }, [viewport.width, scale, responsive]);
 
   // Define the 12 ring colors from innermost to outermost
   const ringColors = [
