@@ -64,7 +64,7 @@ export default function AnimatedLunarScene() {
     <group ref={groupRef} position={[0, -350, 0]}>
       {/* Brand-colored lunar lighting */}
       <ambientLight intensity={0.15} />
-      <pointLight position={[5, 10, 5]} intensity={0.8} color="#14E3C9" />
+      <pointLight position={[5, 10, 5]} intensity={0.8} color="#3FE7F9" />
       <pointLight position={[-5, 5, -5]} intensity={0.6} color="#7CF7E4" />
       <spotLight
         position={[0, 15, 10]}

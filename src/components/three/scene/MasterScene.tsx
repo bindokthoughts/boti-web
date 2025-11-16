@@ -52,7 +52,7 @@ export default function MasterScene() {
         dpr={isMobile ? 1 : [1, 2]}
         performance={{ min: 0.5 }}
         style={{
-          touchAction: 'none',
+          touchAction: 'pan-y',
           width: '100%',
           height: '100%'
         }}
@@ -70,7 +70,7 @@ export default function MasterScene() {
           <directionalLight 
             position={[10, 10, 5]}
             intensity={1.2}
-            color="#14E3C9"
+            color="#3FE7F9"
             castShadow
           />
           <pointLight position={[-10, 5, -5]} intensity={0.8} color="#7CF7E4" />
@@ -103,7 +103,7 @@ export default function MasterScene() {
             size={2}
             speed={0.4}
             opacity={0.6}
-            color="#14E3C9"
+            color="#3FE7F9"
           />
 
           {/* === ORIGINAL CAMERA SYSTEM === */}

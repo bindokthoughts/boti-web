@@ -159,7 +159,7 @@ export default function Hero() {
         ref={glowRef}
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
-          background: "radial-gradient(circle at 50% 50%, #14E3C9 0%, transparent 70%)",
+          background: "radial-gradient(circle at 50% 50%, #3FE7F9 0%, transparent 70%)",
           filter: "blur(120px)",
         }}
       />
@@ -169,7 +169,7 @@ export default function Hero() {
         className="absolute inset-0 opacity-[0.07] pointer-events-none"
         style={{
           backgroundImage: `
-            linear-gradient(to right, #14E3C9 1px, transparent 1px),
+            linear-gradient(to right, #3FE7F9 1px, transparent 1px),
             linear-gradient(to bottom, #3B4D91 1px, transparent 1px)
           `,
           backgroundSize: "60px 60px",

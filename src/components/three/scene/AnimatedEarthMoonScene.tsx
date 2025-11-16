@@ -76,7 +76,7 @@ export default function AnimatedEarthMoonScene() {
     <group ref={groupRef} position={[0, -150, 0]}>
       {/* Brand-colored lighting */}
       <ambientLight intensity={0.2} />
-      <pointLight position={[10, 5, 5]} intensity={1} color="#14E3C9" />
+      <pointLight position={[10, 5, 5]} intensity={1} color="#3FE7F9" />
       <pointLight position={[-10, -5, -5]} intensity={0.8} color="#3B4D91" />
       
       <group ref={earthRef} position={[0, 0, 0]}>

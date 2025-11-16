@@ -47,7 +47,7 @@ export default function HolographicGrid() {
       vec2 grid = abs(fract(vUv * 20.0 - 0.5) - 0.5) / fwidth(vUv * 20.0);
       float line = min(grid.x, grid.y);
       
-      // PRIMARY_ACCENT #14E3C9 to HIGHLIGHT #7CF7E4
+      // PRIMARY_ACCENT #3FE7F9 to HIGHLIGHT #7CF7E4
       vec3 color1 = vec3(0.078, 0.890, 0.788); // PRIMARY_ACCENT
       vec3 color2 = vec3(0.486, 0.969, 0.894); // HIGHLIGHT
       vec3 color = mix(color1, color2, vUv.y + sin(time * 0.5) * 0.3);

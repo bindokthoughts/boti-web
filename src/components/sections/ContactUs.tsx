@@ -75,22 +75,14 @@ export default function ContactUs() {
       id="contact-us" 
       className="relative p-8 flex flex-col items-center justify-center px-8"
       style={{
-        background: "linear-gradient(135deg, #0B1F4A 0%, #14E3C9 100%)"
+        background: "linear-gradient(135deg, #0B1F4A 0%, #3FE7F9 100%)"
       }}
     >
-      <div className="absolute inset-0 z-0 animate-pulse-slow" style={{
-        background: "radial-gradient(circle at 50% 30%, rgba(124, 247, 228, 0.4) 0%, transparent 60%), radial-gradient(circle at 50% 70%, rgba(20, 227, 201, 0.3) 0%, transparent 60%)"
-      }}></div>
+      <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-8" />
       <div className="flex flex-col items-center gap-12 max-w-4xl text-center relative z-10">
         <h1 
           ref={titleRef}
-          className="text-6xl font-black"
-          style={{
-            background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 50%, #14E3C9 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text"
-          }}
+          className="text-6xl font-black text-gradient-turquoise-animated"
         >
           Contact Us Form
         </h1>

@@ -13,7 +13,7 @@ const AnimatedBox = forwardRef<Mesh>((props, ref) => {
     <mesh ref={ref} position={[0, 0, 0]} rotation={[0, 0, 0]} {...props}>
       <boxGeometry args={[1, 1, 1]} />
       <meshStandardMaterial color="white" transparent={true} opacity={1} />
-      <OrbitControls enableZoom={false} />
+      {/* <OrbitControls enableZoom={false} /> */}
     </mesh>
   );
 });

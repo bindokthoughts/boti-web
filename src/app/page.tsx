@@ -1,6 +1,7 @@
 "use client";
 
 import MasterScene from "@/components/three/scene/MasterScene";
+import SectionDots from "@/components/navbar/SectionDots";
 
 import ContactUs from "@/components/sections/ContactUs";
 import Hero from "@/components/sections/Hero";
@@ -20,7 +21,8 @@ import Section12 from "@/components/sections/Section12";
 export default function Home() {
   return (
     <main className="relative -mt-16 overflow-x-hidden max-w-full">
-      
+      {/* Section Navigation Dots */}
+      <SectionDots />
 
       {/* Scroll Sections Overlay - pointer-events-auto to allow interaction */}
       <div className="relative z-10 pointer-events-auto max-w-full">

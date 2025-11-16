@@ -119,16 +119,11 @@ export default function Section7() {
       id="section7" 
       className="min-h-screen relative flex flex-col items-center justify-center px-4 py-16 overflow-hidden"
       style={{
-        background: "linear-gradient(135deg, #000000 0%, #0B1F4A 40%, #14E3C9 100%)",
+        background: "linear-gradient(135deg, #000000 0%, #0B1F4A 40%, #3FE7F9 100%)",
       }}
     >
       {/* Animated gradient overlay */}
-      <div 
-        className="absolute inset-0 opacity-30 pointer-events-none animate-pulse-slow"
-        style={{
-          background: "radial-gradient(circle at 30% 50%, #14E3C9 0%, transparent 50%), radial-gradient(circle at 70% 50%, #7CF7E4 0%, transparent 50%)"
-        }}
-      />
+      <div className="absolute inset-0 opacity-30 pointer-events-none animate-pulse-slow bg-gradient-radial-turquoise-1" />
       
       <div className="flex flex-col items-center gap-16 w-full max-w-6xl">
         {/* Stats Row */}
@@ -139,13 +134,7 @@ export default function Section7() {
           >
             <div 
               ref={(el) => addToNumbersRef(el, 0)}
-              className="text-center text-5xl font-black leading-tight"
-              style={{
-                background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+              className="text-center text-5xl font-black leading-tight text-gradient-turquoise-1"
             >
               95%
             </div>
@@ -160,13 +149,7 @@ export default function Section7() {
           >
             <div 
               ref={(el) => addToNumbersRef(el, 1)}
-              className="text-center text-5xl font-black leading-tight"
-              style={{
-                background: "linear-gradient(135deg, #7CF7E4 0%, #14E3C9 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+              className="text-center text-5xl font-black leading-tight text-gradient-turquoise-2"
             >
               80%
             </div>
@@ -181,13 +164,7 @@ export default function Section7() {
           >
             <div 
               ref={(el) => addToNumbersRef(el, 2)}
-              className="text-center text-5xl font-black leading-tight"
-              style={{
-                background: "linear-gradient(135deg, #14E3C9 0%, #3B4D91 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+              className="text-center text-5xl font-black leading-tight text-gradient-turquoise-3"
             >
               70%
             </div>
@@ -202,13 +179,7 @@ export default function Section7() {
           >
             <div 
               ref={(el) => addToNumbersRef(el, 3)}
-              className="text-center text-5xl font-black leading-tight"
-              style={{
-                background: "linear-gradient(135deg, #7CF7E4 0%, #3B4D91 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-              }}
+              className="text-center text-5xl font-black leading-tight text-gradient-turquoise-4"
             >
               50%
             </div>
@@ -222,35 +193,21 @@ export default function Section7() {
         <div className="flex flex-col items-center gap-8 text-center max-w-4xl">
           <div 
             ref={(el) => addToTextRefs(el, 0)}
-            className="text-3xl font-bold leading-relaxed"
-            style={{
-              color: "#14E3C9",
-              textShadow: "0 0 20px rgba(20, 227, 201, 0.5)",
-            }}
+            className="text-3xl font-bold leading-relaxed text-glow-turquoise"
           >
             You don&apos;t just want your site to work, you need it to wow.
           </div>
 
           <div 
             ref={(el) => addToTextRefs(el, 1)}
-            className="text-2xl font-medium leading-relaxed"
-            style={{
-              background: "linear-gradient(90deg, #7CF7E4 0%, #ffffff 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
+            className="text-2xl font-medium leading-relaxed text-gradient-light-to-white"
           >
             For decades, world-building was trapped in game engines.
           </div>
 
           <div 
             ref={(el) => addToTextRefs(el, 2)}
-            className="text-2xl font-medium leading-relaxed"
-            style={{
-              color: "#7CF7E4",
-              textShadow: "0 0 15px rgba(124, 247, 228, 0.4)",
-            }}
+            className="text-2xl font-semibold leading-relaxed text-glow-highlight"
           >
             Now, that power is yours
           </div>
@@ -266,14 +223,7 @@ export default function Section7() {
 
           <div 
             ref={(el) => addToTextRefs(el, 4)}
-            className="text-2xl font-bold leading-relaxed"
-            style={{
-              background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 50%, #14E3C9 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-              textShadow: "0 0 30px rgba(20, 227, 201, 0.6)",
-            }}
+            className="text-2xl font-bold leading-relaxed text-gradient-turquoise-animated text-glow-turquoise-strong"
           >
             BOTI turns <strong>Good Enough</strong> into limitless imagination.
           </div>

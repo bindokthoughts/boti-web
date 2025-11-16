@@ -62,48 +62,29 @@ export default function Section8() {
       id="section8" 
       className="h-screen relative flex flex-col items-center justify-center px-8"
       style={{
-        background: "linear-gradient(135deg, #0B1F4A 0%, #3B4D91 50%, #14E3C9 100%)"
+        background: "linear-gradient(135deg, #0B1F4A 0%, #3B4D91 50%, #3FE7F9 100%)"
       }}
     >
-      <div className="absolute inset-0 z-0 animate-pulse-slow" style={{
-        background: "radial-gradient(circle at 30% 50%, rgba(20, 227, 201, 0.3) 0%, transparent 50%), radial-gradient(circle at 70% 50%, rgba(124, 247, 228, 0.3) 0%, transparent 50%)"
-      }}></div>
+      <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-2" />
       
       <div className="flex flex-col items-center gap-8 max-w-4xl text-center relative z-10">
         <div 
           ref={(el) => addToTextRefs(el, 0)}
-          className="text-3xl font-medium leading-relaxed"
-          style={{
-            background: "linear-gradient(90deg, #7CF7E4 0%, #ffffff 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text"
-          }}
+          className="text-3xl font-medium leading-relaxed text-gradient-light-to-white"
         >
           The world moved into AR, voice, and virtual spaces but
         </div>
         
         <div 
           ref={(el) => addToTextRefs(el, 1)}
-          className="text-4xl font-bold leading-relaxed"
-          style={{
-            color: "#14E3C9",
-            textShadow: "0 0 20px rgba(20, 227, 201, 0.5)"
-          }}
+          className="text-4xl font-bold leading-relaxed text-glow-turquoise"
         >
           the web stayed flat.
         </div>
         
         <div 
           ref={(el) => addToTextRefs(el, 2)}
-          className="text-5xl font-black leading-relaxed"
-          style={{
-            background: "linear-gradient(135deg, #14E3C9 0%, #7CF7E4 50%, #14E3C9 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-            textShadow: "0 0 40px rgba(20, 227, 201, 0.8)"
-          }}
+          className="text-5xl font-black leading-relaxed text-gradient-turquoise-animated text-glow-turquoise-strong"
         >
           BOTI makes it a place.
         </div>

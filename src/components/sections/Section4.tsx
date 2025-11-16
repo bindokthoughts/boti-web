@@ -73,7 +73,7 @@ export default function Section4() {
         ref={glowRef}
         className="absolute inset-0 opacity-20 pointer-events-none"
         style={{
-          background: "radial-gradient(circle at 50% 50%, #14E3C9 0%, transparent 60%)",
+          background: "radial-gradient(circle at 50% 50%, #3FE7F9 0%, transparent 60%)",
           filter: "blur(100px)",
         }}
       />
