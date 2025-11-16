@@ -114,7 +114,8 @@ export default function TransformInspector({
   // Handle orbit disable while using gizmo
   useEffect(() => {
     if (!orbitControlsRef?.current) return;
-    orbitControlsRef.current.enabled = !active;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (orbitControlsRef.current as any).enabled = !active;
   }, [active, orbitControlsRef?.current]);
 
   // Keyboard helpers: 1/2/3 to switch modes, X switches space, R resets
