@@ -106,11 +106,6 @@ export default function Section2() {
           ref={textRef}
           className="text-5xl md:text-7xl lg:text-8xl font-black text-center leading-tight"
           style={{
-            textShadow: `
-              0 0 40px rgba(168,85,247,0.6),
-              0 0 20px rgba(96,165,250,0.4),
-              0 5px 20px rgba(0,0,0,0.3)
-            `,
             background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #f3e8ff 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",

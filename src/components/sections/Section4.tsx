@@ -84,11 +84,10 @@ export default function Section4() {
       </div>
       
       <div className="flex flex-col items-center gap-8 relative z-10">
-        <h1 
+        {/* <h1 
           ref={titleRef}
           className="text-5xl md:text-6xl font-black"
           style={{
-            textShadow: "0 0 30px rgba(20,227,201,0.6), 0 5px 20px rgba(0,0,0,0.4)",
             background: "linear-gradient(135deg, #ffffff 0%, #7CF7E4 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
@@ -96,7 +95,7 @@ export default function Section4() {
           }}
         >
           Our Symbol
-        </h1>
+        </h1> */}
         <div ref={canvasRef} className="w-80 h-80 rounded-2xl overflow-hidden backdrop-blur-sm bg-white/5 border border-white/10 shadow-2xl">
           <Canvas camera={{ position: [0, 0, 5], fov: 50 }}>
             <Suspense fallback={null}>
