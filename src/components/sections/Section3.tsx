@@ -80,11 +80,6 @@ export default function Section3() {
           ref={textRef}
           className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight"
           style={{
-            textShadow: `
-              0 0 40px rgba(168,85,247,0.5),
-              0 0 20px rgba(96,165,250,0.4),
-              0 5px 25px rgba(0,0,0,0.4)
-            `,
             background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)",
             WebkitBackgroundClip: "text",
             WebkitTextFillColor: "transparent",

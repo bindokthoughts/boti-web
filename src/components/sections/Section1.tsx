@@ -38,7 +38,7 @@ export default function Section1() {
       <div className="absolute top-4 right-4 text-sm text-gray-400 font-mono z-20">
         Section 1
       </div>
-      
+
       <h1
         ref={textRef}
         id="text2"
@@ -46,6 +46,9 @@ export default function Section1() {
       >
         Our lives moved on.
       </h1>
+      <p className="text-lg md:text-xl lg:text-2xl font-light text-text-primary max-w-2xl">
+        Until now. Experience the next dimension of web.
+      </p>
     </section>
   );
 }

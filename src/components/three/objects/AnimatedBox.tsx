@@ -10,9 +10,16 @@ import { OrbitControls } from "@react-three/drei";
  */
 const AnimatedBox = forwardRef<Mesh>((props, ref) => {
   return (
-    <mesh ref={ref} position={[0, 0, 0]} rotation={[0, 0, 0]} {...props}>
+    <mesh ref={ref} position={[0, 0, 0]} rotation={[0, 0, 0]} {...props} frustumCulled={false}>
       <boxGeometry args={[1, 1, 1]} />
-      <meshStandardMaterial color="white" transparent={true} opacity={1} />
+      <meshStandardMaterial 
+        color="white" 
+        metalness={0.1}
+        roughness={0.4}
+        transparent={false}
+        depthWrite={true}
+        depthTest={true}
+      />
       {/* <OrbitControls enableZoom={false} /> */}
     </mesh>
   );

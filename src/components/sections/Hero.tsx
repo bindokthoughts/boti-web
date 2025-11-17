@@ -15,6 +15,7 @@ export default function Hero() {
   const subTextRef = useRef<HTMLParagraphElement>(null);
   const glowRef = useRef<HTMLDivElement>(null);
   const cloudRef = useRef<HTMLImageElement>(null);
+  const descTextRef = useRef<HTMLParagraphElement>(null);
 
   useGSAP(() => {
     const hero = heroRef.current;
@@ -22,55 +23,9 @@ export default function Hero() {
     const subText = subTextRef.current;
     const glow = glowRef.current;
     const cloud = cloudRef.current;
+    const descText = descTextRef.current;
 
     if (!hero || !mainText || !cloud) return;
-
-    // Enhanced initial text reveal
-    gsap.fromTo(
-      mainText,
-      {
-        opacity: 0,
-        y: 100,
-        scale: 0.8,
-        rotationX: -20,
-      },
-      {
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        rotationX: 0,
-        duration: 1.8,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: hero,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
-        },
-      }
-    );
-
-    // Subtitle animation
-    if (subText) {
-      gsap.fromTo(
-        subText,
-        {
-          opacity: 0,
-          y: 50,
-        },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 1.2,
-          delay: 0.4,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: hero,
-            start: "top 80%",
-            toggleActions: "play none none reverse",
-          },
-        }
-      );
-    }
 
     // Glow pulse animation
     if (glow) {
@@ -85,39 +40,66 @@ export default function Hero() {
     }
 
     // Original text change animation - PRESERVED
+    const originalText = mainText.textContent;
+
     const textTimeline = gsap.timeline({
       scrollTrigger: {
         trigger: hero,
         start: "top top",
-        end: "center top",
+        end: "+=150%",
         scrub: 1,
         pin: true,
-        pinSpacing: false,
+        pinSpacing: true,
+        onUpdate: (self) => {
+          // When scrolling back (progress decreasing), restore original text
+          if (self.direction === -1 && self.progress < 0.5) {
+            if (mainText.textContent !== originalText) {
+              mainText.textContent = originalText;
+            }
+          }
+          // When scrolling forward past halfway, change to new text
+          else if (self.direction === 1 && self.progress > 0.5) {
+            if (mainText.textContent !== "Our lives moved on.") {
+              mainText.textContent = "Our lives moved on.";
+            }
+          }
+        },
       },
     });
 
     textTimeline
       .to(mainText, {
-        y: -50,
+        // y: -80,
         opacity: 0,
-        scale: 0.9,
-        rotationY: 15,
-        duration: 0.5,
+        scale: 1,
+        rotationX: 90,
+        duration: 1,
         ease: "power2.inOut",
       })
-      .set(mainText, {
-        textContent: "Our lives moved on.",
-        y: 50,
-        rotationY: -15,
-      })
       .to(mainText, {
-        y: 0,
+        // y: 0,
         opacity: 1,
         scale: 1,
-        rotationY: 0,
-        duration: 0.5,
+        rotationX: 0,
+        duration: 1,
         ease: "power2.out",
-      });
+      })
+      .fromTo(
+        descText,
+        {
+          opacity: 0,
+          y: 50,
+          scale: 0.8,
+        },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          ease: "power2.out",
+        },
+        "-=0.5"
+      );
 
     // Cloud animations
     const values = {
@@ -139,7 +121,7 @@ export default function Hero() {
       scrollTrigger: {
         trigger: hero,
         start: "top top",
-        end: "bottom top",
+        end: "+=150%",
         scrub: 1,
       },
     });
@@ -176,34 +158,28 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-10 px-6 md:px-12 lg:px-20 w-full md:w-2/3 text-center md:text-left perspective-[1000px]">
-        <h1
-          ref={mainTextRef}
-          className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black tracking-tight leading-[1.1] mb-6"
-          style={{
-            textShadow: `
-              0 0 30px rgba(20,227,201,0.6),
-              0 0 60px rgba(20,227,201,0.4),
-              0 5px 25px rgba(0,0,0,0.5)
-            `,
-            background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #f3e8ff 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
-        >
-          The Web Stayed Flat.
-        </h1>
-
-        <p
-          ref={subTextRef}
-          className="text-lg md:text-xl lg:text-2xl font-light tracking-wide text-text-primary max-w-2xl"
-          style={{
-            textShadow: "0 2px 20px rgba(20,227,201,0.4)",
-          }}
-        >
-          Until now. Experience the next dimension of web development.
-        </p>
+      <div className="relative z-20 w-full h-full flex flex-col md:flex-row items-center justify-end px-6 md:px-12 lg:px-20 gap-6" style={{ perspective: '1000px' }}>
+        <div className="flex flex-col items-center md:items-end md:w-1/2">
+          <h1
+            ref={mainTextRef}
+            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight text-center md:text-left"
+            style={{
+              background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #f3e8ff 100%)",
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+              transformStyle: 'preserve-3d',
+            }}
+          >
+            The Web Stayed Flat.
+          </h1>
+          <p 
+            ref={descTextRef}
+            className="text-lg md:text-xl lg:text-2xl font-light text-text-primary max-w-2xl mt-4 text-center md:text-right opacity-0"
+          >
+            Until now. Experience the next dimension of web.
+          </p>
+        </div>
       </div>
 
       <Image

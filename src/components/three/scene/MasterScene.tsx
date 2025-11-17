@@ -43,9 +43,10 @@ export default function MasterScene() {
   return (
     <div className="fixed inset-0 pointer-events-none z-0">
       <Canvas
+        orthographic
         camera={{ 
-          position: [0, 0, isMobile ? 8 : 6],
-          fov: isMobile ? 65 : 55,
+          position: [0, 0, 10],
+          zoom: isMobile ? 80 : 100,
           near: 0.1,
           far: 1000
         }}
