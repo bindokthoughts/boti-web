@@ -126,6 +126,17 @@ export default function EarthMoonCameraRig() {
         scrub: 1,
       },
     });
+
+    gsap.to(cam.position, {
+      x : 5,
+      y: -150,
+      scrollTrigger: {
+        trigger: "#section7",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+      },
+    });
   }, [isMobile, gl, scene]);
 
   return null;

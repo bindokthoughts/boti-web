@@ -91,11 +91,10 @@ export default function Section2() {
       {/* Glassmorphism card */}
       <div
         ref={glassRef}
-        className="relative z-10 p-10 md:p-16 rounded-3xl max-w-5xl mx-4"
+        className="relative z-10 p-10 md:p-16 max-w-5xl mx-4"
         style={{
           background: "rgba(255, 255, 255, 0.08)",
-          backdropFilter: "blur(24px)",
-          border: "2px solid rgba(255, 255, 255, 0.15)",
+          backdropFilter: "blur(12px)",
           boxShadow: `
             0 8px 32px 0 rgba(139, 92, 246, 0.3),
             inset 0 0 60px rgba(255, 255, 255, 0.05)
