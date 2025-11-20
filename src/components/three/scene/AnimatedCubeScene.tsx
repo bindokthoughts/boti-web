@@ -23,7 +23,7 @@ export default function AnimatedCubeScene() {
     gsap.set(meshRef.current.scale, {
       x: 2.5,
       y: 2.5,
-      z: 0.05, // Slightly thicker for better visibility
+      z: 2.5,
     });
 
     gsap.set(meshRef.current.position, {
@@ -77,14 +77,14 @@ export default function AnimatedCubeScene() {
       },
     })
       .to(meshRef.current.rotation, {
-        x: Math.PI * 0.35,
-        y: Math.PI * 0.35,
+        x: Math.PI * 0.1,
+        y: Math.PI * 0.1,
         ease: "power1.inOut",
       })
       .to(
         meshRef.current.position,
         {
-          x: 0,
+          x: -0.5,
           y: 0,
           ease: "power1.inOut",
         },
@@ -111,52 +111,16 @@ export default function AnimatedCubeScene() {
       },
     })
       .to(meshRef.current.rotation, {
-        x: Math.PI * 0.6,
-        y: Math.PI * 0.6,
+        x: Math.PI * 0.14,
+        y: Math.PI * 0.18,
         ease: "power1.inOut",
       })
       .to(
         meshRef.current.position,
         {
-          x: 1.5,
-          y: 0.5,
+          x: 0.5,
+          y: 0.3,
           ease: "power1.inOut",
-        },
-        "<"
-      )
-      .to(
-        meshRef.current.scale,
-        {
-          x: 1.6,
-          y: 1.6,
-          z: 1.6,
-          ease: "power1.inOut",
-        },
-        "<"
-      );
-
-    // Section 4 Timeline - rotate to hexagon-like view in the middle
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: "#section4",
-        start: "top bottom",
-        end: "center center",
-        scrub: 2,
-      },
-    })
-      .to(meshRef.current.rotation, {
-        x: Math.PI * 0.25, // 45 degrees on X
-        y: Math.PI * 0.125, // 22.5 degrees on Y for hexagonal appearance
-        z: 0,
-        ease: "power2.inOut",
-      })
-      .to(
-        meshRef.current.position,
-        {
-          x: 0,
-          y: 0,
-          z: 0,
-          ease: "power2.inOut",
         },
         "<"
       )
@@ -166,49 +130,62 @@ export default function AnimatedCubeScene() {
           x: 2,
           y: 2,
           z: 2,
-          ease: "power2.inOut",
+          ease: "power1.inOut",
         },
         "<"
       );
 
-    // Section 4 to 5 - fade out
-    gsap.timeline({
+    // Section 4 Timeline - move to center, rotate to hexagon view, scale up then to 0
+    const section4Timeline = gsap.timeline({
       scrollTrigger: {
         trigger: "#section4",
-        start: "center center",
-        end: "bottom top",
+        start: "top bottom",
+        end: "center center",
         scrub: 2,
       },
-    })
-      .to(meshRef.current.scale, {
-        x: 0.5,
-        y: 0.5,
-        z: 0.5,
-        ease: "power2.in",
-      })
+    });
+
+    section4Timeline
+      .to(
+        meshRef.current.position,
+        {
+          x: 0,
+          y: 0,
+          z: 0,
+          ease: "power2.inOut",
+        },
+        0
+      )
       .to(
         meshRef.current.rotation,
         {
-          y: Math.PI * 2,
+          x: Math.PI * 0.19634954084936207, // ~35.26 degrees (atan(1/sqrt(2))) - perfect hexagon view
+          y: Math.PI * 0.125, // 45 degrees / 4
+          z: 0,
+          ease: "power2.inOut",
+        },
+        0
+      )
+      .to(
+        meshRef.current.scale,
+        {
+          x: 2.5,
+          y: 2.5,
+          z: 2.5,
+          ease: "power2.inOut",
+        },
+        0
+      )
+      .to(
+        meshRef.current.scale,
+        {
+          x: 0,
+          y: 0,
+          z: 0,
           ease: "power2.in",
         },
-        "<"
+        0.6
       );
-
-    // Section 5 & 6 - keep hidden
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: "#section5",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 2,
-      },
-    }).to(meshRef.current.scale, {
-      x: 0,
-      y: 0,
-      z: 0,
-      ease: "none",
-    });
   }, []);
 
   return <AnimatedBox ref={meshRef} />;

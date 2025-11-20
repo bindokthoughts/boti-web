@@ -45,7 +45,7 @@ export default function MasterCameraRig() {
     .to(cam.position, { x: 0, y: 0, z: 8, duration: 1 })
     .to(target, { x: 0, y: 0, z: 0, duration: 1 }, "<");
 
-    // Section2 - Pull back reveal
+    // Section2 - Continue focusing on cube
     gsap.timeline({
       scrollTrigger: {
         trigger: "#section2",
@@ -54,10 +54,10 @@ export default function MasterCameraRig() {
         scrub: 1,
       },
     })
-    .to(cam.position, { x: 5, y: -90, z: 15, ease: "power2.inOut" })
-    .to(target, { x: 0, y: -100, z: 0, ease: "power2.inOut" }, "<");
+    .to(cam.position, { x: -1, y: 0, z: 9, ease: "power2.inOut" })
+    .to(target, { x: 0, y: 0, z: 0, ease: "power2.inOut" }, "<");
 
-    // Section3 - Orbital movement
+    // Section3 - Keep focused on cube
     gsap.timeline({
       scrollTrigger: {
         trigger: "#section3",
@@ -67,23 +67,35 @@ export default function MasterCameraRig() {
       },
     })
     .to(cam.position, { 
-      x: -8, 
-      y: -140, 
-      z: 12,
+      x: 2, 
+      y: 0, 
+      z: 10,
       ease: "power1.inOut" 
     })
-    .to(target, { x: 0, y: -150, z: 0 }, "<");
+    .to(target, { x: 0, y: 0, z: 0 }, "<");
 
-    // Section4-6 - Dynamic tracking
+    // Section4 - Keep focused on cube until it scales to 0
     gsap.timeline({
       scrollTrigger: {
         trigger: "#section4",
+        start: "top center",
+        end: "center center",
+        scrub: 1,
+      },
+    })
+    .to(cam.position, { x: 0, y: 0, z: 8 })
+    .to(target, { x: 0, y: 0, z: 0 }, "<");
+
+    // Section5-6 - Transition to Earth/Moon scene
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section5",
         start: "top center",
         end: "bottom center",
         scrub: 1,
       },
     })
-    .to(cam.position, { x: 3, y: -145, z: 10 })
+    .to(cam.position, { x: -8, y: -140, z: 12 })
     .to(target, { x: 0, y: -150, z: 0 }, "<");
 
     // Section7+ - Dramatic entrance
