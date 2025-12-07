@@ -130,7 +130,7 @@ export default function MorphingGeometry() {
       y: 2,
       z: 2,
       scrollTrigger: {
-        trigger: "#section4",
+        trigger: "#section5",
         start: "top center",
         end: "bottom center",
         scrub: 1,

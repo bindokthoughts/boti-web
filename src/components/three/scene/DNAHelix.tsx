@@ -120,7 +120,7 @@ export default function DNAHelix() {
     gsap.to(groupRef.current.rotation, {
       y: Math.PI * 4,
       scrollTrigger: {
-        trigger: "#section4",
+        trigger: "#section5",
         start: "top center",
         end: "bottom center",
         scrub: 2,

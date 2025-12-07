@@ -8,8 +8,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import * as THREE from "three";
 
-// Original camera rigs and scenes - PRESERVED
-import MasterCameraRig from "../camera-rig/MasterCameraRig";
+// Original scenes - PRESERVED
 import AnimatedCubeScene from "./AnimatedCubeScene";
 import AnimatedIcebergScene from "./AnimatedIcebergScene";
 import AnimatedEarthMoonScene from "./AnimatedEarthMoonScene";
@@ -106,9 +105,6 @@ export default function MasterScene() {
             opacity={0.6}
             color="#3FE7F9"
           />
-
-          {/* === ORIGINAL CAMERA SYSTEM === */}
-          <MasterCameraRig />
 
           {/* === ADDITIONAL EFFECTS === */}
           {/* Particle field background */}

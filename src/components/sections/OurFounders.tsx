@@ -7,8 +7,9 @@ import { useGSAP } from "@gsap/react";
 import ProfileCard from "./ProfileCard";
 
 import JohanImg from "../../assets/images/founders/johan.jpg";
-import DavidImg from "../../assets/images/founders/david.jpg";
-import ForrestImg from "../../assets/images/founders/forrest.jpg";
+import DavidImg from "../../assets/images/founders/David_Creighton.jpg";
+import ForrestImg from "../../assets/images/founders/Forrester_Kane.jpg";
+import AdrianImg from "../../assets/images/founders/Adrian_Lannon.png"
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -54,6 +55,41 @@ export default function OurFounders() {
   };
 
   const founders = [
+    
+    {
+      name: "David",
+      title: "Chief Product Officer",
+      description: "Shaping the future of spatial web experiences through intuitive design and user-centric innovation.",
+      imageUrl: DavidImg,
+      linkedinUrl: "https://www.linkedin.com/in/david-creighton-5716b9143/",
+      fullBio: `Serial Entrepreneur Background in operations, innovation strategy, and venture development.
+        Notable Achievements:
+• Leads BOTI's vision, IP & partnership strategy & investor relations.
+• Supported by an aligned, seasoned Advisory Board & expert council from a top law firm for SSI's IP, investor & partner agreements, & corporate legal structure`
+    },
+    {
+      name: "Adrian Lannon",
+      title: "CTO & Co-Founder",
+      description: "Shaping the future of spatial web experiences through intuitive design and user-centric innovation.",
+      imageUrl: AdrianImg,
+      linkedinUrl: "https://www.linkedin.com/in/adrian-lannon-b1b825175/",
+      fullBio: `Founder of A Square 10+ years building in Unity, simulation, & real-time systems.
+Notable Achievements:
+• Leads a dedicated full-stack team for BOTI's design, architecture, & execution.
+• Driving BOTI’s Development: Pilot, Browser, Builder, & Landscape. MVP, Full Launch & Iterative Evolutions.`
+    },
+    {
+      name: "Forrester Kane ",
+      title: "Chief Creative Officer",
+      description: "Bridging technology and creativity to build immersive digital experiences that inspire and connect.",
+      imageUrl: ForrestImg,
+      linkedinUrl: "https://www.linkedin.com/in/forresterkane/",
+      fullBio: `Founder of Headword! Brand & go-to-market leader for frontier tech and creator platforms.
+
+Career Highlights:
+• Leads a talented team for BOTI's brand, creative, & narrative evolution.
+• Driving BOTI’s Social Launch, Influencer Strategy, Crowdfund, Creator Ecosystem & Top-Of-Funnel Activation.`
+    },
     {
       name: "Johan",
       title: "Chief Technology Officer",
@@ -70,57 +106,6 @@ Education:
 • Ph.D. in Computer Science, MIT
 • M.S. in Artificial Intelligence, Stanford University
 • B.S. in Computer Engineering, UC Berkeley`
-    },
-    {
-      name: "David",
-      title: "Chief Product Officer",
-      description: "Shaping the future of spatial web experiences through intuitive design and user-centric innovation.",
-      imageUrl: DavidImg,
-      linkedinUrl: "https://linkedin.com/in/michael-chen",
-      fullBio: `Michael Chen is a visionary product leader with a passion for creating intuitive and impactful user experiences. His unique approach combines deep technical knowledge with a profound understanding of human behavior and design principles.
-
-Before co-founding BOTI, Michael was the Head of Product at a leading tech company where he revolutionized their approach to user experience design. His work has been featured in various technology publications and has earned multiple industry awards.
-
-At BOTI, Michael leads the product strategy and design direction, ensuring that our spatial web solutions are not just technologically advanced, but also accessible and delightful to use.
-
-Notable Achievements:
-• Winner of the Design Innovation Award 2024
-• Featured in "Top 40 Under 40" in Tech
-• Regular speaker at major technology conferences`
-    },
-    {
-      name: "Forest",
-      title: "Chief Creative Officer",
-      description: "Bridging technology and creativity to build immersive digital experiences that inspire and connect.",
-      imageUrl: ForrestImg,
-      linkedinUrl: "https://linkedin.com/in/Forrest-rodriguez",
-      fullBio: `Forrest is a creative technologist and digital artist who has been pushing the boundaries of interactive experiences for over a decade. Her work seamlessly blends art, technology, and human emotion to create meaningful connections in the digital space.
-
-Forrest's background spans both the creative and technical worlds, having worked as a Creative Director for major entertainment companies and led R&D teams in emerging technologies. Her unique perspective helps BOTI create experiences that are not just functional, but deeply engaging and emotionally resonant.
-
-Under her creative leadership, BOTI is redefining what's possible in the spatial web, creating experiences that capture imagination and inspire connection.
-
-Career Highlights:
-• Creative Director for award-winning interactive installations
-• Published author on the future of digital experiences
-• Mentor for emerging artists in technology
-• Guest lecturer at prestigious art and technology institutions`
-    },{
-      name: "Chalinda",
-      title: "Chief Product Officer",
-      description: "Shaping the future of spatial web experiences through intuitive design and user-centric innovation.",
-      imageUrl: DavidImg,
-      linkedinUrl: "https://linkedin.com/in/michael-chen",
-      fullBio: `Michael Chen is a visionary product leader with a passion for creating intuitive and impactful user experiences. His unique approach combines deep technical knowledge with a profound understanding of human behavior and design principles.
-
-Before co-founding BOTI, Michael was the Head of Product at a leading tech company where he revolutionized their approach to user experience design. His work has been featured in various technology publications and has earned multiple industry awards.
-
-At BOTI, Michael leads the product strategy and design direction, ensuring that our spatial web solutions are not just technologically advanced, but also accessible and delightful to use.
-
-Notable Achievements:
-• Winner of the Design Innovation Award 2024
-• Featured in "Top 40 Under 40" in Tech
-• Regular speaker at major technology conferences`
     }
   ];
 

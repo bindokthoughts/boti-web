@@ -130,7 +130,7 @@ export default function Section7() {
         <div className="flex flex-wrap justify-center items-stretch gap-8 w-full">
           <div 
             ref={(el) => addToStatsRefs(el, 0)}
-            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-border"
+            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-white"
           >
             <div 
               ref={(el) => addToNumbersRef(el, 0)}
@@ -138,14 +138,14 @@ export default function Section7() {
             >
               95%
             </div>
-            <div className="text-center text-text-primary text-base font-medium leading-snug">
+            <div className="text-center text-white text-base font-medium leading-snug">
               have less than 10 people
             </div>
           </div>
 
           <div 
             ref={(el) => addToStatsRefs(el, 1)}
-            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-border"
+            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-white"
           >
             <div 
               ref={(el) => addToNumbersRef(el, 1)}
@@ -153,14 +153,14 @@ export default function Section7() {
             >
               80%
             </div>
-            <div className="text-center text-text-primary text-base font-medium leading-snug">
+            <div className="text-center text-white text-base font-medium leading-snug">
               are solo (2025 SBA)
             </div>
           </div>
 
           <div 
             ref={(el) => addToStatsRefs(el, 2)}
-            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-border"
+            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-white"
           >
             <div 
               ref={(el) => addToNumbersRef(el, 2)}
@@ -168,14 +168,14 @@ export default function Section7() {
             >
               70%
             </div>
-            <div className="text-center text-text-primary text-base font-medium leading-snug">
+            <div className="text-center text-white text-base font-medium leading-snug">
               say web presence is Mission-Critical
             </div>
           </div>
 
           <div 
             ref={(el) => addToStatsRefs(el, 3)}
-            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-border"
+            className="flex-1 min-w-[220px] flex flex-col items-center gap-4 p-6 bg-surface/30 rounded-lg backdrop-blur-sm border border-white"
           >
             <div 
               ref={(el) => addToNumbersRef(el, 3)}
@@ -183,7 +183,7 @@ export default function Section7() {
             >
               50%
             </div>
-            <div className="text-center text-text-primary text-base font-medium leading-snug">
+            <div className="text-center text-white text-base font-medium leading-snug">
               with no physical storefront
             </div>
           </div>
@@ -214,7 +214,7 @@ export default function Section7() {
 
           <div 
             ref={(el) => addToTextRefs(el, 3)}
-            className="text-text-primary text-xl font-normal leading-relaxed"
+            className="text-white text-xl font-normal leading-relaxed"
           >
             With BOTI, your success isn&apos;t limited by skill or budget
             <br />

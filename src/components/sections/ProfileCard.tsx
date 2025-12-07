@@ -83,8 +83,8 @@ export default function ProfileCard({
 
   return (
     <>
-      <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-surface to-background p-1 w-[380px] border border-border">
-        <div className="relative rounded-[22px] bg-gradient-to-br from-surface to-background-secondary p-6">
+      <div className="relative overflow-hidden rounded-3xl bg-gray-800 p-1 w-[380px]">
+        <div className="relative rounded-[22px] bg-gradient-to-br from-surface to-background-secondary p-2">
           {/* Profile Image */}
           <div className="relative h-[380px] w-full overflow-hidden rounded-2xl mb-4">
             <Image
@@ -108,21 +108,21 @@ export default function ProfileCard({
               </div>
             </div>
 
-            <p className="text-lg text-gray-400">{title}</p>
-            <p className="text-sm text-gray-500">{description}</p>
+            <p className="text-lg text-gray-200">{title}</p>
+            <p className="text-sm text-gray-300">{description}</p>
 
             <div className="flex items-center justify-between pt-4 gap-4">
               <a 
                 href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 rounded-full bg-primary-accent px-6 py-2 font-semibold text-primary hover:bg-highlight transition-colors text-center"
+                className="flex-1 rounded-full bg-primary-accent px-6 py-2 font-semibold text-white hover:bg-highlight transition-colors text-center"
               >
                 LinkedIn
               </a>
               <button 
                 onClick={() => setIsModalOpen(true)}
-                className="flex-1 rounded-full bg-background-secondary px-6 py-2 font-semibold text-text-primary hover:bg-surface transition-colors border border-border"
+                className="flex-1 rounded-full bg-background-secondary px-6 py-2 font-semibold text-white hover:bg-surface transition-colors border border-border"
               >
                 Know More
               </button>
@@ -133,13 +133,13 @@ export default function ProfileCard({
 
       {/* Modal */}
       {isModalOpen && typeof document !== 'undefined' && createPortal(
-        <div ref={modalRef} className="fixed inset-0 bg-background/95 z-[9999] min-h-screen backdrop-blur-sm">
+        <div ref={modalRef} className="fixed inset-0 bg-background/95 z-[9999] min-h-screen backdrop-blur-lg">
           <div ref={modalContentRef} className="h-full w-full bg-gradient-to-b from-background to-background-secondary p-4 md:p-8 overflow-y-auto">
             <div className="max-w-4xl mx-auto">
               <div className="flex justify-end mb-4">
                 <button
                   onClick={handleClose}
-                  className="text-gray-400 hover:text-white transition-colors"
+                  className="text-gray-100 hover:text-white transition-colors"
                 >
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -158,13 +158,13 @@ export default function ProfileCard({
                   />
                 </div>
                 <div ref={modalTextRef} className="text-center md:text-left">
-                  <h2 className="text-4xl font-bold text-white mb-4">{name}</h2>
-                  <p className="text-xl text-gray-400">{title}</p>
+                  <h2 className="text-4xl font-bold text-white mb-2">{name}</h2>
+                  <p className="text-xl text-gray-200">{title}</p>
                   <a 
                     href={linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block mt-4 px-6 py-2 bg-primary-accent text-primary rounded-full hover:bg-highlight transition-colors"
+                    className="inline-block mt-2 py-2 bg-primary-accent text-blue-300 rounded-full hover:bg-highlight transition-colors"
                   >
                     Connect on LinkedIn
                   </a>
