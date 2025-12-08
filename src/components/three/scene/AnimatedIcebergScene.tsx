@@ -1,235 +1,150 @@
 "use client";
 
 import { useRef } from "react";
-import { useThree } from "@react-three/fiber";
-import { Group, PerspectiveCamera } from "three";
+import { useFrame, useThree } from "@react-three/fiber";
+import { Group, Mesh, Material } from "three";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { IcebergObject } from "../objects/IcebergObject";
+import { OceanWaves } from "../objects/OceanWaves";
+import { DeepSeaView } from "../objects/DeepSeaView";
 
-// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
- * AnimatedIcebergScene - Section2 with animated iceberg
- * Uses its own dedicated camera
+ * AnimatedIcebergScene - Section2 with iceberg
  */
 export default function AnimatedIcebergScene() {
   const groupRef = useRef<Group>(null);
-  const cameraRef = useRef<PerspectiveCamera>(null);
-  const { gl, scene } = useThree();
+  const icebergRef = useRef<Group>(null);
+  const timeRef = useRef(0);
+
+  // Floating animation synchronized with waves
+  useFrame((state, delta) => {
+    if (!icebergRef.current) return;
+    
+    timeRef.current += delta * 0.8; // Match wave speed
+    
+    // Gentle bobbing motion matching wave patterns
+    const bob1 = Math.sin(timeRef.current * 1.2) * 0.08;
+    const bob2 = Math.sin(timeRef.current * 0.9) * 0.05;
+    const bob3 = Math.cos(timeRef.current * 1.5) * 0.03;
+    
+    // Subtle rocking motion
+    const rock1 = Math.sin(timeRef.current * 0.6) * 0.02;
+    const rock2 = Math.cos(timeRef.current * 0.8) * 0.015;
+    
+    // Apply floating motion
+    icebergRef.current.position.y = bob1 + bob2 + bob3;
+    icebergRef.current.rotation.x = rock1;
+    icebergRef.current.rotation.z = rock2;
+  });
 
   useGSAP(() => {
-    if (!groupRef.current || !cameraRef.current) return;
+    if (!groupRef.current) return;
 
-    const camera = cameraRef.current;
-    camera.position.set(0, -100, 14);
-    camera.lookAt(0, -100, 0);
-
-    // Initial state - iceberg hidden below viewport, dramatic angle
-    gsap.set(groupRef.current.position, { x: 0, y: 0, z: 0 });
-    gsap.set(groupRef.current.rotation, { x: 0.1, y: -0.3, z: 0.05 });
+    // Set initial state - hidden
     gsap.set(groupRef.current.scale, { x: 0, y: 0, z: 0 });
+    gsap.set(groupRef.current.position, { x: 0, y: 0, z: 0 });
 
-    // Main scroll-linked timeline for section2
-    const mainTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#section2",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.5,
-      },
-    });
-
-    // Dramatic entrance: Rise and reveal
-    mainTimeline
-      .to(groupRef.current.position, {
-        y: -150,
-        duration: 0.3,
-        ease: "power2.out",
-      }, 0)
-      .to(groupRef.current.scale, {
-        x: 1.2,
-        y: 1.2,
-        z: 1.2,
-        duration: 0.4,
-        ease: "power1.out",
-      }, 0)
-      // Elegant rotation reveal
-      .to(groupRef.current.rotation, {
-        y: 0.8,
-        x: 0,
-        duration: 0.5,
-        ease: "power2.inOut",
-      }, 0.1)
-      // Slow drift and tilt in middle section
-      .to(groupRef.current.position, {
-        x: -2,
-        z: 2,
-        duration: 0.3,
-        ease: "sine.inOut",
-      }, 0.4)
-      .to(groupRef.current.rotation, {
-        z: -0.1,
-        y: 1.2,
-        duration: 0.3,
-        ease: "sine.inOut",
-      }, 0.4)
-      // Final settling position
-      .to(groupRef.current.position, {
-        x: 0,
-        y: -102,
-        z: 0,
-        duration: 0.3,
-        ease: "power2.in",
-      }, 0.7)
-      .to(groupRef.current.rotation, {
-        y: 1.57,
-        z: 0,
-        duration: 0.3,
-        ease: "power2.inOut",
-      }, 0.7);
-
-    // Section3 timeline - scale up and move to top (half visible)
-    gsap.timeline({
-      scrollTrigger: {
-        trigger: "#section3",
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1.5,
-        onEnter: () => floatAnimation.pause(), // Stop floating during position change
-        onLeave: () => floatAnimation.pause(),
-        onEnterBack: () => floatAnimation.pause(),
-      },
-    })
-    .to(groupRef.current.scale, {
-      x: 2.5,
-      y: 2.5,
-      z: 2.5,
-      ease: "power2.inOut",
-    })
-    .to(groupRef.current.position, {
-      x: 0,
-      y: -70, // Top position - only lower half visible
-      z: 0,
-      ease: "power2.inOut",
-    }, "<");
-
-    // Continuous floating animation (idle motion) - only for Section2
-    const floatAnimation = gsap.timeline({ repeat: -1, paused: true });
-    floatAnimation
-      .to(groupRef.current.position, {
-        y: "+=1.5",
-        duration: 4,
-        ease: "sine.inOut",
-      })
-      .to(groupRef.current.position, {
-        y: "-=1.5",
-        duration: 4,
-        ease: "sine.inOut",
-      })
-      .to(groupRef.current.rotation, {
-        x: "+=0.05",
-        duration: 5,
-        ease: "sine.inOut",
-      }, 0)
-      .to(groupRef.current.rotation, {
-        x: "-=0.05",
-        duration: 5,
-        ease: "sine.inOut",
-      }, 5);
-
-    // Control floating based on visibility - Only Section2
-    ScrollTrigger.create({
-      trigger: "#section2",
-      start: "top bottom",
-      end: "bottom top",
-      onEnter: () => floatAnimation.play(),
-      onLeave: () => floatAnimation.pause(),
-      onEnterBack: () => floatAnimation.play(),
-      onLeaveBack: () => floatAnimation.pause(),
-    });
-
-    // Camera choreography - only during Section2 active view
+    // Scroll-based animation for Section2
     gsap.timeline({
       scrollTrigger: {
         trigger: "#section2",
         start: "top center",
         end: "bottom center",
-        scrub: 2,
+        scrub: 1,
+        markers: true, // Debug markers - remove when done
+        onEnter: () => console.log("Section2 entered"),
+        onLeave: () => console.log("Section2 left"),
       },
     })
-    .to(camera.position, {
-      x: 0,
-      y: -100,
-      z: 12,
-      duration: 0.5,
-      ease: "sine.inOut",
-    }, 0)
-    .to(camera.position, {
-      x: 0,
-      y: -100,
-      z: 14,
-      duration: 0.5,
-      ease: "power2.inOut",
-    }, 0.5);
+      .to(groupRef.current.scale, {
+        x: 1.5,
+        y: 1.5,
+        z: 1.5,
+        duration: 0.5,
+        ease: "power2.out",
+      })
+      .to(groupRef.current.rotation, {
+        y: Math.PI * 2,
+        duration: 1,
+        ease: "linear",
+      }, "<")
 
-    // Dynamic camera lookAt for Section2
-    ScrollTrigger.create({
-      trigger: "#section2",
-      start: "top center",
-      end: "bottom center",
-      scrub: 2,
-      onUpdate: (self) => {
-        const progress = self.progress;
-        const focusX = Math.sin(progress * Math.PI) * -0.5;
-        const focusY = -50+ Math.sin(progress * Math.PI * 2) * 2;
-        const focusZ = Math.cos(progress * Math.PI) * 1;
-        camera.lookAt(focusX, focusY, focusZ);
-      },
-    });
 
-    // Transition camera to next section
     gsap.timeline({
       scrollTrigger: {
-        trigger: "#section2",
-        start: "bottom center",
-        endTrigger: "#section5",
-        end: "top center",
+        trigger: "#section3",
+        start: "top center",
+        end: "bottom center",
         scrub: 1,
+        markers: true, // Debug markers - remove when done
+        onEnter: () => console.log("Section3 entered"),
+        onLeave: () => console.log("Section3 left"),
       },
     })
-    .to(camera.position, {
-      x: 0,
-      y: -100,
-      z: 12,
-      ease: "power2.inOut",
-    })
-    .to({}, {
-      onUpdate: () => camera.lookAt(0, -100, 0),
-    }, 0);
+      .to(groupRef.current.scale, {
+        x: 2,
+        y: 2,
+        z: 2,
+        duration: 0.5,
+        ease: "power2.out",
+      })
+      .to(groupRef.current.position, {
+        y: 20,
+        duration: 1,
+        ease: "linear",
+      }, "<")
 
-    // Activate this camera for Section2 and Section3
-    ScrollTrigger.create({
-      trigger: "#section2",
-      start: "top top",
-      endTrigger: "#section3",
-      end: "bottom top",
-      onUpdate: () => {
-        gl.render(scene, camera);
-      },
-    });
-  }, [gl, scene]);
+  }, []);
 
   return (
     <>
-      <perspectiveCamera ref={cameraRef} fov={50} />
-      <group ref={groupRef} position={[0, -100, 0]}>
-        <ambientLight intensity={0.3} />
-        <pointLight position={[10, 10, 10]} intensity={1.2} color="#60a5fa" />
-        <pointLight position={[-10, -10, 5]} intensity={0.8} color="#a855f7" />
-        <IcebergObject />
+      <group ref={groupRef} position={[0, -5, 0]}>
+        {/* Ambient light for overall illumination */}
+        <ambientLight intensity={0.6} />
+        
+        {/* Key light - main iceberg illumination */}
+        <directionalLight 
+          position={[5, 10, 5]} 
+          intensity={2} 
+          color="#ffffff"
+          castShadow
+        />
+        
+        {/* Fill lights for ice crystalline effect */}
+        <pointLight position={[10, 5, 10]} intensity={1.5} color="#60a5fa" />
+        <pointLight position={[-10, 5, 10]} intensity={1.5} color="#a855f7" />
+        <pointLight position={[0, -5, 8]} intensity={1} color="#3FE7F9" />
+        
+        {/* Rim light from behind */}
+        <spotLight 
+          position={[0, 2, -5]} 
+          intensity={2.5} 
+          color="#ffffff"
+          angle={0.6}
+          penumbra={0.5}
+        />
+        
+        {/* Iceberg with floating animation */}
+        <group ref={icebergRef}>
+          <IcebergObject />
+        </group>
+        
+        <OceanWaves 
+          radius={15} 
+          segments={512} 
+          waveHeight={0.15} 
+          waveSpeed={0.8} 
+        />
+        
+        {/* Deep sea view below the surface */}
+        <DeepSeaView 
+          radius={15}
+          depth={10}
+        />
       </group>
     </>
   );

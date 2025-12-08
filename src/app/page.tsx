@@ -36,7 +36,7 @@ export default function Home() {
         <Section10 />
         <Section11 />
         <OurFounders />
-        <Section12 />
+        {/* <Section12 /> */}
         <ContactUs />
         {/* Master 3D Canvas - Single WebGL context for all scenes */}
       <MasterScene />
