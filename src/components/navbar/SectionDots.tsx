@@ -11,7 +11,6 @@ const sections: Section[] = [
   { id: "hero", label: "Home" },
   { id: "section2", label: "Section 2" },
   { id: "section3", label: "Section 3" },
-  { id: "section4", label: "Section 4" },
   { id: "section5", label: "Section 5" },
   { id: "section6", label: "Section 6" },
   { id: "section7", label: "Section 7" },

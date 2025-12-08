@@ -42,12 +42,12 @@ export default function Section1() {
       <h1
         ref={textRef}
         id="text2"
-        className="text-6xl font-bold"
+        className="text-6xl font-bold line-height: 1"
       >
         Our lives moved on.
       </h1>
       <p className="text-lg md:text-xl lg:text-2xl font-light text-text-primary max-w-2xl">
-        Until now. Experience the next dimension of web.
+        Until now. Experience the next dimension of web 222.
       </p>
     </section>
   );

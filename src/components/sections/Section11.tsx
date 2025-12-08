@@ -128,17 +128,17 @@ export default function Section11() {
       
       <div className="flex flex-col lg:flex-row items-center justify-center gap-12 max-w-7xl mx-auto relative z-10 px-4">
         {/* Text Content - Left Side */}
-        <div className="bg-surface/40 inline-flex flex-col justify-center items-center gap-8 p-8 rounded-lg backdrop-blur-sm border border-border lg:order-1 order-2">
+        <div className="bg-surface/40 inline-flex flex-col justify-center items-center gap-8 p-8 rounded-lg backdrop-blur-sm lg:order-1 order-2">
           <div 
             ref={(el) => addToTitleRefs(el, 0)}
-            className="text-center text-xl font-medium leading-[50px] text-glow-highlight-light"
+            className="text-center text-4xl font-medium text-white"
           >
             You don&apos;t scroll through BOTI.
           </div>
           
           <div 
             ref={(el) => addToTitleRefs(el, 1)}
-            className="text-center text-4xl font-black leading-[50px] text-gradient-turquoise-1"
+            className="text-center text-8xl font-black text-gradient-turquoise-1"
           >
             You step inside.
           </div>
@@ -146,21 +146,21 @@ export default function Section11() {
           <div className="flex flex-col gap-4 text-center">
             <div 
               ref={(el) => addToDescRefs(el, 0)}
-              className="text-xl font-medium leading-[50px] text-glow-turquoise-light"
+              className="text-2xl font-medium  text-glow-turquoise-light"
             >
               Every click becomes a step.
             </div>
             
             <div 
               ref={(el) => addToDescRefs(el, 1)}
-              className="text-xl font-medium leading-[50px] text-glow-highlight-light"
+              className="text-2xl font-medium text-glow-highlight-light"
             >
               Every brand becomes a place.
             </div>
             
             <div 
               ref={(el) => addToDescRefs(el, 2)}
-              className="text-xl font-medium leading-[50px] text-glow-turquoise-light"
+              className="text-2xl font-medium text-glow-turquoise-light"
             >
               Every visit becomes a memory
             </div>
@@ -174,8 +174,8 @@ export default function Section11() {
             ref={videoContainerRef}
             className="absolute"
             style={{
-              width: '200px',
-              height: '200px',
+              width: '300px',
+              height: '300px',
               left: '150px',
               top: '0px',
             }}
@@ -210,10 +210,10 @@ export default function Section11() {
             ref={videoContainerRef2}
             className="absolute"
             style={{
-              width: '200px',
-              height: '200px',
-              left: '50px',
-              top: '150px',
+              width: '300px',
+              height: '300px',
+              left: '0px',
+              top: '225px',
             }}
           >
             <div
@@ -229,7 +229,7 @@ export default function Section11() {
                 playsInline
                 className="w-full h-full object-cover"
               >
-                <source src="/videos/the_people_browsing.mp4" type="video/mp4" />
+                <source src="/videos/inside_store.mp4" type="video/mp4" />
               </video>
             </div>
             <div
@@ -246,10 +246,10 @@ export default function Section11() {
             ref={videoContainerRef3}
             className="absolute"
             style={{
-              width: '200px',
-              height: '200px',
-              left: '250px',
-              top: '150px',
+              width: '300px',
+              height: '300px',
+              left: '300px',
+              top: '225px',
             }}
           >
             <div
@@ -265,7 +265,7 @@ export default function Section11() {
                 playsInline
                 className="w-full h-full object-cover"
               >
-                <source src="/videos/the_people_browsing.mp4" type="video/mp4" />
+                <source src="/videos/cam_walks_with_them.mp4" type="video/mp4" />
               </video>
             </div>
             <div

@@ -162,7 +162,7 @@ export default function Hero() {
         <div className="flex flex-col items-center md:items-end md:w-1/2">
           <h1
             ref={mainTextRef}
-            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight text-center md:text-left"
+            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight text-center md:text-left line-height: 1"
             style={{
               background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #f3e8ff 100%)",
               WebkitBackgroundClip: "text",
@@ -175,9 +175,9 @@ export default function Hero() {
           </h1>
           <p 
             ref={descTextRef}
-            className="text-lg md:text-xl lg:text-2xl font-light text-text-primary max-w-2xl mt-4 text-center md:text-right opacity-0"
+            className="text-lg md:text-xl lg:text-2xl font-light text-text-primary max-w-2xl mt-4 text-center md:text-right opacity-0 line-height: 1"
           >
-            Until now. Experience the next dimension of web.
+            Until now. Experience the next dimension of web 11.
           </p>
         </div>
       </div>

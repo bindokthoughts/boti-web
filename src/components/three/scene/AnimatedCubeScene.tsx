@@ -1,23 +1,40 @@
 "use client";
 
 import { useRef } from "react";
+import { useThree } from "@react-three/fiber";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Mesh } from "three";
+import { Mesh, OrthographicCamera } from "three";
 import AnimatedBox from "../objects/AnimatedBox";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
  * AnimatedCubeScene - Hero section with animated cube
- * All scroll-based animations orchestrated here
+ * Uses its own dedicated camera
  */
 export default function AnimatedCubeScene() {
   const meshRef = useRef<Mesh>(null);
+  const cameraRef = useRef<OrthographicCamera>(null);
+  const { gl, scene, size } = useThree();
 
   useGSAP(() => {
-    if (!meshRef.current) return;
+    if (!meshRef.current || !cameraRef.current) return;
+
+    const camera = cameraRef.current;
+    
+    // Setup orthographic camera
+    const aspect = size.width / size.height;
+    camera.left = -aspect * 5;
+    camera.right = aspect * 5;
+    camera.top = 5;
+    camera.bottom = -5;
+    camera.near = 0.1;
+    camera.far = 1000;
+    camera.zoom = 100;
+    camera.position.set(0, 0, 10);
+    camera.updateProjectionMatrix();
 
     // Set initial state - flat square (orthographic view)
     gsap.set(meshRef.current.scale, {
@@ -55,8 +72,8 @@ export default function AnimatedCubeScene() {
         duration: 1,
       })
       .to(meshRef.current.rotation, { 
-        x: Math.PI * 0.15,
-        y: Math.PI * 0.15, 
+        x: 0.471239, // ~27 degrees
+        y: 0.471239, // ~27 degrees
         ease: "power2.inOut",
         duration: 1,
       }, "<")
@@ -77,8 +94,8 @@ export default function AnimatedCubeScene() {
       },
     })
       .to(meshRef.current.rotation, {
-        x: Math.PI * 0.1,
-        y: Math.PI * 0.1,
+        x: 0.314159, // ~18 degrees
+        y: 0.314159, // ~18 degrees
         ease: "power1.inOut",
       })
       .to(
@@ -101,7 +118,7 @@ export default function AnimatedCubeScene() {
         "<"
       );
 
-    // Section 3 Timeline - more rotation
+    // Section 3 Timeline - more rotation and fade out
     gsap.timeline({
       scrollTrigger: {
         trigger: "#section3",
@@ -111,8 +128,8 @@ export default function AnimatedCubeScene() {
       },
     })
       .to(meshRef.current.rotation, {
-        x: Math.PI * 0.14,
-        y: Math.PI * 0.18,
+        x: 0.439823, // ~25.2 degrees
+        y: 0.565487, // ~32.4 degrees
         ease: "power1.inOut",
       })
       .to(
@@ -133,48 +150,6 @@ export default function AnimatedCubeScene() {
           ease: "power1.inOut",
         },
         "<"
-      );
-
-    // Section 4 Timeline - move to center, rotate to hexagon view, scale up then to 0
-    const section4Timeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: "#section4",
-        start: "top bottom",
-        end: "center center",
-        scrub: 2,
-      },
-    });
-
-    section4Timeline
-      .to(
-        meshRef.current.position,
-        {
-          x: 0,
-          y: 0,
-          z: 0,
-          ease: "power2.inOut",
-        },
-        0
-      )
-      .to(
-        meshRef.current.rotation,
-        {
-          x: Math.PI * 0.19634954084936207, // ~35.26 degrees (atan(1/sqrt(2))) - perfect hexagon view
-          y: Math.PI * 0.125, // 45 degrees / 4
-          z: 0,
-          ease: "power2.inOut",
-        },
-        0
-      )
-      .to(
-        meshRef.current.scale,
-        {
-          x: 2.5,
-          y: 2.5,
-          z: 2.5,
-          ease: "power2.inOut",
-        },
-        0
       )
       .to(
         meshRef.current.scale,
@@ -184,9 +159,78 @@ export default function AnimatedCubeScene() {
           z: 0,
           ease: "power2.in",
         },
-        0.6
+        "+=0.3"
       );
-  }, []);
 
-  return <AnimatedBox ref={meshRef} />;
+    // Camera animations for Hero and Section3
+    // Hero - Close intimate shot
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+      },
+    })
+    .to(camera.position, { x: 0, y: 0, z: 8, duration: 1 });
+
+    // Section3 - Keep focused on cube
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section3",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+      },
+    })
+    .to(camera.position, { 
+      x: 2, 
+      y: 0, 
+      z: 2,
+      ease: "power1.inOut" 
+    });
+
+    // Camera lookAt for Hero and Section3
+    gsap.to({}, {
+      scrollTrigger: {
+        trigger: "#hero",
+        start: "top top",
+        end: "bottom top",
+        scrub: 1,
+        onUpdate: () => {
+          camera.lookAt(0, 0, 0);
+        },
+      },
+    });
+
+    gsap.to({}, {
+      scrollTrigger: {
+        trigger: "#section3",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1,
+        onUpdate: () => {
+          camera.lookAt(0, 0, 0);
+        },
+      },
+    });
+
+    // Activate this camera for Hero and Section3
+    ScrollTrigger.create({
+      trigger: "#hero",
+      start: "top top",
+      endTrigger: "#section3",
+      end: "bottom top",
+      onUpdate: () => {
+        gl.render(scene, camera);
+      },
+    });
+  }, [gl, scene, size]);
+
+  return (
+    <>
+      <orthographicCamera ref={cameraRef} />
+      <AnimatedBox ref={meshRef} />
+    </>
+  );
 }
