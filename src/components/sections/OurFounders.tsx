@@ -146,8 +146,8 @@ Education:
       <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-7" />
       <div className="flex flex-col items-center gap-16 max-w-7xl mx-auto w-full relative z-10">
         <div className="text-center space-y-6 mb-16">
-          <h1 className="text-6xl font-black text-gradient-turquoise-1">Our Founders</h1>
-          <p className="text-xl max-w-2xl mx-auto text-glow-highlight-light">
+          <h1 className="text-6xl font-black text-white">Our Team</h1>
+          <p className="text-xl max-w-2xl mx-auto text-gray-200">
             Meet the innovative minds behind BOTI&apos;s revolutionary spatial web experience
           </p>
         </div>
