@@ -104,9 +104,9 @@ export default function PortalEffect() {
       portalRef.current.scale,
       { x: 0, y: 0, z: 0 },
       {
-        x: 1,
-        y: 1,
-        z: 1,
+        x: 6,
+        y: 6,
+        z: 6,
         scrollTrigger: {
           trigger: "#section7",
           start: "top center",

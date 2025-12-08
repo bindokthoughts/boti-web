@@ -21,6 +21,10 @@ export default function ContactUs() {
     purpose: '',
     message: ''
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [statusMessage, setStatusMessage] = useState('');
+  
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const descriptionRef = useRef<HTMLParagraphElement>(null);
@@ -82,7 +86,7 @@ export default function ContactUs() {
       <div className="flex flex-col items-center gap-12 max-w-4xl text-center relative z-10">
         <h1 
           ref={titleRef}
-          className="text-6xl font-black text-gradient-turquoise-animated"
+          className="text-6xl font-black text-white"
         >
           Contact Us Form
         </h1>
@@ -96,17 +100,44 @@ export default function ContactUs() {
         
         {/* Contact form */}
         <form 
-          onSubmit={(e: FormEvent<HTMLFormElement>) => {
+          onSubmit={async (e: FormEvent<HTMLFormElement>) => {
             e.preventDefault();
-            // Handle form submission here
-            console.log('Form submitted:', formData);
-            // Reset form after submission
-            setFormData({
-              name: '',
-              email: '',
-              purpose: '',
-              message: ''
-            });
+            setIsSubmitting(true);
+            setSubmitStatus('idle');
+            setStatusMessage('');
+
+            try {
+              const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+              });
+
+              const data = await response.json();
+
+              if (response.ok) {
+                setSubmitStatus('success');
+                setStatusMessage('Thank you! Your message has been sent successfully. Check your email for confirmation.');
+                // Reset form after successful submission
+                setFormData({
+                  name: '',
+                  email: '',
+                  purpose: '',
+                  message: ''
+                });
+              } else {
+                setSubmitStatus('error');
+                setStatusMessage(data.error || 'Failed to send message. Please try again.');
+              }
+            } catch (error) {
+              setSubmitStatus('error');
+              setStatusMessage('Network error. Please check your connection and try again.');
+              console.error('Form submission error:', error);
+            } finally {
+              setIsSubmitting(false);
+            }
           }} 
           className="w-full max-w-md bg-surface/30 rounded-lg p-8 backdrop-blur-sm space-y-2"
         >
@@ -194,11 +225,24 @@ export default function ContactUs() {
           {/* Submit button */}
           <button
             type="submit"
+            disabled={isSubmitting}
             className="w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium 
-                     rounded-lg transition-colors duration-200 transform hover:scale-[1.02]"
+                     rounded-lg transition-colors duration-200 transform hover:scale-[1.02]
+                     disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none"
           >
-            Send Message
+            {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>
+
+          {/* Status message */}
+          {submitStatus !== 'idle' && (
+            <div className={`p-4 rounded-lg text-center ${
+              submitStatus === 'success' 
+                ? 'bg-green-500/20 text-green-300 border border-green-500' 
+                : 'bg-red-500/20 text-red-300 border border-red-500'
+            }`}>
+              {statusMessage}
+            </div>
+          )}
         </form>
       </div>
     </section>
