@@ -118,10 +118,18 @@ export default function Section7() {
       ref={sectionRef}
       id="section7" 
       className="min-h-screen relative flex flex-col items-center justify-center px-4 py-16 overflow-hidden"
-      style={{
-        background: "linear-gradient(135deg, #000000 0%, #0B1F4A 40%, #3FE7F9 100%)",
-      }}
     >
+      {/* Background Video */}
+      <video
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 w-full h-full object-cover"
+      >
+        <source src="/videos/Earth.mp4" type="video/mp4" />
+      </video>
+      
       {/* Animated gradient overlay */}
       <div className="absolute inset-0 opacity-30 pointer-events-none animate-pulse-slow bg-gradient-radial-turquoise-1" />
       

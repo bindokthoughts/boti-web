@@ -86,7 +86,7 @@ export default function Section8() {
           ref={(el) => addToTextRefs(el, 2)}
           className="text-5xl font-black leading-relaxed text-gradient-turquoise-animated text-glow-turquoise-strong"
         >
-          BOTI makes it a place.
+          BOTI makes it a place. 
         </div>
       </div>
     </section>
