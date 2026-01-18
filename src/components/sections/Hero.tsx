@@ -59,8 +59,8 @@ export default function Hero() {
           }
           // When scrolling forward past halfway, change to new text
           else if (self.direction === 1 && self.progress > 0.5) {
-            if (mainText.textContent !== "Our lives moved on.") {
-              mainText.textContent = "Our lives moved on.";
+            if (mainText.textContent !== "Our lives didn’t.") {
+              mainText.textContent = "Our lives didn’t.";
             }
           }
         },
@@ -158,11 +158,11 @@ export default function Hero() {
         }}
       />
 
-      <div className="relative z-20 w-full h-full flex flex-col md:flex-row items-center justify-end px-6 md:px-12 lg:px-20 gap-6" style={{ perspective: '1000px' }}>
-        <div className="flex flex-col items-center md:items-end md:w-1/2">
+      <div className="relative z-20 w-full h-full flex flex-col md:flex-row items-end md:items-center justify-center md:justify-end px-2 md:px-12 lg:px-20 gap-6" style={{ perspective: '1000px' }}>
+        <div className="flex flex-col items-center md:items-end lg:items-end xl:items-end w-2/3 md:w-1/2 lg:w-1/2 xl:w-1/2 px-4">
           <h1
             ref={mainTextRef}
-            className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight text-center md:text-left line-height: 1"
+            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-tight text-left md:text-left line-height: 1"
             style={{
               background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #f3e8ff 100%)",
               WebkitBackgroundClip: "text",
@@ -175,9 +175,9 @@ export default function Hero() {
           </h1>
           <p 
             ref={descTextRef}
-            className="text-lg md:text-xl lg:text-2xl font-light text-text-primary max-w-2xl mt-4 text-center md:text-right opacity-0 line-height: 1"
+            className="text-lg md:text-xl lg:text-2xl font-medium text-text-primary max-w-2xl mt-4 text-left md:text-center opacity-0 line-height: 1"
           >
-            Until now. Experience the next dimension of web 11.
+            This isn&apos;t a new interface- It&apos;s a new interior. The flat web becomes a place. Presence replaces pages.
           </p>
         </div>
       </div>

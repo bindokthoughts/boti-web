@@ -80,13 +80,13 @@ export default function Section5() {
         />
         <h6 
           ref={textRef}
-          className="text-2xl md:text-3xl font-bold text-text-primary px-8 py-4 rounded-2xl"
-          style={{
-            textShadow: "0 0 20px rgba(20,227,201,0.5), 0 4px 15px rgba(0,0,0,0.3)",
-            background: "rgba(255,255,255,0.05)",
-            backdropFilter: "blur(10px)",
-            border: "1px solid rgba(255,255,255,0.1)",
-          }}
+          className="text-2xl md:text-3xl font-bold text-blue-950 px-8 py-4 rounded-2xl"
+          // style={{
+          //   textShadow: "0 0 20px rgba(20,227,201,0.5), 0 4px 15px rgba(0,0,0,0.3)",
+          //   background: "rgba(255,255,255,0.05)",
+          //   backdropFilter: "blur(10px)",
+          //   border: "1px solid rgba(255,255,255,0.1)",
+          // }}
         >
           It&apos;s pronounced BODHI
         </h6>

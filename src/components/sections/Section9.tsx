@@ -85,37 +85,36 @@ export default function Section9() {
     >
       <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-3" />
       
-      <div className="flex flex-col items-center gap-8 max-w-4xl relative z-10">
+      <div className="flex flex-col items-center max-w-4xl relative z-10">
         <div 
           ref={(el) => addToRefs(el, 0)}
           className="text-center"
         >
-          <span className="text-4xl font-bold leading-[50px] text-gradient-light-to-white">
-            Anyone can build. No code. Built for AI.<br /><br />
-            Powered by presence. <br />
+          <span className="text-4xl font-bold text-gradient-light-to-white">
+            BOTI is the first browser built for the spatial internet. <br />
             Monetized from day one.<br /><br />
+            Anyone can build. No code. Built for AI.<br /><br />
           </span>
           <span className="text-2xl font-normal leading-[50px] text-glow-turquoise-light">
             From flat to fluid. <br />
             From links to locations.<br />
-            BOTI doesn&apos;t load
           </span>
         </div>
         
-        <div 
+        {/* <div 
           ref={(el) => addToRefs(el, 1)}
           className="text-center"
         >
-          <span className="text-2xl font-semibold leading-[50px] text-glow-highlight">
+          <span className="text-2xl font-semibold leading-[50px] text-neutral-50">
             The Web Stops Scrolling.<br />
           </span>
           <span 
             ref={highlightTextRef}
-            className="text-5xl font-black leading-[50px] text-gradient-turquoise-animated text-glow-turquoise-strong"
+            className="text-5xl font-black leading-[50px] text-gradient-turquoise-animated"
           >
             BOTI Starts Unfolding
           </span>
-        </div>
+        </div> */}
       </div>
     </section>
   );

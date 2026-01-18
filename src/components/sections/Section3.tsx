@@ -75,16 +75,25 @@ export default function Section3() {
         }}
       />
 
-      <div className="relative z-10 text-center px-6 max-w-5xl">
+      <div className="relative z-10 p-4 text-center px-6 max-w-5xl"
+        // style={{
+        //   background: "rgba(255, 255, 255, 0.08)",
+        //   backdropFilter: "blur(12px)",
+        //   boxShadow: `
+        //     0 8px 32px 0 rgba(139, 92, 246, 0.3),
+        //     inset 0 0 60px rgba(255, 255, 255, 0.05)
+        //   `,
+        // }}
+        >
         <h1
           ref={textRef}
-          className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight"
-          style={{
-            background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-            backgroundClip: "text",
-          }}
+          className="text-5xl md:text-6xl lg:text-7xl font-black leading-tight text-blue-950"
+          // style={{
+          //   background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)",
+          //   WebkitBackgroundClip: "text",
+          //   WebkitTextFillColor: "transparent",
+          //   backgroundClip: "text",
+          // }}
         >
           a browser that&apos;s bigger on the inside
         </h1>

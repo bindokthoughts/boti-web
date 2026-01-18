@@ -18,6 +18,7 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 export default function AnimatedEarthMoonScene() {
   const groupRef = useRef<Group>(null);
   const earthRef = useRef<Group>(null);
+  const moonRef = useRef<Group>(null);
 
   // Continuous Earth rotation on its axis
   useFrame((state, delta) => {
@@ -84,6 +85,76 @@ export default function AnimatedEarthMoonScene() {
       duration: 0.5,
       ease: "power1.inOut",
     }, 0.2);
+
+    // Section8: Move Earth away and bring Moon to the right side
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section8",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1.2,
+        markers: true // remove markers in production
+      }
+    })
+    .add(() => {
+      // safety: ensure refs exist
+      if (!earthRef.current || !moonRef.current) return;
+    })
+    .to(earthRef.current!.position, {
+      z: -120,
+      duration: 1.2,
+      ease: "power2.inOut",
+    }, 0)
+    .to(earthRef.current!.scale, {
+      x: 0.6,
+      y: 0.6,
+      z: 0.6,
+      duration: 1.2,
+      ease: "power2.inOut",
+    }, 0)
+    .to(moonRef.current!.position, {
+      x: -1,
+      y: 1,
+      z: 0,
+      duration: 1.2,
+      ease: "power2.out",
+    }, 0)
+    .to(moonRef.current!.scale, {
+      x: 1.8,
+      y: 1.8,
+      z: 1.8,
+      duration: 1.2,
+      ease: "power2.out",
+    }, 0);
+
+    // Section8: Move Earth away and bring Moon to the right side
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: "#section9",
+        start: "top center",
+        end: "bottom center",
+        scrub: 1.2,
+        markers: true // remove markers in production
+      }
+    })
+    .add(() => {
+      // safety: ensure refs exist
+      if (!earthRef.current || !moonRef.current) return;
+    })
+    .to(moonRef.current!.position, {
+      x: -1,
+      y: -5.5,
+      z: -5,
+      duration: 1.2,
+      ease: "power2.out",
+    }, 0)
+    .to(moonRef.current!.scale, {
+      x: 3,
+      y: 3,
+      z: 3,
+      duration: 1.2,
+      ease: "power2.out",
+    }, 0);
   }, []);
 
   return (
@@ -94,7 +165,7 @@ export default function AnimatedEarthMoonScene() {
         <group ref={earthRef} position={[0, 0, 0]}>
           <EarthObject />
         </group>
-        <group position={[7, -15, 0]}>
+        <group ref={moonRef} position={[7, -15, 0]}>
           <MoonObject />
         </group>
         <PortalEffect/>

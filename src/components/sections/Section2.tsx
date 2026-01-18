@@ -73,7 +73,7 @@ export default function Section2() {
     <section
       ref={sectionRef}
       id="section2"
-      className="min-h-screen relative flex items-center justify-center text-text-primary overflow-hidden"
+      className="min-h-screen relative flex items-start md:items-center justify-center md:justify-end text-text-primary overflow-hidden"
       style={{
         background: "var(--gradient-section)",
       }}
@@ -91,7 +91,7 @@ export default function Section2() {
       {/* Glassmorphism card */}
       <div
         ref={glassRef}
-        className="relative z-10 p-10 md:p-16 max-w-5xl mx-4"
+        className="relative z-10 p-10 md:p-16 mx-4 w-full md:w-1/2 justify-center md:justify-end "
         style={{
           background: "rgba(255, 255, 255, 0.08)",
           backdropFilter: "blur(12px)",
@@ -103,7 +103,7 @@ export default function Section2() {
       >
         <h1
           ref={textRef}
-          className="text-5xl md:text-7xl lg:text-8xl font-black text-center leading-tight"
+          className="text-5xl md:text-7xl lg:text-8xl font-black text-center md:text-left leading-tight"
           style={{
             background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 50%, #f3e8ff 100%)",
             WebkitBackgroundClip: "text",
