@@ -298,8 +298,8 @@ html, body {
   }
   
   .bg-gradient-radial-turquoise-2 {
-    background: radial-gradient(circle at 30% 50%, rgba(20, 227, 201, 0.3) 0%, transparent 50%), 
-                radial-gradient(circle at 70% 50%, rgba(124, 247, 228, 0.3) 0%, transparent 50%);
+    background: radial-gradient(circle at 30% 50%, rgba(62, 104, 129, 0.3) 0%, transparent 50%), 
+                radial-gradient(circle at 70% 50%, rgba(33, 76, 141, 0.3) 0%, transparent 50%);
   }
   
   .bg-gradient-radial-turquoise-3 {

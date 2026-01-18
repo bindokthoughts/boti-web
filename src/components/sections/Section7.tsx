@@ -164,7 +164,7 @@ export default function Section7() {
           >
             <div 
               ref={(el) => addToNumbersRef(el, 2)}
-              className="text-center text-5xl font-black leading-tight text-gradient-turquoise-3"
+              className="text-center text-5xl font-black leading-tight text-gradient-turquoise-2"
             >
               70%
             </div>
@@ -179,7 +179,7 @@ export default function Section7() {
           >
             <div 
               ref={(el) => addToNumbersRef(el, 3)}
-              className="text-center text-5xl font-black leading-tight text-gradient-turquoise-4"
+              className="text-center text-5xl font-black leading-tight text-gradient-turquoise-2"
             >
               50%
             </div>
@@ -190,42 +190,40 @@ export default function Section7() {
         </div>
 
         {/* Text Section */}
-        <div className="flex flex-col items-center gap-8 text-center max-w-4xl">
-          <div 
-            ref={(el) => addToTextRefs(el, 0)}
-            className="text-3xl font-bold leading-relaxed text-glow-turquoise"
-          >
-            You don&apos;t just want your site to work, you need it to wow.
-          </div>
+        <div className="flex flex-col items-center gap-4 text-center max-w-4xl">
 
           <div 
-            ref={(el) => addToTextRefs(el, 1)}
-            className="text-2xl font-medium leading-relaxed text-gradient-light-to-white"
+            ref={(el) => addToTextRefs(el, 0)}
+            className="text-6xl font-bold text-blue-200"
           >
-            For decades, world-building was trapped in game engines.
+            There are over 35 million businesses in the US.
+          </div>
+          <div 
+            ref={(el) => addToTextRefs(el, 1)}
+            className="text-3xl font-bold leading-relaxed text-neutral-50"
+          >
+            They don&apos;t just want your site to work, they need it to wow.
           </div>
 
           <div 
             ref={(el) => addToTextRefs(el, 2)}
-            className="text-2xl font-semibold leading-relaxed text-glow-highlight"
+            className="text-2xl font-medium leading-relaxed text-neutral-50"
           >
-            Now, that power is yours
+            For decades, immersive world-building was locked inside game engines. 
           </div>
 
           <div 
             ref={(el) => addToTextRefs(el, 3)}
-            className="text-white text-xl font-normal leading-relaxed"
+            className="text-2xl font-semibold text-neutral-50"
           >
-            With BOTI, your success isn&apos;t limited by skill or budget
-            <br />
-            only by imagination.
+            Now, that power opens to entrepreneurs.
           </div>
 
           <div 
             ref={(el) => addToTextRefs(el, 4)}
-            className="text-2xl font-bold leading-relaxed text-gradient-turquoise-animated text-glow-turquoise-strong"
+            className="text-2xl font-bold text-neutral-50"
           >
-            BOTI turns <strong>Good Enough</strong> into limitless imagination.
+            With BOTI, success is no longer limited by skill or budget, only imagination.
           </div>
         </div>
       </div>

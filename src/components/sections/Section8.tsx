@@ -23,6 +23,13 @@ export default function Section8() {
           }
         });
 
+          // Animate section background to a "deep space" gradient while scrolling
+          tl.to(sectionRef.current, {
+            background: "linear-gradient(180deg, #000010 0%, #001025 30%, #05021a 60%, #000000 100%)",
+            duration: 1,
+            ease: "power1.out"
+          }, 0);
+
         // Animate text blocks with 3D perspective
         textRefs.current.forEach((text, index) => {
           if (text) {
@@ -84,7 +91,8 @@ export default function Section8() {
         
         <div 
           ref={(el) => addToTextRefs(el, 2)}
-          className="text-5xl font-black leading-relaxed text-gradient-turquoise-animated text-glow-turquoise-strong"
+          className="text-5xl f
+          ont-black leading-relaxed text-white"
         >
           BOTI makes it a place. 
         </div>

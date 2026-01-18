@@ -88,15 +88,21 @@ export default function Section10() {
           ref={titleRef}
           className="text-3xl font-bold leading-relaxed text-gradient-turquoise-1"
         >
-          BOTI is the first browser built for the spatial internet.
+          The Web Stops Scrolling.
         </p>
         
         <div className="flex flex-col gap-6">
           <p 
+          ref={titleRef}
+          className="text-5xl font-black leading-[50px] text-gradient-turquoise-animated"
+        >
+          BOTI Starts Unfolding
+        </p>
+          {/* <p 
             ref={(el) => addToSubtitleRefs(el, 0)}
             className="text-2xl font-medium leading-relaxed text-glow-highlight"
           >
-            It doesn&apos;t open tabs.
+            BOTI Starts Unfolding
           </p>
           
           <p 
@@ -104,7 +110,7 @@ export default function Section10() {
             className="text-2xl font-medium leading-relaxed text-glow-turquoise"
           >
             It opens places.
-          </p>
+          </p> */}
         </div>
       </div>
     </section>
