@@ -133,14 +133,16 @@ export default function Section11() {
             ref={(el) => addToTitleRefs(el, 0)}
             className="text-center text-4xl font-medium text-white"
           >
-            You don&apos;t scroll through BOTI.
+            {/* You don&apos;t scroll through BOTI. */}
+            The web doesn’t load. It arrives.
           </div>
           
           <div 
             ref={(el) => addToTitleRefs(el, 1)}
             className="text-center text-8xl font-black text-gradient-turquoise-1"
           >
-            You step inside.
+            {/* You step inside. */}
+             BOTI in Motion
           </div>
           
           <div className="flex flex-col gap-4 text-center">
@@ -148,21 +150,24 @@ export default function Section11() {
               ref={(el) => addToDescRefs(el, 0)}
               className="text-2xl font-medium  text-glow-turquoise-light"
             >
-              Every click becomes a step.
+              {/* Every click becomes a step. */}
+              Websites become walk-able.
             </div>
             
             <div 
               ref={(el) => addToDescRefs(el, 1)}
               className="text-2xl font-medium text-glow-highlight-light"
             >
-              Every brand becomes a place.
+              {/* Every brand becomes a place. */}
+              Pages become places.
             </div>
             
             <div 
               ref={(el) => addToDescRefs(el, 2)}
               className="text-2xl font-medium text-glow-turquoise-light"
             >
-              Every visit becomes a memory
+              {/* Every visit becomes a memory */}
+              Clicks become presence.
             </div>
           </div>
         </div>

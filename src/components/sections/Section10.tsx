@@ -76,12 +76,17 @@ export default function Section10() {
     <section 
       ref={sectionRef}
       id="section10" 
-      className="h-screen relative flex flex-col items-center justify-center px-8"
-      style={{
-        background: "linear-gradient(135deg, #0B1F4A 0%, #3FE7F9 100%)"
-      }}
+      className="h-screen relative flex flex-col items-center justify-center px-8 overflow-hidden"
     >
-      <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-4" />
+      <video
+        autoPlay
+        muted
+        loop
+        className="absolute inset-0 w-full h-full object-cover z-0"
+        src="/videos/shoes.mp4"
+      />
+      
+      <div className="absolute inset-0 z-10 animate-pulse-slow bg-gradient-radial-turquoise-4" />
       
       <div className="flex flex-col items-center gap-12 max-w-4xl text-center relative z-10">
         <p 
