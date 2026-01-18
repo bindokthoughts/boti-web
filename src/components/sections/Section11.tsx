@@ -139,7 +139,7 @@ export default function Section11() {
           
           <div 
             ref={(el) => addToTitleRefs(el, 1)}
-            className="text-center text-8xl font-black text-gradient-turquoise-1"
+            className="text-center text-6xl font-black text-gradient-turquoise-1"
           >
             {/* You step inside. */}
              BOTI in Motion
