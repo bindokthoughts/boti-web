@@ -91,7 +91,7 @@ export default function Section10() {
       <div className="flex flex-col items-center gap-12 max-w-4xl text-center relative z-10">
         <p 
           ref={titleRef}
-          className="text-3xl font-bold leading-relaxed text-gradient-turquoise-1"
+          className="text-3xl font-bold leading-relaxed text-blue-900"
         >
           The Web Stops Scrolling.
         </p>
@@ -99,7 +99,7 @@ export default function Section10() {
         <div className="flex flex-col gap-6">
           <p 
           ref={titleRef}
-          className="text-5xl font-black leading-[50px] text-gradient-turquoise-animated"
+          className="text-5xl font-black leading-[50px] text-blue-950"
         >
           BOTI Starts Unfolding
         </p>
