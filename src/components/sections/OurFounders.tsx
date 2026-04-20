@@ -11,6 +11,11 @@ import DavidImg from "../../assets/images/founders/David_Creighton.jpg";
 import ForrestImg from "../../assets/images/founders/Forrester_Kane.jpg";
 import AdrianImg from "../../assets/images/founders/Adrian_Lannon.png"
 
+import ASquare from "../../assets/images/partner_logos/A_Square.webp";
+import Equilibria from "../../assets/images/Equilibria.png";
+import Headward from "../../assets/images/logo-headword.png";
+import Simulated from "../../assets/images/Simulated_Logo.png";
+
 gsap.registerPlugin(ScrollTrigger);
 
 export default function OurFounders() {
@@ -61,6 +66,7 @@ export default function OurFounders() {
       title: "Chief Product Officer",
       description: "Shaping the future of spatial web experiences through intuitive design and user-centric innovation.",
       imageUrl: DavidImg,
+      companyImageUrl: Equilibria,
       linkedinUrl: "https://www.linkedin.com/in/david-creighton-5716b9143/",
       fullBio: `Serial Entrepreneur Background in operations, innovation strategy, and venture development.
         Notable Achievements:
@@ -72,6 +78,7 @@ export default function OurFounders() {
       title: "CTO & Co-Founder",
       description: "Shaping the future of spatial web experiences through intuitive design and user-centric innovation.",
       imageUrl: AdrianImg,
+      companyImageUrl: ASquare,
       linkedinUrl: "https://www.linkedin.com/in/adrian-lannon-b1b825175/",
       fullBio: `Founder of A Square 10+ years building in Unity, simulation, & real-time systems.
 Notable Achievements:
@@ -83,6 +90,7 @@ Notable Achievements:
       title: "Chief Creative Officer",
       description: "Bridging technology and creativity to build immersive digital experiences that inspire and connect.",
       imageUrl: ForrestImg,
+      companyImageUrl: Headward,
       linkedinUrl: "https://www.linkedin.com/in/forresterkane/",
       fullBio: `Founder of Headword! Brand & go-to-market leader for frontier tech and creator platforms.
 
@@ -90,23 +98,23 @@ Career Highlights:
 • Leads a talented team for BOTI's brand, creative, & narrative evolution.
 • Driving BOTI’s Social Launch, Influencer Strategy, Crowdfund, Creator Ecosystem & Top-Of-Funnel Activation.`
     },
-    {
-      name: "Johan",
-      title: "Chief Technology Officer",
-      description: "Leading the technical vision and innovation at BOTI, focusing on spatial computing and AI integration.",
-      imageUrl: JohanImg,
-      linkedinUrl: "https://linkedin.com/in/sarah-johnson",
-      fullBio: `Sarah Johnson is a pioneering force in spatial computing and artificial intelligence. With over 15 years of experience in technology leadership, she has been instrumental in developing groundbreaking solutions that bridge the physical and digital worlds.
+//     {
+//       name: "Johan",
+//       title: "Chief Technology Officer",
+//       description: "Leading the technical vision and innovation at BOTI, focusing on spatial computing and AI integration.",
+//       imageUrl: JohanImg,
+//       linkedinUrl: "https://linkedin.com/in/sarah-johnson",
+//       fullBio: `Sarah Johnson is a pioneering force in spatial computing and artificial intelligence. With over 15 years of experience in technology leadership, she has been instrumental in developing groundbreaking solutions that bridge the physical and digital worlds.
 
-Prior to founding BOTI, Sarah held senior positions at leading tech companies where she led teams developing cutting-edge AR/VR solutions. She holds multiple patents in spatial computing and has been recognized as one of the top innovators in immersive technologies.
+// Prior to founding BOTI, Sarah held senior positions at leading tech companies where she led teams developing cutting-edge AR/VR solutions. She holds multiple patents in spatial computing and has been recognized as one of the top innovators in immersive technologies.
 
-Sarah's vision for BOTI stems from her belief that technology should enhance human connection and creativity, not replace it. Under her technical leadership, BOTI is pushing the boundaries of what's possible in the spatial web.
+// Sarah's vision for BOTI stems from her belief that technology should enhance human connection and creativity, not replace it. Under her technical leadership, BOTI is pushing the boundaries of what's possible in the spatial web.
 
-Education:
-• Ph.D. in Computer Science, MIT
-• M.S. in Artificial Intelligence, Stanford University
-• B.S. in Computer Engineering, UC Berkeley`
-    }
+// Education:
+// • Ph.D. in Computer Science, MIT
+// • M.S. in Artificial Intelligence, Stanford University
+// • B.S. in Computer Engineering, UC Berkeley`
+//     }
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -146,7 +154,10 @@ Education:
       <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-7" />
       <div className="flex flex-col items-center gap-16 max-w-7xl mx-auto w-full relative z-10">
         <div className="text-center space-y-6 mb-16">
-          <h1 className="text-6xl font-black text-white">Our Team</h1>
+          <h1 className="text-6xl font-black text-white">
+            Founders Built for the Moment
+            {/* Our Team */}
+            </h1>
           <p className="text-xl max-w-2xl mx-auto text-gray-200">
             Meet the innovative minds behind BOTI&apos;s revolutionary spatial web experience
           </p>

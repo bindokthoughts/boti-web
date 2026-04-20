@@ -11,6 +11,7 @@ interface ProfileCardProps {
   title: string;
   description: string;
   imageUrl: StaticImageData;
+  companyImageUrl?: StaticImageData;
   linkedinUrl: string;
   fullBio: string;
 }
@@ -20,6 +21,7 @@ export default function ProfileCard({
   title,
   description,
   imageUrl,
+  companyImageUrl,
   linkedinUrl,
   fullBio
 }: ProfileCardProps) {
@@ -60,24 +62,24 @@ export default function ProfileCard({
         duration: 0.3,
         ease: "power2.inOut"
       })
-      .to(modalContentRef.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out"
-      })
-      .to(modalImageRef.current, {
-        scale: 1,
-        opacity: 1,
-        duration: 0.5,
-        ease: "back.out(1.7)"
-      }, "-=0.3")
-      .to(modalTextRef.current, {
-        y: 0,
-        opacity: 1,
-        duration: 0.5,
-        ease: "power2.out"
-      }, "-=0.3");
+        .to(modalContentRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out"
+        })
+        .to(modalImageRef.current, {
+          scale: 1,
+          opacity: 1,
+          duration: 0.5,
+          ease: "back.out(1.7)"
+        }, "-=0.3")
+        .to(modalTextRef.current, {
+          y: 0,
+          opacity: 1,
+          duration: 0.5,
+          ease: "power2.out"
+        }, "-=0.3");
     }
   }, [isModalOpen]);
 
@@ -110,9 +112,20 @@ export default function ProfileCard({
 
             <p className="text-lg text-gray-200">{title}</p>
             <p className="text-sm text-gray-300">{description}</p>
-
+            {companyImageUrl && (
+              <div className="relative w-full overflow-hidden rounded-2xl mb-4">
+                <Image
+                  src={companyImageUrl}
+                  alt={name}
+                  // fill
+                  priority
+                  className="object-cover"
+                  sizes="100%"
+                />
+              </div>
+            )}
             <div className="flex items-center justify-between pt-4 gap-4">
-              <a 
+              <a
                 href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -120,7 +133,7 @@ export default function ProfileCard({
               >
                 LinkedIn
               </a>
-              <button 
+              <button
                 onClick={() => setIsModalOpen(true)}
                 className="flex-1 rounded-full bg-background-secondary px-6 py-2 font-semibold text-white hover:bg-surface transition-colors border border-border"
               >
@@ -146,21 +159,21 @@ export default function ProfileCard({
                   </svg>
                 </button>
               </div>
-              
+
               <div className="flex flex-col md:flex-row items-center gap-8 mb-12">
                 <div ref={modalImageRef} className="relative w-48 h-48 rounded-2xl overflow-hidden">
                   <Image
                     src={imageUrl}
                     alt={name}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 192px, 192px"
+                    // className="object-cover"
+                    // sizes="(max-width: 768px) 192px, 192px"
                   />
                 </div>
                 <div ref={modalTextRef} className="text-center md:text-left">
                   <h2 className="text-4xl font-bold text-white mb-2">{name}</h2>
                   <p className="text-xl text-gray-200">{title}</p>
-                  <a 
+                  <a
                     href={linkedinUrl}
                     target="_blank"
                     rel="noopener noreferrer"
@@ -170,7 +183,7 @@ export default function ProfileCard({
                   </a>
                 </div>
               </div>
-              
+
               <div className="prose prose-invert prose-lg max-w-none">
                 <p className="text-gray-300 whitespace-pre-wrap leading-relaxed">{fullBio}</p>
               </div>
