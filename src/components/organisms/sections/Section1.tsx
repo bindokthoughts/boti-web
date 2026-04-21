@@ -12,8 +12,9 @@ export default function Section1() {
   const textRef = useRef<HTMLHeadingElement>(null);
 
   useGSAP(() => {
+    if (!textRef.current || !sectionRef.current) return;
     gsap.from(textRef.current, {
-      opacity: 0,
+      autoAlpha: 0,
       scale: 0,
       // rotation: -5,
       duration: 2,

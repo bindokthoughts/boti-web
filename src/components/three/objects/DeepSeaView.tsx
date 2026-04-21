@@ -36,8 +36,8 @@ export function DeepSeaView({
         scrub: 1,
       },
     })
-    .to(groupRef.current, {
-      opacity: 0,
+    .to({ proxy: 1 }, {
+      proxy: 0,
       onUpdate: function() {
         const opacity = this.progress() === 0 ? 1 : 1 - this.progress();
         

@@ -3,19 +3,19 @@
 import MasterScene from "@/components/three/scene/MasterScene";
 import SectionDots from "@/components/navbar/SectionDots";
 
-import ContactUs from "@/components/sections/ContactUs";
-import Hero from "@/components/sections/Hero";
-import OurFounders from "@/components/sections/OurFounders";
-import Section2 from "@/components/sections/Section2";
-import Section3 from "@/components/sections/Section3";
-import Section5 from "@/components/sections/Section5";
-import Section6 from "@/components/sections/Section6";
-import Section7 from "@/components/sections/Section7";
-import Section8 from "@/components/sections/Section8";
-import Section9 from "@/components/sections/Section9";
-import Section10 from "@/components/sections/Section10";
-import Section11 from "@/components/sections/Section11";
-import Section12 from "@/components/sections/Section12";
+import ContactUs from "@/components/organisms/sections/ContactUs";
+import Hero from "@/components/organisms/sections/Hero";
+import OurFounders from "@/components/organisms/sections/OurFounders";
+import Section2 from "@/components/organisms/sections/Section2";
+import Section3 from "@/components/organisms/sections/Section3";
+import Section5 from "@/components/organisms/sections/Section5";
+import Section6 from "@/components/organisms/sections/Section6";
+import Section7 from "@/components/organisms/sections/Section7";
+import Section8 from "@/components/organisms/sections/Section8";
+import Section9 from "@/components/organisms/sections/Section9";
+import Section10 from "@/components/organisms/sections/Section10";
+import Section11 from "@/components/organisms/sections/Section11";
+import Section12 from "@/components/organisms/sections/Section12";
 
 export default function Home() {
   return (
@@ -23,8 +23,11 @@ export default function Home() {
       {/* Section Navigation Dots */}
       <SectionDots />
 
-      {/* Scroll Sections Overlay - pointer-events-auto to allow interaction */}
-      <div className="relative z-10 pointer-events-auto max-w-full">
+      {/* Master 3D Canvas - Single WebGL context for all scenes */}
+      <MasterScene />
+
+      {/* Scroll Sections Overlay - pointer-events-none to let scroll hit body, but inner items can be auto */}
+      <div className="relative z-10 pointer-events-none max-w-full">
         <Hero />
         <Section2 />
         <Section3 />
@@ -36,10 +39,7 @@ export default function Home() {
         <Section10 />
         <Section11 />
         <OurFounders />
-        {/* <Section12 /> */}
         <ContactUs />
-        {/* Master 3D Canvas - Single WebGL context for all scenes */}
-      <MasterScene />
       </div>
     </main>
   );

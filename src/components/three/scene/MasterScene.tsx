@@ -1,8 +1,9 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { Environment, Preload, Stars, Sparkles } from "@react-three/drei";
-import { Suspense, useEffect, useState } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Environment, Preload, Stars, Sparkles, PerspectiveCamera, PerformanceMonitor } from "@react-three/drei";
+import { Suspense, useEffect, useState, useRef } from "react";
+import { EffectComposer, Bloom, Noise, Vignette } from "@react-three/postprocessing";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -22,12 +23,49 @@ import HolographicGrid from "../effects/HolographicGrid";
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
 /**
- * MasterScene - Enhanced immersive 3D experience
- * PRESERVES all original content and 3D models
- * ADDS spectacular visual effects using brand colors (blue-400 to purple-500)
+ * CameraRig - Dynamically adjusts camera based on raw scroll velocity
+ */
+function CameraRig() {
+  const cameraRef = useRef<THREE.PerspectiveCamera>(null);
+  const targetZ = useRef(15);
+  
+  useFrame((state, delta) => {
+    if (!cameraRef.current) return;
+    
+    // Smoothly interpolate current Z towards the dynamic target Z
+    cameraRef.current.position.z = THREE.MathUtils.damp(
+      cameraRef.current.position.z,
+      targetZ.current,
+      4, // ease factor
+      delta
+    );
+  });
+
+  useEffect(() => {
+    // GSAP ScrollTrigger to track velocity globally
+    ScrollTrigger.create({
+      trigger: "body",
+      start: "top top",
+      end: "bottom bottom",
+      onUpdate: (self) => {
+        // Pull camera back when scrolling fast
+        const velocity = Math.abs(self.getVelocity());
+        const speedFactor = Math.min(velocity / 500, 10);
+        targetZ.current = 15 + speedFactor; // Base 15 + up to 10 extra pushback
+      }
+    });
+  }, []);
+
+  return <PerspectiveCamera ref={cameraRef} makeDefault position={[0, 0, 15]} fov={35} near={0.1} far={1000} />;
+}
+
+/**
+ * MasterScene - Awwwards Tier immersive 3D experience
  */
 export default function MasterScene() {
   const [isMobile, setIsMobile] = useState(false);
+  const [dpr, setDpr] = useState<number>(1.5);
+  const [lowPerf, setLowPerf] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => {
@@ -40,98 +78,57 @@ export default function MasterScene() {
   }, []);
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0">
+    <div className="fixed inset-0 pointer-events-none z-0 bg-[#030303]">
       <Canvas
-        orthographic
-        camera={{ 
-          position: [0, 0, 10],
-          zoom: isMobile ? 80 : 100,
-          near: 0.1,
-          far: 1000
-        }}
-        dpr={isMobile ? 1 : [1, 2]}
+        dpr={dpr}
         performance={{ min: 0.5 }}
-        style={{
-          touchAction: 'pan-y',
-          width: '100%',
-          height: '100%'
-        }}
+        style={{ touchAction: 'pan-y', width: '100%', height: '100%' }}
         gl={{
-          antialias: true,
+          antialias: false, // Disabled inside R3F when using PostProcessing
           powerPreference: "high-performance",
           alpha: true,
           toneMapping: THREE.ACESFilmicToneMapping,
           toneMappingExposure: 1.2,
         }}
       >
+        <PerformanceMonitor 
+          onDecline={() => { setDpr(1); setLowPerf(true); }} 
+          onIncline={() => { setDpr(2); setLowPerf(false); }} 
+        />
+        
+        <CameraRig />
+
         <Suspense fallback={null}>
-          {/* Enhanced lighting with brand colors */}
-          <ambientLight intensity={0.3} />
-          <directionalLight 
-            position={[10, 10, 5]}
-            intensity={1.2}
-            color="#3FE7F9"
-            castShadow
-          />
-          <pointLight position={[-10, 5, -5]} intensity={0.8} color="#7CF7E4" />
-          <pointLight position={[10, -5, 5]} intensity={0.6} color="#3B4D91" />
-          <spotLight
-            position={[0, 20, 10]}
-            angle={0.4}
-            penumbra={1}
-            intensity={1.5}
-            color="#3B4D91"
-            castShadow
-          />
+          {/* Enhanced cinematic lighting with brand colors */}
+          <ambientLight intensity={0.2} />
+          <directionalLight position={[10, 10, 5]} intensity={1.5} color="#3FE7F9" castShadow />
+          <pointLight position={[-10, 5, -5]} intensity={1.0} color="#7CF7E4" />
+          <spotLight position={[0, 20, 10]} angle={0.5} penumbra={1} intensity={2.0} color="#3B4D91" castShadow />
 
-          {/* === ENHANCED ATMOSPHERIC EFFECTS === */}
-          {/* Animated stars in brand colors */}
-          <Stars
-            radius={100}
-            depth={50}
-            count={isMobile ? 3000 : 5000}
-            factor={4}
-            saturation={0.5}
-            fade
-            speed={0.5}
-          />
-
-          {/* Sparkles for magical effect */}
-          <Sparkles
-            count={isMobile ? 50 : 100}
-            scale={20}
-            size={2}
-            speed={0.4}
-            opacity={0.6}
-            color="#3FE7F9"
-          />
-
-          {/* === ADDITIONAL EFFECTS === */}
-          {/* Particle field background */}
-          <ParticleField />
+          {/* === ATMOSPHERIC EFFECTS === */}
+          <Stars radius={100} depth={50} count={isMobile || lowPerf ? 1500 : 4000} factor={4} saturation={0.8} fade speed={0.5} />
+          <Sparkles count={isMobile || lowPerf ? 40 : 80} scale={20} size={1.5} speed={0.6} opacity={0.5} color="#3FE7F9" />
           
-          {/* Holographic grid */}
+          <ParticleField />
           <HolographicGrid />
 
-          {/* === ALL ORIGINAL SCENES PRESERVED === */}
-          
-          {/* Scene 1: Hero - Animated Cube (Y: 0) */}
-          <AnimatedCubeScene />
+          {/* === PRESERVED 3D MESHES === */}
+          <AnimatedCubeScene />          {/* Hero */}
+          <AnimatedIcebergScene />       {/* Section 2 */}
+          <AnimatedEarthMoonScene />     {/* Sections 3+ */}
+          <AnimatedLunarScene />         {/* Sections 7+ */}
 
-          {/* Scene 2: Section2 - Iceberg (Y: -100) */}
-          <AnimatedIcebergScene />
-
-          {/* Scene 3: Section3+ - Earth & Moon (Y: -150) */}
-          <AnimatedEarthMoonScene />
-
-          {/* Scene 4: Section7 - Lunar Landscape (Y: -350) */}
-          <AnimatedLunarScene />
-
-          {/* Environment with brand-aligned preset */}
-          <Environment preset="sunset" />
-          
-          <Preload all />
+          <Environment preset="night" /> 
         </Suspense>
+
+        {/* === POST PROCESSING PIPELINE === */}
+        <EffectComposer multisampling={lowPerf ? 0 : 4}>
+          <Bloom luminanceThreshold={0.5} luminanceSmoothing={0.9} intensity={1.2} />
+          <Noise opacity={0.035} />
+          <Vignette eskil={false} offset={0.1} darkness={1.1} />
+        </EffectComposer>
+
+        <Preload all />
       </Canvas>
     </div>
   );

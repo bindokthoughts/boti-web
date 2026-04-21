@@ -6,7 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Section8() {
+export default function Section12() {
   const sectionRef = useRef<HTMLElement>(null);
   const textRefs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -23,25 +23,18 @@ export default function Section8() {
           }
         });
 
-          // Animate section background to a "deep space" gradient while scrolling
-          tl.to(sectionRef.current, {
-            background: "linear-gradient(180deg, #000010 0%, #001025 30%, #05021a 60%, #000000 100%)",
-            duration: 1,
-            ease: "power1.out"
-          }, 0);
-
         // Animate text blocks with 3D perspective
         textRefs.current.forEach((text, index) => {
           if (text) {
             tl.fromTo(text,
               {
-                opacity: 0,
+                autoAlpha: 0,
                 z: -200,
                 rotationX: 45,
                 y: 100
               },
               {
-                opacity: 1,
+                autoAlpha: 1,
                 z: 0,
                 rotationX: 0,
                 y: 0,
@@ -66,35 +59,34 @@ export default function Section8() {
   return (
     <section 
       ref={sectionRef}
-      id="section8" 
+      id="section12" 
       className="h-screen relative flex flex-col items-center justify-center px-8"
       style={{
-        background: "linear-gradient(135deg, #0B1F4A 0%, #3B4D91 50%, #3FE7F9 100%)"
+        background: "linear-gradient(135deg, #000000 0%, #3B4D91 50%, #7CF7E4 100%)"
       }}
     >
-      <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-2" />
+      <div className="absolute inset-0 z-0 animate-pulse-slow bg-gradient-radial-turquoise-6" />
       
       <div className="flex flex-col items-center gap-8 max-w-4xl text-center relative z-10">
         <div 
           ref={(el) => addToTextRefs(el, 0)}
-          className="text-3xl font-medium leading-relaxed text-gradient-light-to-white"
+          className="text-3xl font-medium leading-relaxed text-glow-highlight"
         >
           The world moved into AR, voice, and virtual spaces but
         </div>
         
         <div 
           ref={(el) => addToTextRefs(el, 1)}
-          className="text-4xl font-bold leading-relaxed text-glow-turquoise"
+          className="text-4xl font-bold leading-relaxed text-gradient-accent-to-white"
         >
           the web stayed flat.
         </div>
         
         <div 
           ref={(el) => addToTextRefs(el, 2)}
-          className="text-5xl f
-          ont-black leading-relaxed text-white"
+          className="text-5xl font-black leading-relaxed text-gradient-full-spectrum text-glow-turquoise-strong"
         >
-          BOTI makes it a place. 
+          BOTI makes it a place.
         </div>
       </div>
     </section>
